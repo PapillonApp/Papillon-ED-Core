@@ -1,11 +1,10 @@
 import axios from 'axios';
 import errors from '../errors';
-
-const EDAPI = "https://api.ecoledirecte.com/v3"
+import { API } from '../constants'
 
 function getTimetable(token, userID, date) {
 
-    let URL = `${EDAPI}/E/${userID}/emploidutemps.awp?verbe=get`;
+    let URL = `${API}/E/${userID}/emploidutemps.awp?verbe=get`;
 
     var requestOptions = {
         headers: { "Content-Type": "application/x-www-form-urlencoded", "X-Token": token },            

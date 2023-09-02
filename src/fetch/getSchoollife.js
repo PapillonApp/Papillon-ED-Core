@@ -1,11 +1,11 @@
 import axios from 'axios';
 import errors from '../errors';
 
-const EDAPI = "https://api.ecoledirecte.com/v3"
+import { API } from '../constants'
 
 function getSchoollife(token, userID) {
 
-    let URL = `${EDAPI}/eleves/${userID}/viescolaire.awp?verbe=get`;
+    let URL = `${API}/eleves/${userID}/viescolaire.awp?verbe=get`;
 
     var requestOptions = {
         headers: { "Content-Type": "application/x-www-form-urlencoded", "X-Token": token },            
