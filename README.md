@@ -15,3 +15,31 @@ Le module est de la manière suivante :
 - `src/session.js` : Contient les fonctions de gestion de la session
 - `src/auth.js` : Contient les fonctions d'authentification
 - `src/errors.js` : Contient les erreurs pouvant être retournées par le module. *Les erreurs doivent suivre la même structure pour chaque module.*
+  
+## Utilisation
+
+Pour se connecter avec des identifiants
+```javascript
+const ED = require("papillon-ed-core");
+let ed = new ED();
+
+ed.auth.login("username", "password").then(() => {
+    let token = ed._token;
+    let prenom = ed.student.prenom
+
+    ed.homeworks.fetch().then(homeworks => {
+        //Traitement des devoirs
+    })
+})
+```
+
+Pour se connecter avec un token
+```javascript
+const ED = require("papillon-ed-core");
+let ed = new ED();
+
+let userID = 0000;
+ed.auth.setToken("token", userID)
+
+//La suite
+```
