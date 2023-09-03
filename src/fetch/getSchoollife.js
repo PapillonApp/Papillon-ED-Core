@@ -1,31 +1,20 @@
-import axios from 'axios';
-import errors from '../errors';
 
-import { API } from '../constants'
 
-function getSchoollife(token, userID) {
+class getSchoollife {
+    constructor(session) {
+        this.session = session;
 
-    let URL = `${API}/eleves/${userID}/viescolaire.awp?verbe=get`;
+    }
 
-    var requestOptions = {
-        headers: { "Content-Type": "application/x-www-form-urlencoded", "X-Token": token },            
-    };
-    let body = `data={}`
-
-    return axios.post(URL, body, requestOptions).then((response) => {
-        if (response.data.data.code) {
-            if (response.data.data.code == 525) {
-                throw errors.SESSION_EXPIRED.drop()
-            }
-        }
-
-        let schoollife = response.data.data;
-
-        return {
-            absencesRetards: schoollife.absencesRetards,
-            sanctionsEncouragements: schoollife.sanctionsEncouragements
-        };
-    })
+    fetch() {
+        let url = `/E/${this.session.student.id}/viescolaire.awp?verbe=get`
+        return this.session.request.post(url, `data={}`).then(res => {
+            return {
+                absencesRetards: res.data.absencesRetards,
+                sanctionsEncouragements: res.data.sanctionsEncouragements
+            };
+        })
+    }
 }
 
 module.exports = getSchoollife;

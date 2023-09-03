@@ -1,28 +1,29 @@
-import axios from 'axios';
-import errors from '../errors';
-import { API } from '../constants'
 
-function getTimetable(token, userID, date) {
 
-    let URL = `${API}/E/${userID}/emploidutemps.awp?verbe=get`;
 
-    var requestOptions = {
-        headers: { "Content-Type": "application/x-www-form-urlencoded", "X-Token": token },            
-    };
-    let body = `data={
-        "dateDebut": "${date}",
-        "dateFin": "${date}",
-        "avecTrous": false
-    }`
+class getTimetable {
+    constructor(session) {
+        this.session = session;
+    }
 
-    return axios.post(URL, body, requestOptions).then((response) => {
-        // get timetable
-        if (response.data.data.code == 525) {
-            throw errors.SESSION_EXPIRED.drop()
-        }
-        let timetable = response.data.data;
-        return timetable;
-    })
+    fetchByDay(date) {
+        let url = `/E/${this.session.student.id}/emploidutemps.awp?verbe=get`
+        let body = `data={
+            "dateDebut": "${date}",
+            "dateFin": "${date}",
+            "avecTrous": false
+        }`
+        return this.session.request.post(url, body)
+    }
+
+    fetchByDate(dateD, dateF) {
+        let url = `/E/${this.session.student.id}/emploidutemps.awp?verbe=get`
+        let body = `data={
+            "dateDebut": "${dateD}",
+            "dateFin": "${dateF}",
+            "avecTrous": false
+        }`
+        return this.session.request.post(url, body)
+    }
 }
-
 module.exports = getTimetable;
