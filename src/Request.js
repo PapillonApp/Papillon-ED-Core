@@ -23,12 +23,15 @@ module.exports = class Request {
             body: body
         }).then(res => res.json())
         .then(response => {
-            /*if (response.code == 525) {
+            if (response.code == 525) {
                 throw errors.SESSION_EXPIRED.drop()
             }
             if (response.code == 520) {
                 throw errors.TOKEN_INVALID.drop()
-            }*/
+            }
+            if (response.code == 505) {
+                throw errors.WRONG_CREDENTIALS.drop()
+            }
             return response;
         })
     }
