@@ -41,5 +41,5 @@ let ed = new ED();
 let userID = 0000;
 ed.auth.setToken("token", userID)
 
-//La suite
+//La suite du code
 ```
