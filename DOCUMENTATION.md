@@ -55,7 +55,7 @@ ED.auth.login("identifiant", "mot de passe").then(() => {
 ```
 
 **1.2.2 - Authentification par token déjà généré**
-```javascript```
+```javascript
 const ED = require("Papillon-ED-Core")
 let ed = new ED()
 
