@@ -2,11 +2,17 @@
 
 ## Sommaire
 0 - Installation
+
 1 - Initialisation
+
 1.1 - Importation du module
+
 1.2 - Authentification
+
 1.2.1 - Authentification via identifiants
+
 1.2.2 - Authentification via token
+
 2 - Utilisation
 
 
