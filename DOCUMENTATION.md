@@ -69,6 +69,7 @@ Maintenant que le module est connecté, on peut l'utiliser.
 
 > **Note**
 > Dans les exemples de scripts suivants, on supposera que la variable `ed` contient le constructor du module connecté tel que présenté ci-dessus
+> 
 > Ou, si vous préférez :
 > ```javascript
 > const ED = require("papillon-ed-core")
