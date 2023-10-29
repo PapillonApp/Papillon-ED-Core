@@ -26,6 +26,10 @@ class Session {
         this.request = new Request(this);
     }
 
+    findModule(name) {
+        return this.modules.find(m => m.code === name);
+    }
+
 
 
 }
