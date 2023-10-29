@@ -6,6 +6,7 @@ const SESSION_EXPIRED = error(4, 'Session has expired due to inactivity or error
 const RATE_LIMITED = error(5, 'You are being rate limited because of too many failed requests');
 const CLOSED = error(6, 'The instance is closed, try again later');
 const TOKEN_INVALID = error(7, 'The token is invalid');
+const MODULE_DISABLE = error(8, moduleName => `The module is not activated in your school. Module name : ${moduleName}`);
 
 function error(code, message)
 {
@@ -26,5 +27,6 @@ module.exports = {
     SESSION_EXPIRED,
     RATE_LIMITED,
     CLOSED,
-	TOKEN_INVALID
+	TOKEN_INVALID,
+    MODULE_DISABLE
 };
