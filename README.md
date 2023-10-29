@@ -1,6 +1,5 @@
-## Module Papillon
-### Papillon-ED-Core
----
+# Module Papillon
+## Papillon-ED-Core
 
 **Ce module permet la connexion entre l'application Papillon et EcoleDirecte.**
 
@@ -10,7 +9,7 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
 
 ### Structure
 
-Le module est de la manière suivante :
+Le module est structuré de la manière suivante :
 - `src/fetch` : Contient les fonctions de récupération des données de l'API d'EcoleDirecte
 - `src/session.js` : Contient les fonctions de gestion de la session
 - `src/auth.js` : Contient les fonctions d'authentification
@@ -18,7 +17,7 @@ Le module est de la manière suivante :
   
 ## Utilisation
 
-Pour se connecter avec des identifiants
+### Connexion par idenfitiants
 ```javascript
 const ED = require("papillon-ed-core");
 let ed = new ED();
@@ -31,9 +30,12 @@ ed.auth.login("username", "password").then(() => {
         //Traitement des devoirs
     })
 })
+.catch(err => { //en cas d'erreur à la connexion
+    console.log(err)
+})
 ```
 
-Pour se connecter avec un token
+### Connexion par token (déjà généré auparavant)
 ```javascript
 const ED = require("papillon-ed-core");
 let ed = new ED();
@@ -43,3 +45,8 @@ ed.auth.setToken("token", userID)
 
 //La suite du code
 ```
+> **Warning**
+> Si le token donné est invalide, le module ne pourra pas en générer un nouveau (par manque d'identifiants) et donnera une erreur de token invalide/expiré
+
+## Documentation
+Voir le fichier `DOCUMENTATION.md`
