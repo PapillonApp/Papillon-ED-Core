@@ -1,5 +1,5 @@
 const DEFAULT = error(-1, ({ title, message }) => title + (title && message ? ' - ' : '') + message);
-const BANNED = error(1, 'Your IP address is temporarily banned because of too many failed authentication attempts');
+const UNAUTHORIZED = error(1, message => `Unauthorized Access : ${message}`);
 const WRONG_CREDENTIALS = error(2, 'Wrong user credentials');
 const UNKNOWN_ACCOUNT = error(3, typeAccount => `Unknown account type '${typeAccount}'`);
 const SESSION_EXPIRED = error(4, 'Session has expired due to inactivity or error');
@@ -21,7 +21,7 @@ function error(code, message)
 
 module.exports = {
     DEFAULT,
-    BANNED,
+    UNAUTHORIZED,
     WRONG_CREDENTIALS,
     UNKNOWN_ACCOUNT,
     SESSION_EXPIRED,
