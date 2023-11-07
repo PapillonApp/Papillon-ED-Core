@@ -12,7 +12,6 @@ class Auth {
             "uuid": ""
         }`
         return this.session.request.post(url, body).then(res => {
-            console.log(res)
             if(res.code == 200) {
                 this.session._token = res.token;
                 let accounts = res.data.accounts[0];
