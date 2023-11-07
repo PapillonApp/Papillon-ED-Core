@@ -1,4 +1,3 @@
-//import { API } from './constants'
 const { API } = require("./constants")
 const errors = require("./errors")
 
@@ -32,7 +31,10 @@ module.exports = class Request {
             if (response.code == 505) {
                 throw errors.WRONG_CREDENTIALS.drop()
             }
-            return response;
+            if (response.code == 403) {
+                throw errors.UNAUTHORIZED.drop(response.message)
+            }
+            return response.data;
         })
     }
 
