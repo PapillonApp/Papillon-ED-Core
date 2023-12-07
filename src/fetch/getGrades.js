@@ -7,7 +7,7 @@ class getGrades {
     }
 
     fetch() {
-        let url = `/E/${this.session.student.id}/notes.awp?verbe=get`
+        let url = `/eleves/${this.session.student.id}/notes.awp?verbe=get`
         let body = `data={
             "anneeScolaire": ""
         }`
