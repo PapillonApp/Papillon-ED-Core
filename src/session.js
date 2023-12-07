@@ -4,6 +4,7 @@ const getTimetable = require("./fetch/getTimetable");
 const getSchoollife = require("./fetch/getSchoollife");
 const getCantine = require("./fetch/getCantine");
 const getDigitalsManuals = require("./fetch/getDigitalsManuals");
+const getMessaging = require("./fetch/getMessaging");
 
 const Request = require("./Request")
 const Auth = require("./auth");
@@ -25,6 +26,7 @@ class Session {
         this.schoollife = new getSchoollife(this);
         this.cantine = new getCantine(this);
         this.digitalsManuals = new getDigitalsManuals(this);
+        this.messaging = new getMessaging(this);
 
         this.auth = new Auth(this);
         this.request = new Request(this);
