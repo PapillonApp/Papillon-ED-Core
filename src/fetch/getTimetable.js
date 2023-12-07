@@ -13,7 +13,11 @@ class getTimetable {
             "dateFin": "${date}",
             "avecTrous": false
         }`
-        return this.session.request.post(url, body)
+        return this.session.request.post(url, body).then(r => {
+            return {
+                ...r.data
+            }
+        })
     }
 
     fetchByDate(dateD, dateF) {
@@ -23,7 +27,11 @@ class getTimetable {
             "dateFin": "${dateF}",
             "avecTrous": false
         }`
-        return this.session.request.post(url, body)
+        return this.session.request.post(url, body).then(r => {
+            return {
+                ...r.data
+            }
+        })
     }
 }
 module.exports = getTimetable;
