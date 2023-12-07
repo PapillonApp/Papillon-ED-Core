@@ -6,12 +6,12 @@ class getHomeworks {
     }
 
     fetch() {
-        let url = `/E/${this.session.student.id}/cahierdetexte.awp?verbe=get`
+        let url = `/Eleves/${this.session.student.id}/cahierdetexte.awp?verbe=get`
         return this.session.request.post(url, `data={}`)
     }
 
     getByDay(day) {
-        let url = `/E/${this.session.student.id}/cahierdetexte/${day}.awp?verbe=get`
+        let url = `/Eleves/${this.session.student.id}/cahierdetexte/${day}.awp?verbe=get`
         return this.session.request.post(url, `data={}`).then(response => {
 
             let homeworks = response.data;
