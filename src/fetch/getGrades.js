@@ -11,7 +11,15 @@ class getGrades {
         let body = `data={
             "anneeScolaire": ""
         }`
-        return this.session.request.post(url, body)
+        return this.session.request.post(url, body).then(r => {
+            return {
+                "foStat": r.data.foStat,
+                "periodes": r.data.periodes,
+                "grades": r.data.notes,
+                "parametrage": r.data.parametrage,
+                "LSUN": r.data.LSUN
+            }
+        })
     }
 }
 
