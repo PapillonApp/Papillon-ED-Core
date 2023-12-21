@@ -14,6 +14,23 @@ Le module est structuré de la manière suivante :
 - `src/session.js` : Contient les fonctions de gestion de la session
 - `src/auth.js` : Contient les fonctions d'authentification
 - `src/errors.js` : Contient les erreurs pouvant être retournées par le module. *Les erreurs doivent suivre la même structure pour chaque module.*
+
+## Roadmap
+- [x] Connexion
+- [x] Notes
+- [x] Emploi du temps
+- [ ] Devoirs
+  - [x] Liste des devoirs
+  - [x] Devoirs par date
+  - [x] Marquer un devoir comme fait
+- [x] Manuels Scolaires
+- [x] Vie scolaire 
+- [ ] Messagerie
+  - [x] Liste des messages reçus
+  - [x] Contenu des messages reçus
+  - [x] Liste des messages envoyés
+  - [x] Contenu des messages envoyés
+  - [ ] Envoi de message
   
 ## Utilisation
 
