@@ -159,6 +159,8 @@ type Base64 = string
 
 type ModesCalculGraphiquesComposantes = "eval" | string
 
+type TestType = "CONTROLE" | "INTERROGATION ORALE" | "TRAVAUX PRATIQUES" | "DEVOIR SUR TABLE" | "INTERROGATION ECRITE" | "EXERCICE" | "ENSEIGNEMENTS PRATIQUES DISCIPLINAIRES" | "DEVOIR MAISON"
+
 export type {
     GradesRequestBody,
     GradesRequestResponse
