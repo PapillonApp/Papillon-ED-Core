@@ -7,7 +7,7 @@ class Auth {
         let url = `/login.awp?v=4.37.1`
         let body = `data={
             "identifiant": "${username}",
-            "motdepasse": "${password}",
+            "motdepasse": "${encodeURIComponent(password)}",
             "isReLogin": false,
             "uuid": ""
         }`
