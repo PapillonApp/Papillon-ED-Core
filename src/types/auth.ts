@@ -14,7 +14,6 @@ interface AuthRequestResponse {
     data: AuthRequestResponseData
 }
 
-// TODO add account types
 interface AuthRequestResponseData {
     accounts: Account[]
 }
