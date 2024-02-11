@@ -10,6 +10,7 @@ const getMessaging = require("./fetch/getMessaging");
 
 import { Request } from "./Request";
 import { Auth } from "./auth";
+import {Account} from "./types/accounts";
 
 
 class Session {
@@ -18,8 +19,7 @@ class Session {
     isLoggedIn: boolean
     // TODO; type settings
     settings: {}
-    // TODO; type student
-    student: {}
+    student: Account
     // TODO; type school
     school: {}
     modules: Module[]
