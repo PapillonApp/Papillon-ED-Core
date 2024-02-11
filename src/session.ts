@@ -1,3 +1,5 @@
+import {Module} from "./types/modules";
+
 const getHomeworks = require("./fetch/getHomeworks");
 const getGrades = require("./fetch/getGrades");
 const getTimetable = require("./fetch/getTimetable");
@@ -20,8 +22,7 @@ class Session {
     student: {}
     // TODO; type school
     school: {}
-    // TODO; type modules
-    modules: any[]
+    modules: Module[]
 
     // TODO
     homeworks: any

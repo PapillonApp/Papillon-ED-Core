@@ -1,5 +1,7 @@
 // Types grâce à https://github.com/EduWireApps/ecoledirecte-api-docs/?tab=readme-ov-file#accounts-objects
 
+import {Module} from "./modules";
+
 interface Account {
     idLogin: number
     id: number
@@ -21,8 +23,7 @@ interface Account {
     dicoEnLigneLeRobert: boolean
     socketToken: string
     profile: AccountProfile
-    // TODO; type modules
-    modules: any[]
+    modules: Module[]
     parametresIndividuels
 }
 
