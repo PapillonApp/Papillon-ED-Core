@@ -1,16 +1,22 @@
 // https://github.com/EduWireApps/ecoledirecte-api-docs?tab=readme-ov-file#notes
 
 import {Professor} from "./accounts";
+import {Response} from "./requests";
 
 interface GradesRequestBody {
     anneeScolaire: string
 }
 
-interface GradesRequestResponse {
+interface GradesRequestResponse extends Response{
+    data: GradesRequestResponseData
+}
+
+interface GradesRequestResponseData {
     foStat: string
     periodes: GradesPeriod[]
     parametrage: GradesParameters
     notes: Grade[]
+    LSUN: string
 }
 
 interface GradesParameters {
