@@ -65,6 +65,12 @@ type AccountType  = "E" | "P"
 // TODO; connaitre tous les champs sexe possibles
 type Genre  = "M" | "F"
 
+interface Professor {
+    id: number
+    nom: string
+}
+
 export type {
-    Account
+    Account,
+    Professor
 }
