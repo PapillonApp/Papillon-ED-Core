@@ -1,6 +1,6 @@
-// TODO remove any type
+// TODO remove any type + test
 function bodyToString(object: any) {
-    return JSON.stringify(object)
+    return 'data=' + JSON.stringify(object)
 }
 
 export default bodyToString
