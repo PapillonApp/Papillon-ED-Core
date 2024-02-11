@@ -22,5 +22,6 @@ interface AuthRequestResponseData {
 type AuthRequestResponseCodes = 200 | 505
 
 export type {
-    AuthRequestBody
+    AuthRequestBody,
+    AuthRequestResponse
 }

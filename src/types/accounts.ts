@@ -20,20 +20,21 @@ interface Account {
     couleurAgendaEtablissement: string
     dicoEnLigneLeRobert: boolean
     socketToken: string
+    profile: AccountProfile
     // TODO; type modules
     modules: any[]
     parametresIndividuels
 }
 
 interface AccountProfile {
-    sexe: Genre,
-    infoEDT: string,
-    nomEtablissement: string,
-    idEtablissement: string,
-    rneEtablissement: string,
-    telPortable: string,
-    idReelEtab: string,
-    photo: string,
+    sexe: Genre
+    infoEDT: string
+    nomEtablissement: string
+    idEtablissement: string
+    rneEtablissement: string
+    telPortable: string
+    idReelEtab: string
+    photo: string
     classe: Class
 }
 
@@ -45,9 +46,9 @@ interface Class {
 }
 
 interface AccountIndividualParameters {
-    lsuPoilDansLaMainBorne1: string | number, // Paramètre parcoursup
-    lsuPoilDansLaMainBorne2: string | number, // Paramètre parcoursup
-    lsuPoilDansLaMainBorne3: string | number, // Paramètre parcoursup
+    lsuPoilDansLaMainBorne1: string | number // Paramètre parcoursup
+    lsuPoilDansLaMainBorne2: string | number // Paramètre parcoursup
+    lsuPoilDansLaMainBorne3: string | number // Paramètre parcoursup
     modeCalculLSU: any // Inconnu
     isQrcode: boolean
     accessibilitéVisuelle: boolean // Pour les personnes malvoyantes
