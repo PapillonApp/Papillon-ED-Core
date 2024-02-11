@@ -9,8 +9,6 @@ const getMessaging = require("./fetch/getMessaging");
 const Request = require("./Request")
 const Auth = require("./auth");
 
-
-
 class Session {
     constructor() {
         this._token = null; //Le token
@@ -35,8 +33,6 @@ class Session {
     findModule(name) {
         return this.modules.find(m => m.code === name);
     }
-
-
 
 }
 
