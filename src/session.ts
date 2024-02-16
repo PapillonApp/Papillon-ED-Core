@@ -1,10 +1,10 @@
 import {Module} from "./types/modules";
 import {GetGrades} from "./fetch/getGrades";
+import {GetCantine} from "./fetch/getCantine";
 
 const getHomeworks = require("./fetch/getHomeworks");
 const getTimetable = require("./fetch/getTimetable");
 const getSchoollife = require("./fetch/getSchoollife");
-const getCantine = require("./fetch/getCantine");
 const getDigitalsManuals = require("./fetch/getDigitalsManuals");
 const getMessaging = require("./fetch/getMessaging");
 
@@ -47,7 +47,7 @@ class Session {
         this.grades = new GetGrades(this)
         this.timetable = new getTimetable(this)
         this.schoollife = new getSchoollife(this)
-        this.cantine = new getCantine(this)
+        this.cantine = new GetCantine(this)
         this.digitalsManuals = new getDigitalsManuals(this)
         this.messaging = new getMessaging(this)
 
@@ -56,7 +56,7 @@ class Session {
     }
 
     findModule(name: string) {
-        return this.modules.filter(module => module.code === name);
+        return this.modules.find(module => module.code === name);
     }
 
 }
