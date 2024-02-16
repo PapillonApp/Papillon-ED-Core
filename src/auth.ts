@@ -1,14 +1,17 @@
 import {AuthRequestBody, AuthRequestResponse} from "./types/auth";
 import bodyToString from "./utils/body"
-import {Account} from "./types/accounts";
+import {Account, ParsedAccount, ParsedEstablishment} from "./types/accounts";
+import {Session} from "./session";
 
 class Auth {
 
-    constructor(session) {
+    session: Session
+
+    constructor(session: Session) {
         this.session = session;
     }
 
-    login(username: string, password: string) {
+    async login(username: string, password: string) {
         let url = `/login.awp?v=4.37.1`
         const body = {
             identifiant: username,
@@ -16,7 +19,7 @@ class Auth {
             isRelogin: false,
             uuid: ""
         } as AuthRequestBody
-        return this.session.request.post(url, bodyToString(body)).then((res: AuthRequestResponse) => {
+        return await this.session.request.post(url, bodyToString(body)).then((res: AuthRequestResponse) => {
             if(res.code == 200) {
                 this.session._token = res.token;
                 let accounts = res.data.accounts[0];
@@ -29,7 +32,7 @@ class Auth {
             } else {
                 return null;
             }
-            
+
         })
     }
 
@@ -40,7 +43,7 @@ class Auth {
         return true;
     }
 
-    getEtabInfo(data: Account) {
+    getEtabInfo(data: Account): ParsedEstablishment {
         return {
             name: data.profile.nomEtablissement,
             id: data.profile.idEtablissement,
@@ -49,7 +52,7 @@ class Auth {
         }
     }
 
-    getStudentInfo(data: Account) {
+    getStudentInfo(data: Account): ParsedAccount {
         return {
             id: data.id,
             uid: data.uid,
