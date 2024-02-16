@@ -5,6 +5,11 @@ interface Response {
     message: string
 }
 
+interface RequestOptions {
+    headers: HeadersInit
+}
+
 export type {
-    Response
+    Response,
+    RequestOptions
 }
