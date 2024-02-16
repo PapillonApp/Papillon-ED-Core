@@ -15,6 +15,17 @@ Le module est structuré de la manière suivante :
 - `src/auth.js` : Contient les fonctions d'authentification
 - `src/errors.js` : Contient les erreurs pouvant être retournées par le module. *Les erreurs doivent suivre la même structure pour chaque module.*
 
+## Roadmap typescript
+- [x] Core typing
+- [x] Typing Grades
+- [x] Typing Account
+- [ ] Typing Messaging 
+- [ ] Typing Homeworks
+- [ ] Typing EDT
+- [ ] Typing SchoolLife
+- [ ] Typing Manuals
+- [ ] Typing Cantine
+
 ## Roadmap
 - [x] Connexion
 - [x] Notes
