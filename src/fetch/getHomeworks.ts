@@ -1,5 +1,6 @@
 import {Session} from "~/session";
 import bodyToString from "~/utils/body";
+import {Homework, HomeworkRequestResponse} from "~/types/homeworks";
 
 class GetHomeworks {
 
@@ -18,11 +19,11 @@ class GetHomeworks {
     getByDay(day: string) {
         const url = `/Eleves/${this.session.student.id}/cahierdetexte/${day}.awp?verbe=get`
         const data = {}
-        return this.session.request.post(url, bodyToString(data)).then(response => {
+        return this.session.request.post(url, bodyToString(data)).then((response: HomeworkRequestResponse) => {
 
             const homeworks = response.data;
 
-            homeworks.matieres.forEach((homework: object, index: number) => {
+            homeworks.matieres.forEach((homework: Homework, index: number) => {
                 const htmlContent = homework.aFaire.contenu;
                 const span = document.createElement('span');
                 span.innerHTML = htmlContent;
