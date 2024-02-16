@@ -63,7 +63,7 @@ interface MessagesModuleParams {
     afficherToutesLesClasses: StringBoolean
 }
 
-type ModuleParams = ReservationModuleParams | CDTModuleParams | DocumentModuleParams | MessagesModuleParams | BarCodeModuleParams | {}
+type ModuleParams = ReservationModuleParams | CDTModuleParams | DocumentModuleParams | MessagesModuleParams | BarCodeModuleParams | object
 
 type KnownModulesCodes = "SITUATION_FINANCIERE" | "IMPALA" | "FUTURNESS" | "IJBOX" | "ETUDIANT" | "SACOCHE" | "AVENRIA"
     | "ONISEPSERVICES" | "VOLTAIRE" | "CLICKNPLAY" | "SUIVI_STAGE" | "EDUMALIN" | "PEARLTREES" | "ARD" | "CATER" |

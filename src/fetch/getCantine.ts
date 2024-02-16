@@ -11,7 +11,7 @@ class GetCantine {
     }
 
     getBarcode() {
-        let mod = this.session.findModule("CANTINE_BARCODE")
+        const mod = this.session.findModule("CANTINE_BARCODE")
         if(mod.enable) {
             return mod.params.numeroBadge;
         } else {
@@ -20,7 +20,7 @@ class GetCantine {
     }
 
     getReservations() {
-        let mod = this.session.findModule("RESERVATIONS")
+        const mod = this.session.findModule("RESERVATIONS")
         if(mod.enable) {
             return mod.params;
         } else {

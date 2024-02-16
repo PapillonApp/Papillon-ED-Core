@@ -77,12 +77,12 @@ interface AccountIndividualParameters {
     lsuPoilDansLaMainBorne1: string | number // Paramètre parcoursup
     lsuPoilDansLaMainBorne2: string | number // Paramètre parcoursup
     lsuPoilDansLaMainBorne3: string | number // Paramètre parcoursup
-    modeCalculLSU: any // Inconnu
+    modeCalculLSU: unknown // Inconnu
     isQrcode: boolean
     accessibilitéVisuelle: boolean // Pour les personnes malvoyantes
-    typeSaisieNotesDefaut: any // Inconnu
-    nbJoursMaxRenduDevoirCDT: any // Inconnu
-    typeViewCDTDefaut: any // Inconnu
+    typeSaisieNotesDefaut: unknown // Inconnu
+    nbJoursMaxRenduDevoirCDT: unknown // Inconnu
+    typeViewCDTDefaut: unknown // Inconnu
 }
 
 // TODO; connaitre tous les types de comptes
@@ -102,5 +102,6 @@ export type {
     BlankAccount,
     ParsedAccount,
     Professor,
-    ParsedEstablishment
+    ParsedEstablishment,
+    AccountIndividualParameters
 }

@@ -12,7 +12,7 @@ class Auth {
     }
 
     async login(username: string, password: string) {
-        let url = `/login.awp?v=4.37.1`
+        const url = `/login.awp?v=4.37.1`
         const body = {
             identifiant: username,
             motdepasse: encodeURIComponent(password),
@@ -22,7 +22,7 @@ class Auth {
         return await this.session.request.post(url, bodyToString(body)).then((res: AuthRequestResponse) => {
             if(res.code == 200) {
                 this.session._token = res.token;
-                let accounts = res.data.accounts[0];
+                const accounts = res.data.accounts[0];
 
                 this.session.modules = accounts.modules;
                 this.session.settings = accounts.parametresIndividuels;

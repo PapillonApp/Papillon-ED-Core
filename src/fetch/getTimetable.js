@@ -1,6 +1,4 @@
 
-
-
 class getTimetable {
     constructor(session) {
         this.session = session;

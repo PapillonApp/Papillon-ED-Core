@@ -1,5 +1,4 @@
-// TODO remove any type + test
-function bodyToString(object: any) {
+function bodyToString(object: object) {
     return 'data=' + JSON.stringify(object)
 }
 
