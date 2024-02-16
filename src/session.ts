@@ -9,28 +9,25 @@ import {GetMessaging} from "~/fetch/getMessaging";
 
 import { Request } from "./Request";
 import { Auth } from "./auth";
-import {Account, AccountIndividualParameters, BlankAccount, ParsedAccount} from "./types/accounts";
+import {Account, AccountIndividualParameters, BlankAccount, ParsedAccount, ParsedEstablishment} from "./types/accounts";
 
 
 class Session {
 
     _token: null | string
     isLoggedIn: boolean
-    // TODO; type settings
-    settings: AccountIndividualParameters | object
-    student: Account | BlankAccount | ParsedAccount
-    // TODO; type school
-    school: object
-    modules: Array<Module>
+    settings?: AccountIndividualParameters
+    student?: Account | BlankAccount | ParsedAccount
+    school?: ParsedEstablishment
+    modules?: Array<Module>
 
-    // TODO
-    homeworks: object
-    grades: object
-    timetable: object
-    schoollife: object
-    cantine: object
-    digitalsManuals: object
-    messaging: object
+    homeworks: GetHomeworks
+    grades: GetGrades
+    timetable: GetTimetable
+    schoollife: GetSchoollife
+    cantine: GetCantine
+    digitalsManuals: GetDigitalsManuals
+    messaging: GetMessaging
 
     auth: Auth
     request: Request
@@ -38,10 +35,6 @@ class Session {
     constructor() {
         this._token = null // Le token
         this.isLoggedIn = false
-        this.settings = {} // Les paramètres de l'utilisateur
-        this.student = { id: 0 } // L'utilisateur
-        this.school = {} // Info de l'etab
-        this.modules = [] // Les modules
 
         this.homeworks = new GetHomeworks(this)
         this.grades = new GetGrades(this)
@@ -56,7 +49,7 @@ class Session {
     }
 
     findModule(name: string) {
-        return this.modules.find(module => module.code === name) || { code: "", enable: false }
+        return (this.modules || []).find(module => module.code === name) || { code: "", enable: false }
     }
 
 }
