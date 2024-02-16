@@ -19,8 +19,8 @@ Le module est structuré de la manière suivante :
 - [x] Core typing
 - [x] Typing Grades
 - [x] Typing Account
+- [x] Typing Homeworks
 - [ ] Typing Messaging 
-- [ ] Typing Homeworks
 - [ ] Typing EDT
 - [ ] Typing SchoolLife
 - [ ] Typing Manuals
