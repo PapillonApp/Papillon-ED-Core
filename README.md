@@ -67,3 +67,27 @@ ed.auth.setToken("token", userID)
 
 ## Documentation
 Voir le fichier `DOCUMENTATION.md`
+
+## Typescript
+
+### Eslint
+
+- Lint code
+
+```shell
+npm run lint
+```
+
+- Lint and fix
+
+```shell
+npm run lint:fix
+```
+
+### Build
+
+- This script lint and builds the typescript files to javascript files.
+```shell
+npm run build
+```
+
