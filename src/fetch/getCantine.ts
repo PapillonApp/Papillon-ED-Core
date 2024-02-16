@@ -1,4 +1,4 @@
-import {Session} from "../session";
+import {Session} from "~/session";
 
 
 class GetCantine {
@@ -11,23 +11,23 @@ class GetCantine {
     }
 
     getBarcode() {
-        const mod = this.session.findModule("CANTINE_BARCODE")
-        if(mod.enable) {
-            return mod.params.numeroBadge;
+        const module = this.session.findModule("CANTINE_BARCODE")
+        if(module.enable) {
+            return module.params.numeroBadge
         } else {
-            return null;
+            return null
         }
     }
 
     getReservations() {
-        const mod = this.session.findModule("RESERVATIONS")
-        if(mod.enable) {
-            return mod.params;
+        const module = this.session.findModule("RESERVATIONS")
+        if(module.enable) {
+            return module.params
         } else {
-            return null;
+            return null
         }
     }
-    
+
 }
 
 export {

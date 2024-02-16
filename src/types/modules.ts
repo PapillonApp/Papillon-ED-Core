@@ -8,6 +8,12 @@ interface Module {
     params: ModuleParams
 }
 
+interface EmptyModule {
+    code: string
+    enable: boolean
+    params: ModuleParams
+}
+
 interface ReservationModuleParams {
     regime: string
     repasmidi_1: StringBoolean
@@ -75,5 +81,6 @@ type KnownModulesCodes = "SITUATION_FINANCIERE" | "IMPALA" | "FUTURNESS" | "IJBO
 type StringBoolean = "1" | "0"
 
 export type {
-    Module
+    Module,
+    EmptyModule
 }

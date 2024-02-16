@@ -1,4 +1,4 @@
-import {Module} from "./types/modules";
+import {EmptyModule, Module} from "./types/modules";
 import {GetGrades} from "./fetch/getGrades";
 import {GetCantine} from "./fetch/getCantine";
 import {GetHomeworks} from "~/fetch/getHomeworks";
@@ -49,8 +49,8 @@ class Session {
         this.request = new Request(this)
     }
 
-    findModule(name: string) {
-        return (this.modules || []).find(module => module.code === name) || { code: "", enable: false }
+    findModule(name: string): Module | EmptyModule {
+        return (this.modules || []).find(module => module.code === name) || { code: "", enable: false, params: {} }
     }
 
 }
