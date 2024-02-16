@@ -19,6 +19,6 @@
     "forceConsistentCasingInFileNames": true
   },
 
-  "include": ["src", "examples"],
+  "include": ["src", "examples", "index.ts"],
   "exclude": ["node_modules", "dist"]
 }
