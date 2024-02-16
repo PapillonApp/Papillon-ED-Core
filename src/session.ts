@@ -10,7 +10,7 @@ const getMessaging = require("./fetch/getMessaging");
 
 import { Request } from "./Request";
 import { Auth } from "./auth";
-import {Account} from "./types/accounts";
+import {Account, BlankAccount, ParsedAccount} from "./types/accounts";
 
 
 class Session {
@@ -19,10 +19,10 @@ class Session {
     isLoggedIn: boolean
     // TODO; type settings
     settings: {}
-    student: Account
+    student: Account | BlankAccount | ParsedAccount
     // TODO; type school
     school: {}
-    modules: Module[]
+    modules: Array<Module>
 
     // TODO
     homeworks: any
@@ -37,26 +37,26 @@ class Session {
     request: Request
 
     constructor() {
-        this._token = null; // Le token
-        this.isLoggedIn = false;
-        this.settings = {}; // Les paramètres de l'utilisateur
-        this.school = {}; // Info de l'etab
-        this.modules = []; // Les modules
+        this._token = null // Le token
+        this.isLoggedIn = false
+        this.settings = {} // Les paramètres de l'utilisateur
+        this.school = {} // Info de l'etab
+        this.modules = [] // Les modules
 
-        this.homeworks = new getHomeworks(this);
-        this.grades = new GetGrades(this);
-        this.timetable = new getTimetable(this);
-        this.schoollife = new getSchoollife(this);
-        this.cantine = new getCantine(this);
-        this.digitalsManuals = new getDigitalsManuals(this);
-        this.messaging = new getMessaging(this);
+        this.homeworks = new getHomeworks(this)
+        this.grades = new GetGrades(this)
+        this.timetable = new getTimetable(this)
+        this.schoollife = new getSchoollife(this)
+        this.cantine = new getCantine(this)
+        this.digitalsManuals = new getDigitalsManuals(this)
+        this.messaging = new getMessaging(this)
 
-        this.auth = new Auth(this);
-        this.request = new Request(this);
+        this.auth = new Auth(this)
+        this.request = new Request(this)
     }
 
     findModule(name: string) {
-        return this.modules.find(m => m.code === name);
+        return this.modules.filter(module => module.code === name);
     }
 
 }

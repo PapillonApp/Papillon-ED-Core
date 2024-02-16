@@ -24,7 +24,7 @@ interface Account {
     socketToken: string
     profile: AccountProfile
     modules: Module[]
-    parametresIndividuels
+    parametresIndividuels: AccountIndividualParameters
 }
 
 interface AccountProfile {
@@ -37,6 +37,33 @@ interface AccountProfile {
     idReelEtab: string
     photo: string
     classe: Class
+}
+
+interface BlankAccount {
+    id: string | number
+}
+
+interface ParsedAccount {
+    id: number
+    uid: string
+    identifiant: string
+    type: AccountType
+    lastConnexion: string
+    civilite: string
+    prenom: string
+    nom: string
+    email: string
+    tel: string
+    sexe: string
+    classe: Class
+    photo: string
+}
+
+interface ParsedEstablishment {
+    name: string
+    id: string
+    rne: string
+    logo: string
 }
 
 interface Class {
@@ -72,5 +99,8 @@ interface Professor {
 
 export type {
     Account,
-    Professor
+    BlankAccount,
+    ParsedAccount,
+    Professor,
+    ParsedEstablishment
 }
