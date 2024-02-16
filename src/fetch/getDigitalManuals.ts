@@ -2,7 +2,7 @@ import {MODULE_DISABLE} from  "~/errors"
 import {Session} from "~/session";
 import bodyToString from "~/utils/body";
 
-class GetDigitalsManuals {
+class GetDigitalManuals {
 
     session: Session
 
@@ -21,5 +21,5 @@ class GetDigitalsManuals {
 }
 
 export {
-    GetDigitalsManuals
+    GetDigitalManuals
 }

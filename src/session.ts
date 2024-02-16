@@ -4,7 +4,7 @@ import {GetCantine} from "./fetch/getCantine";
 import {GetHomeworks} from "~/fetch/getHomeworks";
 import {GetTimetable} from "~/fetch/getTimetable";
 import {GetSchoollife} from "~/fetch/getSchoollife";
-import {GetDigitalsManuals} from "~/fetch/getDigitalsManuals";
+import {GetDigitalManuals} from "~/fetch/getDigitalManuals";
 import {GetMessaging} from "~/fetch/getMessaging";
 
 import { Request } from "./Request";
@@ -26,7 +26,7 @@ class Session {
     timetable: GetTimetable
     schoollife: GetSchoollife
     cantine: GetCantine
-    digitalsManuals: GetDigitalsManuals
+    digitalManuals: GetDigitalManuals
     messaging: GetMessaging
 
     auth: Auth
@@ -41,7 +41,7 @@ class Session {
         this.timetable = new GetTimetable(this)
         this.schoollife = new GetSchoollife(this)
         this.cantine = new GetCantine(this)
-        this.digitalsManuals = new GetDigitalsManuals(this)
+        this.digitalManuals = new GetDigitalManuals(this)
         this.messaging = new GetMessaging(this)
 
         this.auth = new Auth(this)
