@@ -40,6 +40,7 @@ class Session {
         this._token = null // Le token
         this.isLoggedIn = false
         this.settings = {} // Les paramètres de l'utilisateur
+        this.student = { id: 0 } // L'utilisateur
         this.school = {} // Info de l'etab
         this.modules = [] // Les modules
 
