@@ -1,7 +1,7 @@
 import bodyToString from "~/utils/body";
 import {Session} from "~/session";
 
-class GetSchoollife {
+class GetSchoolLife {
 
     session: Session
 
@@ -23,5 +23,5 @@ class GetSchoollife {
 }
 
 export {
-    GetSchoollife
+    GetSchoolLife
 }

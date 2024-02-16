@@ -1,6 +1,6 @@
 
 
-class getSchoollife {
+class getSchoolLife {
     constructor(session) {
         this.session = session;
 
@@ -17,4 +17,4 @@ class getSchoollife {
     }
 }
 
-module.exports = getSchoollife;
+module.exports = getSchoolLife;

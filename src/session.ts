@@ -3,7 +3,7 @@ import {GetGrades} from "./fetch/getGrades";
 import {GetCantine} from "./fetch/getCantine";
 import {GetHomeworks} from "~/fetch/getHomeworks";
 import {GetTimetable} from "~/fetch/getTimetable";
-import {GetSchoollife} from "~/fetch/getSchoollife";
+import {GetSchoolLife} from "~/fetch/getSchoolLife";
 import {GetDigitalManuals} from "~/fetch/getDigitalManuals";
 import {GetMessaging} from "~/fetch/getMessaging";
 
@@ -17,14 +17,14 @@ class Session {
     _token: null | string
     isLoggedIn: boolean
     settings?: AccountIndividualParameters
-    student?: Account | BlankAccount | ParsedAccount
+    student: Account | BlankAccount | ParsedAccount
     school?: ParsedEstablishment
     modules?: Array<Module>
 
     homeworks: GetHomeworks
     grades: GetGrades
     timetable: GetTimetable
-    schoollife: GetSchoollife
+    schoolLife: GetSchoolLife
     cantine: GetCantine
     digitalManuals: GetDigitalManuals
     messaging: GetMessaging
@@ -35,11 +35,12 @@ class Session {
     constructor() {
         this._token = null // Le token
         this.isLoggedIn = false
+        this.student = { id: 0 } // Utilisateur initialisé vide
 
         this.homeworks = new GetHomeworks(this)
         this.grades = new GetGrades(this)
         this.timetable = new GetTimetable(this)
-        this.schoollife = new GetSchoollife(this)
+        this.schoolLife = new GetSchoolLife(this)
         this.cantine = new GetCantine(this)
         this.digitalManuals = new GetDigitalManuals(this)
         this.messaging = new GetMessaging(this)
