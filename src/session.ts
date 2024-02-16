@@ -1,16 +1,15 @@
 import {Module} from "./types/modules";
 import {GetGrades} from "./fetch/getGrades";
 import {GetCantine} from "./fetch/getCantine";
-
-const getHomeworks = require("./fetch/getHomeworks");
-const getTimetable = require("./fetch/getTimetable");
-const getSchoollife = require("./fetch/getSchoollife");
-const getDigitalsManuals = require("./fetch/getDigitalsManuals");
-const getMessaging = require("./fetch/getMessaging");
+import {GetHomeworks} from "~/fetch/getHomeworks";
+import {GetTimetable} from "~/fetch/getTimetable";
+import {GetSchoollife} from "~/fetch/getSchoollife";
+import {GetDigitalsManuals} from "~/fetch/getDigitalsManuals";
+import {GetMessaging} from "~/fetch/getMessaging";
 
 import { Request } from "./Request";
 import { Auth } from "./auth";
-import {Account, BlankAccount, ParsedAccount} from "./types/accounts";
+import {Account, AccountIndividualParameters, BlankAccount, ParsedAccount} from "./types/accounts";
 
 
 class Session {
@@ -18,20 +17,20 @@ class Session {
     _token: null | string
     isLoggedIn: boolean
     // TODO; type settings
-    settings: {}
+    settings: AccountIndividualParameters | object
     student: Account | BlankAccount | ParsedAccount
     // TODO; type school
-    school: {}
+    school: object
     modules: Array<Module>
 
     // TODO
-    homeworks: any
-    grades: any
-    timetable: any
-    schoollife: any
-    cantine: any
-    digitalsManuals: any
-    messaging: any
+    homeworks: object
+    grades: object
+    timetable: object
+    schoollife: object
+    cantine: object
+    digitalsManuals: object
+    messaging: object
 
     auth: Auth
     request: Request
@@ -44,20 +43,20 @@ class Session {
         this.school = {} // Info de l'etab
         this.modules = [] // Les modules
 
-        this.homeworks = new getHomeworks(this)
+        this.homeworks = new GetHomeworks(this)
         this.grades = new GetGrades(this)
-        this.timetable = new getTimetable(this)
-        this.schoollife = new getSchoollife(this)
+        this.timetable = new GetTimetable(this)
+        this.schoollife = new GetSchoollife(this)
         this.cantine = new GetCantine(this)
-        this.digitalsManuals = new getDigitalsManuals(this)
-        this.messaging = new getMessaging(this)
+        this.digitalsManuals = new GetDigitalsManuals(this)
+        this.messaging = new GetMessaging(this)
 
         this.auth = new Auth(this)
         this.request = new Request(this)
     }
 
     findModule(name: string) {
-        return this.modules.find(module => module.code === name);
+        return this.modules.find(module => module.code === name) || { code: "", enable: false }
     }
 
 }
