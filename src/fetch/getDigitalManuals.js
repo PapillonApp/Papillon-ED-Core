@@ -1,6 +1,6 @@
 const errors = require("../errors")
 
-class getDigitalsManuals {
+class getDigitalManuals {
     constructor(session) {
         this.session = session;
 
@@ -12,7 +12,7 @@ class getDigitalsManuals {
         let body = `data={}`
         return this.session.request.post(url, body)
     }
-    
+
 }
 
-module.exports = getDigitalsManuals;
+module.exports = getDigitalManuals;
