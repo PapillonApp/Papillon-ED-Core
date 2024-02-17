@@ -1,5 +1,7 @@
 <div align="center">
-
+<br>
+<br>
+<img alt="Logo" src=".github/icon.png" width="100" height="100"/>
 
 # Papillon ED Core
 
