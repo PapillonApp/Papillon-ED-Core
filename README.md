@@ -21,7 +21,7 @@ Le module est structuré de la manière suivante :
 > - Certains autres sont copiés depuis [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs), une documentation sous license **_Pas de licence_**, attributions à **Ab2r** 
 
 - [ ] Core typing
-  - [ ] `session.ts`
+  - [x] `session.ts`
   - [ ] `auth.ts`
   - [x] `constants.ts`
   - [ ] `errors.ts`

@@ -1,4 +1,3 @@
-import {EmptyModule, Module} from "./types/modules";
 import {GetGrades} from "./fetch/getGrades";
 import {GetCantine} from "./fetch/getCantine";
 import {GetHomeworks} from "~/fetch/getHomeworks";
@@ -9,17 +8,20 @@ import {GetMessaging} from "~/fetch/getMessaging";
 
 import { Request } from "./Request";
 import { Auth } from "./auth";
-import {Account, AccountIndividualParameters, BlankAccount, ParsedAccount, ParsedEstablishment} from "./types/accounts";
+import {account, accountModule} from "~/types/v3";
+import {BlankAccount, accountParameters} from "~/utils/types/accounts";
+import {EmptyModule} from "~/utils/types/modules";
+import {EstablishmentInfo} from "~/utils/types/establishments";
 
 
 class Session {
 
     _token: null | string
     isLoggedIn: boolean
-    settings?: AccountIndividualParameters
-    student: Account | BlankAccount | ParsedAccount
-    school?: ParsedEstablishment
-    modules?: Array<Module>
+    settings?: accountParameters
+    student: account | BlankAccount
+    school?: EstablishmentInfo
+    modules?: Array<accountModule>
 
     homeworks: GetHomeworks
     grades: GetGrades
@@ -49,7 +51,7 @@ class Session {
         this.request = new Request(this)
     }
 
-    findModule(name: string): Module | EmptyModule {
+    findModule(name: string): accountModule | EmptyModule {
         return (this.modules || []).find(module => module.code === name) || { code: "", enable: false, params: {} }
     }
 
