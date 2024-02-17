@@ -25,9 +25,9 @@ class GetHomeworks {
 
             homeworks.matieres.forEach((homework: Homework, index: number) => {
                 const htmlContent = homework.aFaire.contenu;
-                const span = document.createElement('span');
+                const span = document.createElement("span");
                 span.innerHTML = htmlContent;
-                homeworks.matieres[index].aFaire.contenuTexte = [span.textContent || span.innerText].toString().replace(/ +/g,' ');
+                homeworks.matieres[index].aFaire.contenuTexte = [span.textContent || span.innerText].toString().replace(/ +/g," ");
             });
 
             return homeworks;
