@@ -16,6 +16,10 @@ Le module est structuré de la manière suivante :
 - `src/errors.js` : Contient les erreurs pouvant être retournées par le module. *Les erreurs doivent suivre la même structure pour chaque module.*
 
 ## Roadmap typescript
+> [!IMPORTANT]
+> Les types sont majoritairement issus de [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types), une base de code sous licence []() 
+> Certains autres sont copiés depuis [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs), une documentation sous license []() 
+
 - [x] Core typing
 - [x] Typing Grades
 - [x] Typing Account
@@ -80,6 +84,9 @@ ed.auth.setToken("token", userID)
 Voir le fichier `DOCUMENTATION.md`
 
 ## Typescript
+
+> [!WARNING]
+> Les types utilisés proviennent de [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types), sont contenus dans `src/types/v3`
 
 ### Eslint
 

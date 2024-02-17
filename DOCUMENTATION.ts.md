@@ -10,7 +10,8 @@
 
 ## 0 - Installation
 
-> [!ERROR] Package not published
+> [!ERROR] 
+> Package not published
 > The typescript package is not finished yet !
 
 ```sh
