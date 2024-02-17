@@ -106,3 +106,4 @@ dist
 # Generated javascript files
 index.js
 src/**/*.js
+/package-lock.json
