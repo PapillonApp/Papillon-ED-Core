@@ -111,7 +111,7 @@ _Vous pouvez aussi exécuter `npm run lint:fix` pour régler les problèmes de f
 
 **Build: tsc**
 
-Les fichiers transpilés sont contenus dans `dist/`. Ce script _lint_ et _build_ la base de code.
+Les fichiers transpilés sont généré à leur emplacement. Ce script _lint_ et _build_ la base de code.
 ```shell
 npm run build
 ```
