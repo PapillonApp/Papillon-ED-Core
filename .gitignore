@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Generated javascript files
+index.js
+src/**/*.js
