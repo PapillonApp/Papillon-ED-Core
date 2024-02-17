@@ -17,8 +17,8 @@ Le module est structuré de la manière suivante :
 
 ## Roadmap typescript
 > [!IMPORTANT]
-> Les types sont majoritairement issus de [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types), une base de code sous licence [??]() 
-> Certains autres sont copiés depuis [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs), une documentation sous license [??]() 
+> - Les types sont majoritairement issus de [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types), une base de code sous licence [??]()
+> - Certains autres sont copiés depuis [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs), une documentation sous license **_Pas de licence_**, attributions à **Ab2r** 
 
 - [ ] Core typing
   - [ ] `session.ts`
