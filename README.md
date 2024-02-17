@@ -20,14 +20,15 @@ Le module est structuré de la manière suivante :
 > - Les types sont majoritairement issus de [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types), une base de code sous licence [??]()
 > - Certains autres sont copiés depuis [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs), une documentation sous license **_Pas de licence_**, attributions à **Ab2r** 
 
-- [ ] Core typing
+- [x] Core typing
   - [x] `session.ts`
   - [x] `auth.ts`
   - [x] `constants.ts`
   - [x] `errors.ts`
   - [x] `Request.ts`
-- [ ] Typing Grades
-  - [ ] `fetch/getGrades.ts`
+- [x] Typing Grades
+  - [x] `fetch/getGrades.ts`
+  - [x] API Response
 - [ ] Typing Account
   - [ ] `auth.ts`
   - [ ] API Response
