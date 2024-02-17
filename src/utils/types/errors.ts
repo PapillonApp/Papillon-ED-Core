@@ -1,4 +1,3 @@
-
 interface DetailedMessage {
     title: string
     message: string

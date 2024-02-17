@@ -16,7 +16,12 @@
         "indent": ["error", 4],
         "quotes": ["error", "double"],
         "eol-last": ["error", "always"],
-        "array-bracket-spacing": ["error", "never"]
+        "array-bracket-spacing": ["error", "never"],
+        "no-multiple-empty-lines": ["error", {
+            "max": 2,
+            "maxBOF": 0,
+            "maxEOF": 1
+        }]
     },
     "ignorePatterns": ["src/**/*.js", "src/*.js", "*.js", "src/types/**"]
 }
