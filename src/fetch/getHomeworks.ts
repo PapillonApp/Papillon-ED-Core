@@ -13,7 +13,7 @@ class GetHomeworks {
     fetch() {
         const url = `/Eleves/${this.session.student.id}/cahierdetexte.awp?verbe=get`;
         const data = {};
-        return this.session.request.post(url, bodyToString(data)).then(response => response as textbookRes);
+        return this.session.request.post(url, bodyToString(data)).then(response => response as textbookRes) as Promise<textbookRes>;
     }
 
     getByDay(day: string) {
@@ -42,7 +42,7 @@ class GetHomeworks {
                     matieres: []
                 } as textbookDateResData;
             }
-        });
+        }) as Promise<textbookDateResData>;
     }
 
     setStatus(homeworkID: number, isDone: boolean) {
@@ -51,7 +51,7 @@ class GetHomeworks {
             "idDevoirsEffectues": [isDone ? homeworkID : null],
             "idDevoirsNonEffectues": [isDone ? null : homeworkID]
         };
-        return this.session.request.post(url, bodyToString(data));
+        return this.session.request.post(url, bodyToString(data)) as unknown;
     }
 }
 

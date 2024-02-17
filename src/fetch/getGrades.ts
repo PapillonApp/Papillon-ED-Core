@@ -1,6 +1,6 @@
 import {Session} from "~/session";
 import bodyToString from "../utils/body";
-import {gradesRes} from "~/types/v3";
+import {gradesRes, gradesResData} from "~/types/v3";
 import {GradesRequestBody} from "~/utils/types/grades";
 
 class GetGrades {
@@ -18,7 +18,7 @@ class GetGrades {
         } as GradesRequestBody;
         return this.session.request.post(url, bodyToString(body)).then((response: gradesRes) => {
             return response.data;
-        });
+        }) as Promise<gradesResData>;
     }
 }
 

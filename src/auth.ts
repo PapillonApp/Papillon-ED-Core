@@ -34,10 +34,7 @@ class Auth {
                 this.session.school = this.getEtabInfo(accounts);
                 this.session.student = this.getStudentInfo(accounts);
                 this.session.isLoggedIn = true;
-            } else {
-                return null;
             }
-
         });
     }
 
