@@ -17,18 +17,38 @@ Le module est structuré de la manière suivante :
 
 ## Roadmap typescript
 > [!IMPORTANT]
-> Les types sont majoritairement issus de [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types), une base de code sous licence []() 
-> Certains autres sont copiés depuis [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs), une documentation sous license []() 
+> Les types sont majoritairement issus de [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types), une base de code sous licence [??]() 
+> Certains autres sont copiés depuis [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs), une documentation sous license [??]() 
 
-- [x] Core typing
-- [x] Typing Grades
-- [x] Typing Account
-- [x] Typing Homeworks
+- [ ] Core typing
+  - [ ] `session.ts`
+  - [ ] `auth.ts`
+  - [x] `constants.ts`
+  - [ ] `errors.ts`
+  - [ ] `Request.ts`
+- [ ] Typing Grades
+  - [ ] `fetch/getGrades.ts`
+- [ ] Typing Account
+  - [ ] `auth.ts`
+  - [ ] API Response
+- [ ] Typing Homeworks
+  - [ ] `fetch/getHomeworks.ts`
+  - [ ] API Response
 - [ ] Typing Messaging 
+  - [ ] `fetch/getMessaging.ts`
+  - [ ] API Response
 - [ ] Typing EDT
+  - [ ] `fetch/getTimetable.ts`
+  - [ ] API Response
 - [ ] Typing SchoolLife
+  - [ ] `fetch/getSchoolLife.ts`
+  - [ ] API Response
 - [ ] Typing Manuals
+  - [ ] `fetch/getDigitalManuals.ts`
+  - [ ] API Response
 - [ ] Typing Cantine
+  - [ ] `fetch/getCantine.ts`
+  - [ ] API Response
 
 ## Roadmap
 - [x] Connexion
