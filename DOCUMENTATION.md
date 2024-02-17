@@ -15,6 +15,8 @@
 
 Ce guide vous permet de comprendre comment fonctionne ce module et comment vous pouvez l'utiliser.
 
+Ce projet est développé en _**Typescript**_.
+
 ### Installation
 
 > [!ERROR]
