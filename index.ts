@@ -1,4 +1,4 @@
-import { Session } from "./src/session"
+import { Session } from "~/session"
 
 export {
     Session as EDCore
