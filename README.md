@@ -43,13 +43,13 @@ Le module est structuré de la manière suivante :
   - [x] API Response
 - [ ] Typing SchoolLife
   - [x] `fetch/getSchoolLife.ts`
-  - [ ] API Response (Waiting for PR to be accepted)
+  - [ ] API Response (Waiting for types to be written)
 - [ ] Typing Manuals
   - [x] `fetch/getDigitalManuals.ts`
-  - [ ] API Response
+  - [ ] API Response (Waiting for types to be written)
 - [ ] Typing Cantine
   - [x] `fetch/getCantine.ts`
-  - [ ] API Response
+  - [ ] API Response (Waiting for types to be written)
 
 ## Roadmap
 - [x] Connexion
