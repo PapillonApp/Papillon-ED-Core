@@ -15,5 +15,5 @@
     "rules": {
         "indent": ["error", 4]
     },
-    "ignorePatterns": ["src/**/*.js", "src/*.js", "*.js"]
+    "ignorePatterns": ["src/**/*.js", "src/*.js", "*.js", "src/types/**"]
 }
