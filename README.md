@@ -43,7 +43,7 @@ Le module est structuré de la manière suivante :
   - [x] API Response
 - [ ] Typing SchoolLife
   - [x] `fetch/getSchoolLife.ts`
-  - [ ] API Response
+  - [ ] API Response (Waiting for PR to be accepted)
 - [ ] Typing Manuals
   - [x] `fetch/getDigitalManuals.ts`
   - [ ] API Response

@@ -13,7 +13,7 @@ class GetSchoolLife {
     fetch() {
         const url = `/eleves/${this.session.student.id}/viescolaire.awp?verbe=get`;
         const data = {};
-        return this.session.request.post(url, bodyToString(data)).then(res => {
+        return this.session.request.post(url, bodyToString(data)).then((response) => {
             return {
                 absencesRetards: res.data.absencesRetards,
                 sanctionsEncouragements: res.data.sanctionsEncouragements
