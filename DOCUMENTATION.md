@@ -77,6 +77,18 @@ git clone https://github.com/PapillonApp/Papillon-ED-Core
 ```shell
 npm install
 ```
+
+**3. Récupérer les submodules**
+```shell
+git submodule update --init --recursive
+```
+
+> [!NOTE]
+> Pour mettre à jour le submodule, exécutez 
+> ```shell
+> cd src/types && git pull
+> ```
+
 Et voilà, vous êtes prêts !
 
 ### Structure
