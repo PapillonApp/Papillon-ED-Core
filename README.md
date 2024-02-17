@@ -85,8 +85,13 @@ Voir le fichier `DOCUMENTATION.md`
 
 ## Typescript
 
-> [!WARNING]
+> [!INFO]
 > Les types utilisés proviennent de [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types), sont contenus dans `src/types/v3`
+
+### Scructure
+
+- `src/types`: Submodule git des types de ab2r. Contient les types des réponses ED.
+- `src/utils/types`: Contient les types des `data` requêtes, et des types utiles à ce module.
 
 ### Eslint
 
