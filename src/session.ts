@@ -16,7 +16,7 @@ import {EstablishmentInfo} from "~/utils/types/establishments";
 
 class Session {
 
-    _token: null | string
+    _token: undefined | string
     isLoggedIn: boolean
     settings?: accountParameters
     student: account | BlankAccount
@@ -35,7 +35,7 @@ class Session {
     request: Request
 
     constructor() {
-        this._token = null // Le token
+        this._token = undefined // Le token
         this.isLoggedIn = false
         this.student = { id: 0 } // Utilisateur initialisé vide
 

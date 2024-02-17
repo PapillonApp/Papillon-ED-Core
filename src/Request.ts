@@ -1,7 +1,7 @@
 import { API } from "./constants"
 import {Session} from "./session";
 import {SESSION_EXPIRED, TOKEN_INVALID, UNAUTHORIZED, WRONG_CREDENTIALS} from "~/errors";
-import {RequestOptions} from "~/types/requests";
+import {RequestOptions} from "~/utils/types/requests";
 
 class Request {
 
@@ -25,7 +25,7 @@ class Request {
     }
 
     post(url: string, body: string) {
-        if(this.session.isLoggedIn) this.requestOptions.headers["X-Token"] = this.session._token
+        if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token
         const finalUrl = API + url
         return fetch(finalUrl, {
             method: "POST",
