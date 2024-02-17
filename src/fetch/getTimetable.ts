@@ -1,5 +1,6 @@
 import {Session} from "~/session";
 import bodyToString from "~/utils/body";
+import {timetableRes} from "~/types/v3";
 
 class GetTimetable {
 
@@ -16,9 +17,9 @@ class GetTimetable {
             "dateFin": date,
             "avecTrous": false
         };
-        return this.session.request.post(url, bodyToString(data)).then(r => {
+        return this.session.request.post(url, bodyToString(data)).then((response: timetableRes) => {
             return {
-                ...r.data
+                ...response.data
             };
         });
     }
@@ -30,9 +31,9 @@ class GetTimetable {
             "dateFin": endDate,
             "avecTrous": false
         };
-        return this.session.request.post(url, bodyToString(data)).then(r => {
+        return this.session.request.post(url, bodyToString(data)).then((response: timetableRes) => {
             return {
-                ...r.data
+                ...response.data
             };
         });
     }

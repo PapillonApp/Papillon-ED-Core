@@ -38,9 +38,9 @@ Le module est structuré de la manière suivante :
 - [x] Typing Messaging 
   - [x] `fetch/getMessaging.ts`
   - [x] API Response
-- [ ] Typing EDT
+- [x] Typing EDT
   - [x] `fetch/getTimetable.ts`
-  - [ ] API Response
+  - [x] API Response
 - [ ] Typing SchoolLife
   - [x] `fetch/getSchoolLife.ts`
   - [ ] API Response
