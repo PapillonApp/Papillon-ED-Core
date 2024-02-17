@@ -3,7 +3,7 @@ import {Session} from "~/session";
 
 class GetCantine {
 
-    session: Session
+    session: Session;
 
     constructor(session: Session) {
         this.session = session;
@@ -11,20 +11,20 @@ class GetCantine {
     }
 
     getBarcode() {
-        const module = this.session.findModule("CANTINE_BARCODE")
+        const module = this.session.findModule("CANTINE_BARCODE");
         if(module.enable) {
-            return module.params.numeroBadge
+            return module.params.numeroBadge;
         } else {
-            return null
+            return null;
         }
     }
 
     getReservations() {
-        const module = this.session.findModule("RESERVATIONS")
+        const module = this.session.findModule("RESERVATIONS");
         if(module.enable) {
-            return module.params
+            return module.params;
         } else {
-            return null
+            return null;
         }
     }
 
@@ -32,4 +32,4 @@ class GetCantine {
 
 export {
     GetCantine
-}
+};

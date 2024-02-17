@@ -8,4 +8,4 @@ interface EDHeaders {
 
 export type {
     RequestOptions
-}
+};

@@ -7,4 +7,4 @@ interface AuthRequestBody {
 
 export type {
     AuthRequestBody
-}
+};

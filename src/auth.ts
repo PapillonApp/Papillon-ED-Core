@@ -1,5 +1,5 @@
 import {account, loginRes, loginResSuccess} from "~/types/v3";
-import bodyToString from "./utils/body"
+import bodyToString from "./utils/body";
 import {Session} from "./session";
 import {AuthRequestBody} from "~/utils/types/auth";
 import {EstablishmentInfo} from "~/utils/types/establishments";
@@ -7,27 +7,27 @@ import {AccountInfo, Profile} from "~/utils/types/accounts";
 
 class Auth {
 
-    session: Session
+    session: Session;
 
     constructor(session: Session) {
         this.session = session;
     }
 
     async login(username: string, password: string) {
-        const url = "/login.awp?v=4.37.1"
+        const url = "/login.awp?v=4.37.1";
         const body = {
             identifiant: username,
             motdepasse: encodeURIComponent(password),
             isRelogin: false,
             uuid: ""
-        } as AuthRequestBody
+        } as AuthRequestBody;
         return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
             if (response.code === 200) {
-                const res = response.data as loginResSuccess
-                const data = res.data
+                const res = response.data as loginResSuccess;
+                const data = res.data;
 
                 this.session._token = response.token;
-                const accounts = data.accounts[0]
+                const accounts = data.accounts[0];
 
                 this.session.modules = accounts.modules;
                 this.session.settings = accounts.parametresIndividuels;
@@ -38,7 +38,7 @@ class Auth {
                 return null;
             }
 
-        })
+        });
     }
 
     setToken(token: string, id: number) {
@@ -49,17 +49,17 @@ class Auth {
     }
 
     getEtabInfo(data: account): EstablishmentInfo {
-        const profile= data.profile as Profile
+        const profile= data.profile as Profile;
         return {
             name: profile.nomEtablissement ?? "Établissement non spécifié",
             id: profile.idEtablissement ?? "",
             rne: profile.rneEtablissement ?? "",
             logo: data.logoEtablissement,
-        }
+        };
     }
 
     getStudentInfo(data: account): AccountInfo {
-        const profile = data.profile as Profile
+        const profile = data.profile as Profile;
         return {
             id: data.id,
             uid: data.uid,
@@ -74,10 +74,10 @@ class Auth {
             sexe: profile.sexe ?? "",
             classe: profile.classe,
             photo: profile.photo ?? ""
-        }
+        };
     }
 }
 
 export {
     Auth
-}
+};

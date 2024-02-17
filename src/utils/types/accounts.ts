@@ -11,7 +11,7 @@ interface accountStudentParameters {
     nbJoursMaxRenduDevoirCDT: string
 }
 
-type accountParameters = accountStudentParameters
+type accountParameters = accountStudentParameters;
 
 interface BlankAccount {
     id: string | number
@@ -67,4 +67,4 @@ export type {
     BlankAccount,
     AccountInfo,
     Profile
-}
+};

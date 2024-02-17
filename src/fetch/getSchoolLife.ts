@@ -3,7 +3,7 @@ import {Session} from "~/session";
 
 class GetSchoolLife {
 
-    session: Session
+    session: Session;
 
     constructor(session: Session) {
         this.session = session;
@@ -11,17 +11,17 @@ class GetSchoolLife {
     }
 
     fetch() {
-        const url = `/eleves/${this.session.student.id}/viescolaire.awp?verbe=get`
-        const data = {}
+        const url = `/eleves/${this.session.student.id}/viescolaire.awp?verbe=get`;
+        const data = {};
         return this.session.request.post(url, bodyToString(data)).then(res => {
             return {
                 absencesRetards: res.data.absencesRetards,
                 sanctionsEncouragements: res.data.sanctionsEncouragements
             };
-        })
+        });
     }
 }
 
 export {
     GetSchoolLife
-}
+};

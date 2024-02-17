@@ -7,4 +7,4 @@ interface EstablishmentInfo {
 
 export type {
     EstablishmentInfo
-}
+};

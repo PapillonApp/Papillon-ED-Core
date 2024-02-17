@@ -6,4 +6,4 @@ interface EmptyModule {
 
 export type {
     EmptyModule
-}
+};

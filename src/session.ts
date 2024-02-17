@@ -16,47 +16,47 @@ import {EstablishmentInfo} from "~/utils/types/establishments";
 
 class Session {
 
-    _token: undefined | string
-    isLoggedIn: boolean
-    settings?: accountParameters
-    student: account | BlankAccount
-    school?: EstablishmentInfo
-    modules?: Array<accountModule>
+    _token: undefined | string;
+    isLoggedIn: boolean;
+    settings?: accountParameters;
+    student: account | BlankAccount;
+    school?: EstablishmentInfo;
+    modules?: Array<accountModule>;
 
-    homeworks: GetHomeworks
-    grades: GetGrades
-    timetable: GetTimetable
-    schoolLife: GetSchoolLife
-    cantine: GetCantine
-    digitalManuals: GetDigitalManuals
-    messaging: GetMessaging
+    homeworks: GetHomeworks;
+    grades: GetGrades;
+    timetable: GetTimetable;
+    schoolLife: GetSchoolLife;
+    cantine: GetCantine;
+    digitalManuals: GetDigitalManuals;
+    messaging: GetMessaging;
 
-    auth: Auth
-    request: Request
+    auth: Auth;
+    request: Request;
 
     constructor() {
-        this._token = undefined // Le token
-        this.isLoggedIn = false
-        this.student = { id: 0 } // Utilisateur initialisé vide
+        this._token = undefined; // Le token
+        this.isLoggedIn = false;
+        this.student = { id: 0 }; // Utilisateur initialisé vide
 
-        this.homeworks = new GetHomeworks(this)
-        this.grades = new GetGrades(this)
-        this.timetable = new GetTimetable(this)
-        this.schoolLife = new GetSchoolLife(this)
-        this.cantine = new GetCantine(this)
-        this.digitalManuals = new GetDigitalManuals(this)
-        this.messaging = new GetMessaging(this)
+        this.homeworks = new GetHomeworks(this);
+        this.grades = new GetGrades(this);
+        this.timetable = new GetTimetable(this);
+        this.schoolLife = new GetSchoolLife(this);
+        this.cantine = new GetCantine(this);
+        this.digitalManuals = new GetDigitalManuals(this);
+        this.messaging = new GetMessaging(this);
 
-        this.auth = new Auth(this)
-        this.request = new Request(this)
+        this.auth = new Auth(this);
+        this.request = new Request(this);
     }
 
     findModule(name: string): accountModule | EmptyModule {
-        return (this.modules || []).find(module => module.code === name) || { code: "", enable: false, params: {} }
+        return (this.modules || []).find(module => module.code === name) || { code: "", enable: false, params: {} };
     }
 
 }
 
 export {
     Session
-}
+};

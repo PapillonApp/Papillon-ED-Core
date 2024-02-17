@@ -4,4 +4,4 @@ interface GradesRequestBody {
 
 export type {
     GradesRequestBody
-}
+};

@@ -17,7 +17,7 @@ function error(code: number, message: ErrorMessage){
             code,
             message: message instanceof Function && arg ? message(arg as string & DetailedMessage): message
         })
-    }
+    };
 }
 
 export {
@@ -30,4 +30,4 @@ export {
     CLOSED,
     TOKEN_INVALID,
     MODULE_DISABLE
-}
+};
