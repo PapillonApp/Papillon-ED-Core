@@ -1,4 +1,5 @@
 import {Session} from "~/session";
+import {modStudBarcode, modStudReservations} from "~/types";
 
 
 class GetCantine {
@@ -11,7 +12,7 @@ class GetCantine {
     }
 
     getBarcode() {
-        const module = this.session.findModule("CANTINE_BARCODE");
+        const module = this.session.findModule("CANTINE_BARCODE") as modStudBarcode;
         if(module.enable) {
             return module.params.numeroBadge;
         } else {
@@ -20,7 +21,7 @@ class GetCantine {
     }
 
     getReservations() {
-        const module = this.session.findModule("RESERVATIONS");
+        const module = this.session.findModule("RESERVATIONS") as modStudReservations;
         if(module.enable) {
             return module.params;
         } else {
