@@ -35,20 +35,20 @@ Le module est structuré de la manière suivante :
 - [x] Typing Homeworks
   - [x] `fetch/getHomeworks.ts`
   - [x] API Response
-- [ ] Typing Messaging 
-  - [ ] `fetch/getMessaging.ts`
-  - [ ] API Response
+- [x] Typing Messaging 
+  - [x] `fetch/getMessaging.ts`
+  - [x] API Response
 - [ ] Typing EDT
-  - [ ] `fetch/getTimetable.ts`
+  - [x] `fetch/getTimetable.ts`
   - [ ] API Response
 - [ ] Typing SchoolLife
-  - [ ] `fetch/getSchoolLife.ts`
+  - [x] `fetch/getSchoolLife.ts`
   - [ ] API Response
 - [ ] Typing Manuals
-  - [ ] `fetch/getDigitalManuals.ts`
+  - [x] `fetch/getDigitalManuals.ts`
   - [ ] API Response
 - [ ] Typing Cantine
-  - [ ] `fetch/getCantine.ts`
+  - [x] `fetch/getCantine.ts`
   - [ ] API Response
 
 ## Roadmap

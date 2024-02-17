@@ -1,5 +1,6 @@
 import {Session} from "~/session";
 import bodyToString from "~/utils/body";
+import {mailboxRes, mailboxResData} from "~/types/v3";
 
 class GetMessaging {
 
@@ -15,13 +16,16 @@ class GetMessaging {
         const data = {
             "anneeMessages": anneeMessages
         };
-        return this.session.request.post(url, bodyToString(data)).then(r => {
-            return {
-                "classeurs": r.data.classeurs,
-                "messages": r.data.messages.received,
-                "parametrage": r.data.parametrage,
-                "pagination": r.data.pagination
-            };
+        return this.session.request.post(url, bodyToString(data)).then((response: mailboxRes) => {
+            if (response.code == 200) {
+                const responseData = response.data as mailboxResData;
+                return {
+                    "classeurs": responseData.classeurs,
+                    "messages": responseData.messages.received,
+                    "parametrage": responseData.parametrage,
+                    "pagination": responseData.pagination
+                };
+            }
         });
     }
 
@@ -30,13 +34,16 @@ class GetMessaging {
         const data = {
             "anneeMessages": anneeMessages
         };
-        return this.session.request.post(url, bodyToString(data)).then(r => {
-            return {
-                "classeurs": r.data.classeurs,
-                "messages": r.data.messages.sent,
-                "parametrage": r.data.parametrage,
-                "pagination": r.data.pagination
-            };
+        return this.session.request.post(url, bodyToString(data)).then((response: mailboxRes) => {
+            if (response.code == 200) {
+                const responseData = response.data as mailboxResData;
+                return {
+                    "classeurs": responseData.classeurs,
+                    "messages": responseData.messages.received,
+                    "parametrage": responseData.parametrage,
+                    "pagination": responseData.pagination
+                };
+            }
         });
     }
 
