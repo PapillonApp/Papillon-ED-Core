@@ -22,7 +22,7 @@ Le module est structuré de la manière suivante :
 
 - [ ] Core typing
   - [x] `session.ts`
-  - [ ] `auth.ts`
+  - [x] `auth.ts`
   - [x] `constants.ts`
   - [ ] `errors.ts`
   - [ ] `Request.ts`

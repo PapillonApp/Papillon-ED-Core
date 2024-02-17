@@ -1,7 +1,9 @@
-import {AuthRequestBody, AuthRequestResponse} from "./types/auth";
+import {account, loginRes, loginResSuccess} from "~/types/v3";
 import bodyToString from "./utils/body"
-import {Account, ParsedAccount, ParsedEstablishment} from "./types/accounts";
 import {Session} from "./session";
+import {AuthRequestBody} from "~/utils/types/auth";
+import {EstablishmentInfo} from "~/utils/types/establishments";
+import {AccountInfo, Profile} from "~/utils/types/accounts";
 
 class Auth {
 
@@ -12,17 +14,20 @@ class Auth {
     }
 
     async login(username: string, password: string) {
-        const url = `/login.awp?v=4.37.1`
+        const url = "/login.awp?v=4.37.1"
         const body = {
             identifiant: username,
             motdepasse: encodeURIComponent(password),
             isRelogin: false,
             uuid: ""
         } as AuthRequestBody
-        return await this.session.request.post(url, bodyToString(body)).then((res: AuthRequestResponse) => {
-            if(res.code == 200) {
-                this.session._token = res.token;
-                const accounts = res.data.accounts[0];
+        return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
+            if (response.code === 200) {
+                const res = response.data as loginResSuccess
+                const data = res.data
+
+                this.session._token = response.token;
+                const accounts = data.accounts[0]
 
                 this.session.modules = accounts.modules;
                 this.session.settings = accounts.parametresIndividuels;
@@ -43,16 +48,18 @@ class Auth {
         return true;
     }
 
-    getEtabInfo(data: Account): ParsedEstablishment {
+    getEtabInfo(data: account): EstablishmentInfo {
+        const profile= data.profile as Profile
         return {
-            name: data.profile.nomEtablissement,
-            id: data.profile.idEtablissement,
-            rne: data.profile.rneEtablissement,
+            name: profile.nomEtablissement ?? "Établissement non spécifié",
+            id: profile.idEtablissement ?? "",
+            rne: profile.rneEtablissement ?? "",
             logo: data.logoEtablissement,
         }
     }
 
-    getStudentInfo(data: Account): ParsedAccount {
+    getStudentInfo(data: account): AccountInfo {
+        const profile = data.profile as Profile
         return {
             id: data.id,
             uid: data.uid,
@@ -63,10 +70,10 @@ class Auth {
             prenom: data.prenom,
             nom: data.nom,
             email: data.email,
-            tel: data.profile.telPortable,
-            sexe: data.profile.sexe,
-            classe: data.profile.classe,
-            photo: data.profile.photo
+            tel: profile.telPortable ?? "",
+            sexe: profile.sexe ?? "",
+            classe: profile.classe,
+            photo: profile.photo ?? ""
         }
     }
 }
