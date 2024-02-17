@@ -15,8 +15,8 @@ class GetSchoolLife {
         const data = {};
         return this.session.request.post(url, bodyToString(data)).then((response) => {
             return {
-                absencesRetards: res.data.absencesRetards,
-                sanctionsEncouragements: res.data.sanctionsEncouragements
+                absencesRetards: response.data.absencesRetards,
+                sanctionsEncouragements: response.data.sanctionsEncouragements
             };
         });
     }
