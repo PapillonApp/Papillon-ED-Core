@@ -3,6 +3,7 @@
     "target": "ES2016",
     "module": "CommonJS",
     "moduleResolution": "Node",
+    "removeComments": true,
 
     "baseUrl": ".",
     "paths": {
@@ -10,15 +11,16 @@
     },
 
     "strict": true,
-    "noEmit": true,
+    "noEmit": false,
     "skipLibCheck": true,
 
     "isolatedModules": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "outDir": "dist"
   },
-
   "include": ["src", "examples", "index.ts"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "src/types/v3/requests/index.ts"]
 }

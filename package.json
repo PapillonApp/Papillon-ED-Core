@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --no-eslintrc -c .eslintrc.json .",
     "lint:fix": "eslint --no-eslintrc -c .eslintrc.json --fix .",
-    "build": "npm run lint && tsup src/index.ts --dts --minify terser --clean --format cjs,esm --sourcemap"
+    "build": "npm run lint && tsc --project tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/PapillonApp/Papillon-ED-Core#readme",
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^1.5.3",
+    "@typescript-eslint/parser": "^6.18.0",
     "eslint": "^8.56.0",
     "eslint-config-standard-with-typescript": "^43.0.1",
     "eslint-plugin-import": "^2.29.1",
@@ -28,9 +30,5 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "@stylistic/eslint-plugin": "^1.5.3",
-    "@typescript-eslint/parser": "^6.18.0"
   }
 }

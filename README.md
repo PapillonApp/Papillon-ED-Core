@@ -130,7 +130,8 @@ npm run lint:fix
 
 ### Build
 
-- This script lint and builds the typescript files to javascript files.
+- This script lint and builds the typescript files to javascript and `.d.ts` files, in `dist/`.
+- A minified file is available at `dist/index.mjs`.
 ```shell
 npm run build
 ```
