@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --no-eslintrc -c .eslintrc.json .",
     "lint:fix": "eslint --no-eslintrc -c .eslintrc.json --fix .",
-    "build": "npm run lint && tsc index.ts"
+    "build": "npm run lint && tsc --project tsconfig.json"
   },
   "repository": {
     "type": "git",
