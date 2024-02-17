@@ -13,7 +13,7 @@ const MODULE_DISABLE = error(8, (moduleName: string) => `The module is not activ
 function error(code: number, message: ErrorMessage){
     return {
         code,
-        drop: (arg: string & DetailedMessage) => ({
+        drop: (arg?: string & DetailedMessage) => ({
             code,
             message: typeof message === "string" ? message : message(arg)
         })
