@@ -13,7 +13,10 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "quotes": ["error", "double"],
+        "eol-last": ["error", "always"],
+        "array-bracket-spacing": ["error", "never"]
     },
     "ignorePatterns": ["src/**/*.js", "src/*.js", "*.js", "src/types/**"]
 }

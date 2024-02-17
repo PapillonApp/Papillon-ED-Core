@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --no-eslintrc -c .eslintrc.json .",
-    "lint:fix": "eslint -c .eslintrc.json --fix .",
+    "lint:fix": "eslint --no-eslintrc -c .eslintrc.json --fix .",
     "build": "npm run lint && tsc index.ts"
   },
   "repository": {
