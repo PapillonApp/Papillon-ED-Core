@@ -29,12 +29,12 @@ Le module est structuré de la manière suivante :
 - [x] Typing Grades
   - [x] `fetch/getGrades.ts`
   - [x] API Response
-- [ ] Typing Account
-  - [ ] `auth.ts`
-  - [ ] API Response
-- [ ] Typing Homeworks
-  - [ ] `fetch/getHomeworks.ts`
-  - [ ] API Response
+- [x] Typing Account
+  - [x] `auth.ts`
+  - [x] API Response
+- [x] Typing Homeworks
+  - [x] `fetch/getHomeworks.ts`
+  - [x] API Response
 - [ ] Typing Messaging 
   - [ ] `fetch/getMessaging.ts`
   - [ ] API Response
