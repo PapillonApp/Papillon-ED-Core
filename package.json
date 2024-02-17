@@ -6,7 +6,7 @@
   "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint -c .eslintrc.json .",
+    "lint": "eslint --no-eslintrc -c .eslintrc.json .",
     "lint:fix": "eslint -c .eslintrc.json --fix .",
     "build": "npm run lint && tsc index.ts"
   },
