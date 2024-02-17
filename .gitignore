@@ -111,3 +111,7 @@ src/**/*.js
 src/**/*.j*
 src/**/*.d*
 /package-lock.json
+/examples/sample.js
+/examples/sample.d.ts
+/examples/sample.d.ts.map
+/examples/sample.js.map
