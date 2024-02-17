@@ -1,6 +1,6 @@
-import {ErrorMessage} from "./types/errors";
+import {ErrorMessage, DetailedMessage} from "~/utils/types/errors";
 
-const DEFAULT = error(-1, ({ title, message }) => title + (title && message ? " - " : "") + message);
+const DEFAULT = error(-1, (message: DetailedMessage) => message.title + (message.title && message.message ? " - " : "") + message.message);
 const UNAUTHORIZED = error(1, (message: string) => `Unauthorized Access : ${message}`);
 const WRONG_CREDENTIALS = error(2, "Wrong user credentials");
 const UNKNOWN_ACCOUNT = error(3, (typeAccount: string) => `Unknown account type '${typeAccount}'`);
@@ -13,9 +13,9 @@ const MODULE_DISABLE = error(8, (moduleName: string) => `The module is not activ
 function error(code: number, message: ErrorMessage){
     return {
         code,
-        drop: (...args) => ({
+        drop: (arg: string & DetailedMessage) => ({
             code,
-            message: typeof message === "string" ? message : message(...args)
+            message: typeof message === "string" ? message : message(arg)
         })
     }
 }

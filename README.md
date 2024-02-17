@@ -24,7 +24,7 @@ Le module est structuré de la manière suivante :
   - [x] `session.ts`
   - [x] `auth.ts`
   - [x] `constants.ts`
-  - [ ] `errors.ts`
+  - [x] `errors.ts`
   - [ ] `Request.ts`
 - [ ] Typing Grades
   - [ ] `fetch/getGrades.ts`
