@@ -10,18 +10,19 @@
     "parser": "@typescript-eslint/parser",
     "parserOptions": { "project": ["./tsconfig.json"] },
     "plugins": [
-        "@typescript-eslint"
+        "@stylistic"
     ],
     "rules": {
-        "indent": ["error", 4],
-        "quotes": ["error", "double"],
-        "eol-last": ["error", "always"],
-        "array-bracket-spacing": ["error", "never"],
-        "no-multiple-empty-lines": ["error", {
+        "@stylistic/indent": ["error", 4],
+        "@stylistic/quotes": ["error", "double"],
+        "@stylistic/eol-last": ["error", "always"],
+        "@stylistic/array-bracket-spacing": ["error", "never"],
+        "@stylistic/no-multiple-empty-lines": ["error", {
             "max": 2,
             "maxBOF": 0,
             "maxEOF": 1
-        }]
+        }],
+        "@stylistic/semi": ["error", "always"]
     },
     "ignorePatterns": ["src/**/*.js", "src/*.js", "*.js", "src/types/**"]
 }
