@@ -192,7 +192,7 @@ La classe de gestion des timeline.
 | fetch()               | `async () => Array<`[`studTlElem`]()`>` | Récupérer la timeline personnelle. |
 | fetchCommonTimeline() | `async () =>` [`studCommonTlResData`]() | Récupérer la timeline commune      |
 
-_Ouvrir [`src/fetch/getMessaging.ts`](src/fetch/getMessaging.ts)_
+_Ouvrir [`src/fetch/getTimeline.ts`](src/fetch/getTimeline.ts)_
 
 ---
 
