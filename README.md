@@ -35,16 +35,16 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
   - [x] API Response
 - [x] Typing Messaging 
   - [x] `fetch/getMessaging.ts`
-  - [ ] API Response
+  - [ ] API Response (Waiting for types to be written)
 - [x] Typing EDT
   - [x] `fetch/getTimetable.ts`
   - [x] API Response
-- [ ] Typing SchoolLife
+- [x] Typing SchoolLife
   - [x] `fetch/getSchoolLife.ts`
-  - [ ] API Response (Waiting for types to be written)
-- [ ] Typing Manuals
+  - [x] API Response
+- [x] Typing Manuals
   - [x] `fetch/getDigitalManuals.ts`
-  - [ ] API Response (Waiting for types to be written)
+  - [x] API Response
 - [ ] Typing Cantine
   - [x] `fetch/getCantine.ts`
   - [ ] API Response (Waiting for types to be written)
