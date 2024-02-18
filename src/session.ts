@@ -12,6 +12,7 @@ import {account, accountModule} from "~/types/v3";
 import {BlankAccount, accountParameters} from "~/utils/types/accounts";
 import {EmptyModule} from "~/utils/types/modules";
 import {EstablishmentInfo} from "~/utils/types/establishments";
+import {GetTimeline} from "~/fetch/getTimeline";
 
 
 class Session {
@@ -30,6 +31,7 @@ class Session {
     cantine: GetCantine;
     digitalManuals: GetDigitalManuals;
     messaging: GetMessaging;
+    timeline: GetTimeline;
 
     auth: Auth;
     request: Request;
@@ -46,6 +48,7 @@ class Session {
         this.cantine = new GetCantine(this);
         this.digitalManuals = new GetDigitalManuals(this);
         this.messaging = new GetMessaging(this);
+        this.timeline = new GetTimeline(this);
 
         this.auth = new Auth(this);
         this.request = new Request(this);
