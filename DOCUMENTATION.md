@@ -89,6 +89,7 @@ La classe principale du module.
 | cantine        | [`GetCantine`](#GetCantine)               | Gestion de la cantine           |
 | digitalManuals | [`GetDigitalManuals`](#GetDigitalManuals) | Gestion des manuels numériques  |
 | messaging      | [`GetMessaging`](#GetMessaging)           | Gestion des messages            |
+| timeline       | [`GetTimeline`](#GetTimeline)             | Gestion des messages            |
 |                |                                           |                                 |
 | auth           | [`Auth`]()                                | Gestion de l'authentification   |
 | request        | [`Request`]()                             | Gestion du requêtage            |
@@ -163,9 +164,9 @@ _Ouvrir [`src/fetch/getSchoolLife.ts`](src/fetch/getSchoolLife.ts)_
 
 La classe de gestion des manuels scolaires.
 
-| Propriété | Type                     | Commentaire                     |
-|-----------|--------------------------|---------------------------------|
-| fetch()   | `() =>` [`manualsRes`]() | Récupérer les manuels scolaires |
+| Propriété | Type                           | Commentaire                     |
+|-----------|--------------------------------|---------------------------------|
+| fetch()   | `async () =>` [`manualsRes`]() | Récupérer les manuels scolaires |
 
 _Ouvrir [`src/fetch/getDigitalManuals.ts`](src/fetch/getDigitalManuals.ts)_
 
@@ -174,10 +175,22 @@ _Ouvrir [`src/fetch/getDigitalManuals.ts`](src/fetch/getDigitalManuals.ts)_
 
 La classe de gestion de la messagerie.
 
-| Propriété               | Type                         | Commentaire                                                                           |
-|-------------------------|------------------------------|---------------------------------------------------------------------------------------|
-| fetchReceivedMessages() | `() =>` [`mailboxResData`]() | Récupérer les messages reçus (`data.messages.received` sera rempli, les autres vides) |
-| fetchSentMessages()     | `() =>` [`mailboxResData`]() | Récupérer les messages envoyés (`data.messages.sent` sera rempli, les autres vides)   |
+| Propriété               | Type                               | Commentaire                                                                           |
+|-------------------------|------------------------------------|---------------------------------------------------------------------------------------|
+| fetchReceivedMessages() | `async () =>` [`mailboxResData`]() | Récupérer les messages reçus (`data.messages.received` sera rempli, les autres vides) |
+| fetchSentMessages()     | `async () =>` [`mailboxResData`]() | Récupérer les messages envoyés (`data.messages.sent` sera rempli, les autres vides)   |
+
+_Ouvrir [`src/fetch/getMessaging.ts`](src/fetch/getMessaging.ts)_
+
+
+#### GetTimeline
+
+La classe de gestion des timeline.
+
+| Propriété             | Type                                    | Commentaire                        |
+|-----------------------|-----------------------------------------|------------------------------------|
+| fetch()               | `async () => Array<`[`studTlElem`]()`>` | Récupérer la timeline personnelle. |
+| fetchCommonTimeline() | `async () =>` [`studCommonTlResData`]() | Récupérer la timeline commune      |
 
 _Ouvrir [`src/fetch/getMessaging.ts`](src/fetch/getMessaging.ts)_
 
