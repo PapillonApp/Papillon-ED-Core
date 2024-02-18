@@ -80,25 +80,25 @@ Les références sont données ainsi:
 
 La classe principale du module.
 
-| Propriété      | Type                                   | Commentaire                     |
-|----------------|----------------------------------------|---------------------------------|
-| homeworks      | [`GetHomeworks`]()                     | Gestion des devoirs             |
-| grades         | [`GetGrades`]()                        | Gestion des notes               |
-| timetable      | [`GetTimetable`]()                     | Gestion de l'EDT                |
-| schoolLife     | [`GetSchoolLife`]()                    | Gestion de la vie scolaire      |
-| cantine        | [`GetCantine`]()                       | Gestion de la cantine           |
-| digitalManuals | [`GetDigitalManuals`]()                | Gestion des manuels numériques  |
-| messaging      | [`GetMessaging`]()                     | Gestion des messages            |
-|                |                                        |                                 |
-| auth           | [`Auth`]()                             | Gestion de l'authentification   |
-| request        | [`Request`]()                          | Gestion du requêtage            |
-|                |                                        |                                 |
-| _token         | `string` \| `undefined`                | Token                           |
-| isLoggedIn     | `boolean`                              | L'utilisateur est-il connecté   |
-| settings?      | [`accountParameters`]() \| `undefined` | Paramètres de l'utilisateur     |
-| student        | [`account`]() \| [`BlankAccount`]()    | Profil de l'utilisateur         |
-| school?        | [`EstablishmentInfo`]()                | Infromations de l'établissement |
-| modules?       | `Array<`[`accountModule`]()`>`         | Modules activés                 |
+| Propriété      | Type                                      | Commentaire                     |
+|----------------|-------------------------------------------|---------------------------------|
+| homeworks      | [`GetHomeworks`](#GetHomeworks)           | Gestion des devoirs             |
+| grades         | [`GetGrades`](#GetGrades)                 | Gestion des notes               |
+| timetable      | [`GetTimetable`](#GetTimetable)           | Gestion de l'EDT                |
+| schoolLife     | [`GetSchoolLife`](#GetSchoolLife)         | Gestion de la vie scolaire      |
+| cantine        | [`GetCantine`](#GetCantine)               | Gestion de la cantine           |
+| digitalManuals | [`GetDigitalManuals`](#GetDigitalManuals) | Gestion des manuels numériques  |
+| messaging      | [`GetMessaging`](#GetMessaging)           | Gestion des messages            |
+|                |                                           |                                 |
+| auth           | [`Auth`]()                                | Gestion de l'authentification   |
+| request        | [`Request`]()                             | Gestion du requêtage            |
+|                |                                           |                                 |
+| _token         | `string` \| `undefined`                   | Token                           |
+| isLoggedIn     | `boolean`                                 | L'utilisateur est-il connecté   |
+| settings?      | [`accountParameters`]() \| `undefined`    | Paramètres de l'utilisateur     |
+| student        | [`account`]() \| [`BlankAccount`]()       | Profil de l'utilisateur         |
+| school?        | [`EstablishmentInfo`]()                   | Infromations de l'établissement |
+| modules?       | `Array<`[`accountModule`]()`>`            | Modules activés                 |
 
 _Ouvrir [`src/session.ts`](src/session.ts)_
 
@@ -113,7 +113,7 @@ La classe de gestion des devoirs.
 
 _Ouvrir [`src/fetch/getHomeworks.ts`](src/fetch/getHomeworks.ts)_
 
-### GetGrades
+#### GetGrades
 
 La classe de gestion des notes.
 
@@ -124,7 +124,7 @@ La classe de gestion des notes.
 _Ouvrir [`src/fetch/getGrades.ts`](src/fetch/getGrades.ts)_
 
 
-### GetTimetable
+#### GetTimetable
 
 La classe de gestion de l'EDT. Les jours sont formatés `YYYY-MM-DD`.
 
@@ -134,6 +134,54 @@ La classe de gestion de l'EDT. Les jours sont formatés `YYYY-MM-DD`.
 | fetchByDate() | `async (starteDate: string, endDate: string) =>`[`timetableCourseList`]() | Récupérer l'EDT des jour `startDate` à `endDate` |
 
 _Ouvrir [`src/fetch/getTimetable.ts`](src/fetch/getTimetable.ts)_
+
+
+#### GetSchoolLife
+
+La classe de gestion de la vie scolaire
+
+| Propriété | Type                             | Commentaire                                   |
+|-----------|----------------------------------|-----------------------------------------------|
+| fetch()   | `async () =>`[`schoolLifeRes`]() | Récupérer tous les évenements de vie scolaire |
+
+_Ouvrir [`src/fetch/getSchoolLife.ts`](src/fetch/getSchoolLife.ts)_
+
+
+#### GetCantine
+
+La classe de gestion des modules de cantine.
+
+| Propriété         | Type                                     | Commentaire                                  |
+|-------------------|------------------------------------------|----------------------------------------------|
+| getBarcode()      | `() => string`                           | Renvoie la valeur du code-barre du badge     |
+| getReservations() | `() =>` [`modStudReservations.params`]() | Renvoie les paramètres module de réservation |
+
+_Ouvrir [`src/fetch/getSchoolLife.ts`](src/fetch/getSchoolLife.ts)_
+
+
+#### GetDigitalManuals
+
+La classe de gestion des manuels scolaires.
+
+| Propriété | Type                     | Commentaire                     |
+|-----------|--------------------------|---------------------------------|
+| fetch()   | `() =>` [`manualsRes`]() | Récupérer les manuels scolaires |
+
+_Ouvrir [`src/fetch/getDigitalManuals.ts`](src/fetch/getDigitalManuals.ts)_
+
+
+#### GetMessaging
+
+La classe de gestion de la messagerie.
+
+| Propriété               | Type                         | Commentaire                                                                           |
+|-------------------------|------------------------------|---------------------------------------------------------------------------------------|
+| fetchReceivedMessages() | `() =>` [`mailboxResData`]() | Récupérer les messages reçus (`data.messages.received` sera rempli, les autres vides) |
+| fetchSentMessages()     | `() =>` [`mailboxResData`]() | Récupérer les messages envoyés (`data.messages.sent` sera rempli, les autres vides)   |
+
+_Ouvrir [`src/fetch/getMessaging.ts`](src/fetch/getMessaging.ts)_
+
+---
 
 ## Guide du développeur
 
