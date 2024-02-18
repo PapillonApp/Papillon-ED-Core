@@ -59,6 +59,46 @@ Désormais connectés, il vous faudra lire la [documentation des références]()
 
 ### Références
 
+> [!NOTE]
+> Des exemples sont disponibles dans `exemples/`
+
+Les références sont données ainsi:
+
+| Propriété | Type                  | Commentaire |
+|-----------|-----------------------|-------------|
+| nom       | `undefined \| string` |             |
+
+- Certains types ont des liens hypertextes vers la référence du type.
+- Certains liens renvoient vers le fichier de définition du type.
+- Le signe _?_ désigne que la valeur peut être non-définie !
+
+#### EDcore
+
+La classe principale du module.
+
+| Propriété      | Type                                   | Commentaire                     |
+|----------------|----------------------------------------|---------------------------------|
+| homeworks      | [`GetHomeworks`]()                     | Gestion des devoirs             |
+| grades         | [`GetGrades`]()                        | Gestion des notes               |
+| timetable      | [`GetTimetable`]()                     | Gestion de l'EDT                |
+| schoolLife     | [`GetSchoolLife`]()                    | Gestion de la vie scolaire      |
+| cantine        | [`GetCantine`]()                       | Gestion de la cantine           |
+| digitalManuals | [`GetDigitalManuals`]()                | Gestion des manuels numériques  |
+| messaging      | [`GetMessaging`]()                     | Gestion des messages            |
+|                |                                        |                                 |
+| auth           | [`Auth`]()                             | Gestion de l'authentification   |
+| request        | [`Request`]()                          | Gestion du requêtage            |
+|                |                                        |                                 |
+| _token         | `string` \| `undefined`                | Token                           |
+| isLoggedIn     | `boolean`                              | L'utilisateur est-il connecté   |
+| settings?      | [`accountParameters`]() \| `undefined` | Paramètres de l'utilisateur     |
+| student        | [`account`]() \| [`BlankAccount`]()    | Profil de l'utilisateur         |
+| school         | [`EstablishmentInfo`]()                | Infromations de l'établissement |
+| modules        | `Array<`[`accountModule`]()`>`         | Modules activés                 |
+
+_Ouvrir [`src/session.ts`](src/session.ts)_
+
+
 ## Guide du développeur
 
 Ce guide vous permet de comprendre comment ce module est développé et donc d'y contribuer !
