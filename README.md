@@ -45,9 +45,9 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
 - [x] Typing Manuals
   - [x] `fetch/getDigitalManuals.ts`
   - [x] API Response
-- [ ] Typing Cantine
+- [x] Typing Cantine
   - [x] `fetch/getCantine.ts`
-  - [ ] API Response (Waiting for types to be written)
+  - [x] API Response
 
 ## Roadmap
 - [x] Connexion

@@ -1,6 +1,7 @@
 import {Session} from "~/session";
 import bodyToString from "~/utils/body";
 import {textbookDateAssignement, textbookDateRes, textbookDateResData, textbookRes} from "~/types/v3";
+import {textbookRequestData, textbookSetDoneStatusRequestData} from "~/types/v3/requests/student";
 
 class GetHomeworks {
 
@@ -12,13 +13,13 @@ class GetHomeworks {
 
     fetch() {
         const url = `/Eleves/${this.session.student.id}/cahierdetexte.awp?verbe=get`;
-        const data = {};
+        const data = {} as textbookRequestData;
         return this.session.request.post(url, bodyToString(data)).then(response => response as textbookRes) as Promise<textbookRes>;
     }
 
     getByDay(day: string) {
         const url = `/Eleves/${this.session.student.id}/cahierdetexte/${day}.awp?verbe=get`;
-        const data = {};
+        const data = {} as textbookRequestData;
         return this.session.request.post(url, bodyToString(data)).then((response: textbookDateRes) => {
 
             if (response.code == 200) {
@@ -48,9 +49,9 @@ class GetHomeworks {
     setStatus(homeworkID: number, isDone: boolean) {
         const url = `/E/${this.session.student.id}/cahierdetexte.awp?verbe=put`;
         const data = {
-            "idDevoirsEffectues": [isDone ? homeworkID : null],
-            "idDevoirsNonEffectues": [isDone ? null : homeworkID]
-        };
+            idDevoirsEffectues: [isDone ? homeworkID : null],
+            idDevoirsNonEffectues: [isDone ? null : homeworkID]
+        } as textbookSetDoneStatusRequestData;
         return this.session.request.post(url, bodyToString(data)) as unknown;
     }
 }

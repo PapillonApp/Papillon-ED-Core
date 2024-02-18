@@ -1,9 +1,9 @@
 import {account, loginRes, loginResSuccess} from "~/types/v3";
 import bodyToString from "./utils/body";
 import {Session} from "./session";
-import {AuthRequestBody} from "~/utils/types/auth";
 import {EstablishmentInfo} from "~/utils/types/establishments";
 import {AccountInfo, Profile} from "~/utils/types/accounts";
+import {authRequestData} from "~/types/v3/requests/student";
 
 class Auth {
 
@@ -20,7 +20,7 @@ class Auth {
             motdepasse: encodeURIComponent(password),
             isRelogin: false,
             uuid: ""
-        } as AuthRequestBody;
+        } as authRequestData;
         return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
             if (response.code === 200) {
                 const res = response.data as loginResSuccess;

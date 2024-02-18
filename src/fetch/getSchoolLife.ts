@@ -1,5 +1,6 @@
 import bodyToString from "~/utils/body";
 import {Session} from "~/session";
+import {schoolLifeRequestData} from "~/types/v3/requests/student";
 
 class GetSchoolLife {
 
@@ -12,7 +13,7 @@ class GetSchoolLife {
 
     fetch() {
         const url = `/eleves/${this.session.student.id}/viescolaire.awp?verbe=get`;
-        const data = {};
+        const data = {} as schoolLifeRequestData;
         return this.session.request.post(url, bodyToString(data)).then((response) => {
             return {
                 absencesRetards: response.data.absencesRetards,

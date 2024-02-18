@@ -2,6 +2,7 @@ import {Session} from "~/session";
 import bodyToString from "~/utils/body";
 import {timetableRes} from "~/types/v3";
 import {timetableCourseList} from "~/utils/types/timetable";
+import {timetableRequestData} from "~/types/v3/requests/student";
 
 class GetTimetable {
 
@@ -14,10 +15,10 @@ class GetTimetable {
     fetchByDay(date: string) {
         const url = `/E/${this.session.student.id}/emploidutemps.awp?verbe=get`;
         const data = {
-            "dateDebut": date,
-            "dateFin": date,
-            "avecTrous": false
-        };
+            dateDebut: date,
+            dateFin: date,
+            avecTrous: false
+        } as timetableRequestData;
         return this.session.request.post(url, bodyToString(data)).then((response: timetableRes) => {
             return {
                 ...response.data
@@ -28,10 +29,10 @@ class GetTimetable {
     fetchByDate(startDate: string, endDate: string) {
         const url = `/E/${this.session.student.id}/emploidutemps.awp?verbe=get`;
         const data = {
-            "dateDebut": startDate,
-            "dateFin": endDate,
-            "avecTrous": false
-        };
+            dateDebut: startDate,
+            dateFin: endDate,
+            avecTrous: false
+        } as timetableRequestData;
         return this.session.request.post(url, bodyToString(data)).then((response: timetableRes) => {
             return {
                 ...response.data
