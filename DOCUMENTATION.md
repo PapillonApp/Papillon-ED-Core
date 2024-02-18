@@ -71,6 +71,7 @@ Les références sont données ainsi:
 - Certains types ont des liens hypertextes vers la référence du type.
 - Certains liens renvoient vers le fichier de définition du type.
 - Le signe _?_ désigne que la valeur peut être non-définie !
+- Si la propriété est une fonction, le type est `(arg: type) => type`.
 
 #### EDcore
 
@@ -93,11 +94,21 @@ La classe principale du module.
 | isLoggedIn     | `boolean`                              | L'utilisateur est-il connecté   |
 | settings?      | [`accountParameters`]() \| `undefined` | Paramètres de l'utilisateur     |
 | student        | [`account`]() \| [`BlankAccount`]()    | Profil de l'utilisateur         |
-| school         | [`EstablishmentInfo`]()                | Infromations de l'établissement |
-| modules        | `Array<`[`accountModule`]()`>`         | Modules activés                 |
+| school?        | [`EstablishmentInfo`]()                | Infromations de l'établissement |
+| modules?       | `Array<`[`accountModule`]()`>`         | Modules activés                 |
 
 _Ouvrir [`src/session.ts`](src/session.ts)_
 
+### GetHomeworks
+
+La classe de gestion des devoirs.
+
+| Propriété      | Type                              | Commentaire                                                        |
+|----------------|-----------------------------------|--------------------------------------------------------------------|
+| fetch()        | `() =>`[`textbookRes`]()          | Récupérer les devoirs                                              |
+| getByDay()     | `(day: string) =>`[`textbookResData`]() | Récupérer les devoirs du jout `day` (day est formaté `YYYY-MM-DD`) |
+
+_Ouvrir [`src/fetch/getHomeworks.ts`](src/fetch/getHomeworks.ts)_
 
 ## Guide du développeur
 
