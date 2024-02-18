@@ -16,39 +16,6 @@ Ce module permet la connexion entre l'application Papillon et EcoleDirecte.
 
 Le module est exporté vers NPM, il doit donc respecter les règles de codage de NPM et n'enfreindre aucune règle spécifique de ce service ni de Papillon.
 
-## Roadmap typescript
-
-- [x] Core typing
-  - [x] `session.ts`
-  - [x] `auth.ts`
-  - [x] `constants.ts`
-  - [x] `errors.ts`
-  - [x] `Request.ts`
-- [x] Typing Grades
-  - [x] `fetch/getGrades.ts`
-  - [x] API Response
-- [x] Typing Account
-  - [x] `auth.ts`
-  - [x] API Response
-- [x] Typing Homeworks
-  - [x] `fetch/getHomeworks.ts`
-  - [x] API Response
-- [x] Typing Messaging 
-  - [x] `fetch/getMessaging.ts`
-  - [ ] API Response (Waiting for types to be written)
-- [x] Typing EDT
-  - [x] `fetch/getTimetable.ts`
-  - [x] API Response
-- [x] Typing SchoolLife
-  - [x] `fetch/getSchoolLife.ts`
-  - [x] API Response
-- [x] Typing Manuals
-  - [x] `fetch/getDigitalManuals.ts`
-  - [x] API Response
-- [x] Typing Cantine
-  - [x] `fetch/getCantine.ts`
-  - [x] API Response
-
 ## Roadmap
 - [x] Connexion
 - [x] Notes
