@@ -15,13 +15,13 @@
 
 Ce guide vous permet de comprendre comment fonctionne ce module et comment vous pouvez l'utiliser.
 
-Ce projet est développé en _**Typescript**_.
+Ce projet est développé en _**Typescript**_, il est compatible avec toutes les technologies **Javascript**.
 
 ### Installation
 
-> [!ERROR]
+> [!CAUTION]
 > Package not published
-> The typescript package is not finished yet !
+> The typescript package is not finished yet ! Consider installing it using `npm i git+https://github.com/camarm-dev/papillon-ed-core`
 
 ```sh
 npm i papillon-ed-core
@@ -199,6 +199,8 @@ _Ouvrir [`src/fetch/getTimeline.ts`](src/fetch/getTimeline.ts)_
 ## Guide du développeur
 
 Ce guide vous permet de comprendre comment ce module est développé et donc d'y contribuer !
+
+Ce projet est développé en _**Typescript**_. Vous devez maitriser ce languages ainsi que le développement de modules _NodeJs_ pour commencer.
 
 ### Installation
 
