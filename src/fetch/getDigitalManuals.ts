@@ -13,11 +13,11 @@ class GetDigitalManuals {
 
     }
 
-    async fetch() {
+    async fetch(): Promise<manualsRes> {
         if(!this.session.findModule("MANUELS_SCOLAIRES").enable) throw MODULE_DISABLE.drop("MANUELS_SCOLAIRES");
         const url = `/Eleves/${this.session.student.id}/manuelsNumeriques.awp?verbe=get`;
         const data = {} as manualsRequestData;
-        return await this.session.request.post(url, bodyToString(data)) as Promise<manualsRes>;
+        return await this.session.request.post(url, bodyToString(data)).then(response => response as manualsRes);
     }
 
 }

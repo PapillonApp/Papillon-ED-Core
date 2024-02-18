@@ -12,11 +12,11 @@ class GetSchoolLife {
 
     }
 
-    async fetch() {
+    async fetch(): Promise<schoolLifeRes> {
         const url = `/eleves/${this.session.student.id}/viescolaire.awp?verbe=get`;
         const data = {} as schoolLifeRequestData;
         return await this.session.request.post(url, bodyToString(data)).then((response: schoolLifeRes) => {
-            return response.data
+            return response.data;
         }) as Promise<schoolLifeRes>;
     }
 }

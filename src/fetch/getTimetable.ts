@@ -12,7 +12,7 @@ class GetTimetable {
         this.session = session;
     }
 
-    async fetchByDay(date: string) {
+    async fetchByDay(date: string): Promise<timetableCourseList> {
         const url = `/E/${this.session.student.id}/emploidutemps.awp?verbe=get`;
         const data = {
             dateDebut: date,
@@ -26,7 +26,7 @@ class GetTimetable {
         }) as Promise<timetableCourseList>;
     }
 
-    async fetchByDate(startDate: string, endDate: string) {
+    async fetchByDate(startDate: string, endDate: string): Promise<timetableCourseList> {
         const url = `/E/${this.session.student.id}/emploidutemps.awp?verbe=get`;
         const data = {
             dateDebut: startDate,

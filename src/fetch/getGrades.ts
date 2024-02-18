@@ -11,7 +11,7 @@ class GetGrades {
         this.session = session;
     }
 
-    async fetch() {
+    async fetch(): Promise<gradesResData> {
         const url = `/eleves/${this.session.student.id}/notes.awp?verbe=get`;
         const body = {
             anneeScolaire: ""

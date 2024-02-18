@@ -11,7 +11,7 @@ class GetCantine {
 
     }
 
-    getBarcode() {
+    getBarcode(): string | undefined {
         const module = this.session.findModule("CANTINE_BARCODE") as modStudBarcode;
         if(module.enable) {
             return module.params.numeroBadge;
@@ -19,7 +19,7 @@ class GetCantine {
         return undefined;
     }
 
-    getReservations() {
+    getReservations(): object | undefined {
         const module = this.session.findModule("RESERVATIONS") as modStudReservations;
         if(module.enable) {
             return module.params;
