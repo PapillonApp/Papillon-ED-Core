@@ -72,6 +72,7 @@ Les références sont données ainsi:
 - Certains liens renvoient vers le fichier de définition du type.
 - Le signe _?_ désigne que la valeur peut être non-définie !
 - Si la propriété est une fonction, le type est `(arg: type) => type`.
+- Si la fonction est `async`, elle renvoie une `Promise<type>`
 
 #### EDcore
 
@@ -103,12 +104,34 @@ _Ouvrir [`src/session.ts`](src/session.ts)_
 
 La classe de gestion des devoirs.
 
-| Propriété      | Type                              | Commentaire                                                        |
-|----------------|-----------------------------------|--------------------------------------------------------------------|
-| fetch()        | `() =>`[`textbookRes`]()          | Récupérer les devoirs                                              |
-| getByDay()     | `(day: string) =>`[`textbookResData`]() | Récupérer les devoirs du jout `day` (day est formaté `YYYY-MM-DD`) |
+| Propriété  | Type                                          | Commentaire                                                        |
+|------------|-----------------------------------------------|--------------------------------------------------------------------|
+| fetch()    | `async () =>`[`textbookRes`]()                | Récupérer les devoirs                                              |
+| getByDay() | `async (day: string) =>`[`textbookResData`]() | Récupérer les devoirs du jout `day` (day est formaté `YYYY-MM-DD`) |
 
 _Ouvrir [`src/fetch/getHomeworks.ts`](src/fetch/getHomeworks.ts)_
+
+### GetGrades
+
+La classe de gestion des notes.
+
+| Propriété  | Type                                       | Commentaire          |
+|------------|--------------------------------------------|----------------------|
+| fetch()    | `async () =>`[`gradesResData`]()           | Récupérer les notes  |
+
+_Ouvrir [`src/fetch/getGrades.ts`](src/fetch/getGrades.ts)_
+
+
+### GetTimetable
+
+La classe de gestion de l'EDT. Les jours sont formatés `YYYY-MM-DD`.
+
+| Propriété     | Type                                                                      | Commentaire                                      |
+|---------------|---------------------------------------------------------------------------|--------------------------------------------------|
+| fetchByDay()  | `async (day: string) =>`[`timetableCourseList`]()                         | Récupérer l'EDT du jour `day`                    |
+| fetchByDate() | `async (starteDate: string, endDate: string) =>`[`timetableCourseList`]() | Récupérer l'EDT des jour `startDate` à `endDate` |
+
+_Ouvrir [`src/fetch/getTimetable.ts`](src/fetch/getTimetable.ts)_
 
 ## Guide du développeur
 
