@@ -4,6 +4,7 @@
   "description": "API EcoleDirecte pour PapillonApp (c)",
   "main": "index.js",
   "types": "index.d.ts",
+  "module": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --no-eslintrc -c .eslintrc.json .",
@@ -21,6 +22,11 @@
     "url": "https://github.com/PapillonApp/Papillon-ED-Core/issues"
   },
   "homepage": "https://github.com/PapillonApp/Papillon-ED-Core#readme",
+  "keywords": [
+    "papillon",
+    "typescript",
+    "ecoledirecte"
+  ],
   "devDependencies": {
     "@stylistic/eslint-plugin": "^1.5.3",
     "@typescript-eslint/parser": "^6.18.0",
