@@ -8,7 +8,8 @@ login().then(() => {
     const todayDate = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
     ED.timetable.fetchByDay(todayDate).then(timetable => {
         console.log("Emploi du temps d'aujourd'hui:");
-        timetable.forEach(matiere =>  {
+        Object.keys(timetable).forEach(key =>  {
+            const matiere = timetable[key];
             console.log(`\t${matiere.matiere} (${matiere.codeMatiere}), de ${matiere.start_date} à ${matiere.end_date} en salle ${matiere.classe}.`);
         });
     });
