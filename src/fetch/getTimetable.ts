@@ -1,6 +1,7 @@
 import {Session} from "~/session";
 import bodyToString from "~/utils/body";
-import {timetableRes, timetableResData} from "~/types/v3";
+import {timetableRes} from "~/types/v3";
+import {timetableCourseList} from "~/utils/types/timetable";
 
 class GetTimetable {
 
@@ -21,7 +22,7 @@ class GetTimetable {
             return {
                 ...response.data
             };
-        }) as Promise<timetableResData>;
+        }) as Promise<timetableCourseList>;
     }
 
     fetchByDate(startDate: string, endDate: string) {
@@ -35,7 +36,7 @@ class GetTimetable {
             return {
                 ...response.data
             };
-        }) as Promise<timetableResData>;
+        }) as Promise<timetableCourseList>;
     }
 }
 
