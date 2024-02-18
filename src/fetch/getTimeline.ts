@@ -1,6 +1,6 @@
 import {Session} from "~/session";
 import bodyToString from "~/utils/body";
-import {studCommonTlRes, studTlElem, studCommonTlResData} from "~/types/v3";
+import {studTlElem, studCommonTlResData} from "~/types/v3";
 import {timelineRequestData} from "~/types/v3/requests";
 
 class GetTimeline {
