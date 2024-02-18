@@ -29,6 +29,8 @@ npm i papillon-ed-core
 
 ### Utilisation
 
+_Ce module utilise des fonctions asynchrones pour fonctionner._
+
 **1. Importer le module**
 ```typescript
 import {EDCore} from "papillon-ed-core";
@@ -50,7 +52,7 @@ _Avec un token_
 > S'authentifier par token empêchera `papillon-ed-core` de se reconnecter à votre compte, ce qui entrainera une erreur après expiration du token.
 ```typescript
 const userId = 0000
-await ED.setToken('token', userId)
+ED.setToken('token', userId)
 ```
 
 **4. Visitez la documentation**
