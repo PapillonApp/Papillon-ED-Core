@@ -2,6 +2,7 @@ import { API } from "./constants";
 import {Session} from "./session";
 import {SESSION_EXPIRED, TOKEN_INVALID, UNAUTHORIZED, WRONG_CREDENTIALS} from "~/errors";
 import {RequestOptions} from "~/utils/types/requests";
+import {response} from "~/types/v3/responses/default/responses";
 
 class Request {
 
@@ -24,14 +25,15 @@ class Request {
 
     }
 
-    post(url: string, body: string) {
+    async post(url: string, body: string) {
         if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token;
         const finalUrl = API + url;
-        return fetch(finalUrl, {
+        return await fetch(finalUrl, {
             method: "POST",
             headers: this.requestOptions.headers,
             body: body
-        }).then(res => res.text())
+        })
+            .then(res => res.text())
             .then(res => {
                 const response = res.startsWith("{") ? JSON.parse(res) : res;
                 if (response.code == 525) {
@@ -47,7 +49,7 @@ class Request {
                     throw UNAUTHORIZED.drop(response.message);
                 }
                 return response;
-            });
+            }) as Promise<response>;
     }
 }
 

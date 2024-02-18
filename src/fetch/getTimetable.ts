@@ -12,28 +12,28 @@ class GetTimetable {
         this.session = session;
     }
 
-    fetchByDay(date: string) {
+    async fetchByDay(date: string) {
         const url = `/E/${this.session.student.id}/emploidutemps.awp?verbe=get`;
         const data = {
             dateDebut: date,
             dateFin: date,
             avecTrous: false
         } as timetableRequestData;
-        return this.session.request.post(url, bodyToString(data)).then((response: timetableRes) => {
+        return await this.session.request.post(url, bodyToString(data)).then((response: timetableRes) => {
             return {
                 ...response.data
             };
         }) as Promise<timetableCourseList>;
     }
 
-    fetchByDate(startDate: string, endDate: string) {
+    async fetchByDate(startDate: string, endDate: string) {
         const url = `/E/${this.session.student.id}/emploidutemps.awp?verbe=get`;
         const data = {
             dateDebut: startDate,
             dateFin: endDate,
             avecTrous: false
         } as timetableRequestData;
-        return this.session.request.post(url, bodyToString(data)).then((response: timetableRes) => {
+        return await this.session.request.post(url, bodyToString(data)).then((response: timetableRes) => {
             return {
                 ...response.data
             };

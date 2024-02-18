@@ -11,12 +11,12 @@ class GetGrades {
         this.session = session;
     }
 
-    fetch() {
+    async fetch() {
         const url = `/eleves/${this.session.student.id}/notes.awp?verbe=get`;
         const body = {
             anneeScolaire: ""
         } as gradesRequestData;
-        return this.session.request.post(url, bodyToString(body)).then((response: gradesRes) => {
+        return await this.session.request.post(url, bodyToString(body)).then((response: gradesRes) => {
             return response.data;
         }) as Promise<gradesResData>;
     }

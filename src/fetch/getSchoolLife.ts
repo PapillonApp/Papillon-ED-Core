@@ -11,10 +11,10 @@ class GetSchoolLife {
 
     }
 
-    fetch() {
+    async fetch() {
         const url = `/eleves/${this.session.student.id}/viescolaire.awp?verbe=get`;
         const data = {} as schoolLifeRequestData;
-        return this.session.request.post(url, bodyToString(data)).then((response) => {
+        return await this.session.request.post(url, bodyToString(data)).then((response) => {
             return {
                 absencesRetards: response.data.absencesRetards,
                 sanctionsEncouragements: response.data.sanctionsEncouragements
