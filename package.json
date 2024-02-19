@@ -12,6 +12,9 @@
     "build": "npm run lint && tspc --project tsconfig.json",
     "build:solo": "tspc --project tsconfig.json"
   },
+  "engines": {
+    "node": "18"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PapillonApp/Papillon-ED-Core.git"

@@ -91,8 +91,8 @@ La classe principale du module.
 | messaging      | [`GetMessaging`](#GetMessaging)           | Gestion des messages            |
 | timeline       | [`GetTimeline`](#GetTimeline)             | Gestion des messages            |
 |                |                                           |                                 |
-| auth           | [`Auth`]()                                | Gestion de l'authentification   |
-| request        | [`Request`]()                             | Gestion du requêtage            |
+| auth           | [`Auth`](#Auth)                           | Gestion de l'authentification   |
+| request        | [`Request`](#Request)                     | Gestion du requêtage            |
 |                |                                           |                                 |
 | _token         | `string` \| `undefined`                   | Token                           |
 | isLoggedIn     | `boolean`                                 | L'utilisateur est-il connecté   |
@@ -193,6 +193,34 @@ La classe de gestion des timeline.
 | fetchCommonTimeline() | `async () =>` [`studCommonTlResData`]() | Récupérer la timeline commune      |
 
 _Ouvrir [`src/fetch/getTimeline.ts`](src/fetch/getTimeline.ts)_
+
+
+#### Auth
+
+La classe de gestion de l'authentification et de l'utilisateur.
+
+| Propriété        | Type                                                 | Commentaire                                      |
+|------------------|------------------------------------------------------|--------------------------------------------------|
+| login()          | `async (username: string, password: string) => void` | Se connecte à Ecoledirecte avec des identifiants |
+| setToken()       | `(token: string, id: number) => boolean`             | Se connecte à Ecoledirecte avec un token         |
+| getEtabInfo()    | `() =>` [`EstablishmentInfo`]()                      | Récupérer les informations de l'établissement    |
+| getStudentInfo() | `() =>` [`AccountInfo`]()                            | Récupérer les informations du compte             |
+
+_Ouvrir [`src/auth.ts`](src/auth.ts)_
+
+
+#### Request
+
+La classe de gestion des requêtes.
+
+| Propriété        | Type                                     | Commentaire                                      |
+|------------------|------------------------------------------|--------------------------------------------------|
+| post()        | `async (url: string, b: string) => void` | Se connecte à Ecoledirecte avec des identifiants |
+| setToken()       | `(token: string, id: number) => boolean` | Se connecte à Ecoledirecte avec un token         |
+| getEtabInfo()    | `() =>` [`EstablishmentInfo`]()          | Récupérer les informations de l'établissement    |
+| getStudentInfo() | `() =>` [`AccountInfo`]()                | Récupérer les informations du compte             |
+
+_Ouvrir [`src/Request.ts`](src/Request.ts)_
 
 ---
 
