@@ -23,6 +23,7 @@ Le module est structuré de la manière suivante :
   - [x] Liste des devoirs
   - [x] Devoirs par date
   - [x] Marquer un devoir comme fait
+  - [ ] Contenu des cours
 - [x] Manuels Scolaires
 - [x] Vie scolaire 
 - [ ] Messagerie
@@ -31,6 +32,13 @@ Le module est structuré de la manière suivante :
   - [x] Liste des messages envoyés
   - [x] Contenu des messages envoyés
   - [ ] Envoi de message
+- [ ] Vie de la classe
+- [ ] QCM
+- [ ] Formulaires et sondages
+- [ ] Carnet de correspondance
+- [ ] Documents
+- [ ] Espace de travail
+- [ ] Cloud
   
 ## Utilisation
 
