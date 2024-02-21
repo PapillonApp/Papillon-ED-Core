@@ -42,6 +42,10 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
 - [ ] Carnet de correspondance
 - [x] Documents
 - [ ] Espace de travail
+  - [x] Lister 
+  - [ ] Rejoindre (pas testé) 
+  - [ ] Quitter (pas testé)
+  - [ ] ??? (récupérer membres, docs, et autres...)
 - [ ] Cloud
 
 ## Documentation
