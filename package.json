@@ -4,21 +4,49 @@
   "description": "API EcoleDirecte pour PapillonApp (c)",
   "main": "index.js",
   "types": "index.d.ts",
+  "module": "index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --no-eslintrc -c .eslintrc.json .",
+    "lint:fix": "eslint --no-eslintrc -c .eslintrc.json --fix .",
+    "build": "npm run lint && tspc --project tsconfig.json",
+    "build:solo": "tspc --project tsconfig.json"
+  },
+  "engines": {
+    "node": "18"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PapillonApp/Papillon-ED-Core.git"
   },
   "author": "@PapillonApp",
-  "license": "Exclusive rights to PapillonApp",
+  "license": "CeCill V2.1",
   "bugs": {
     "url": "https://github.com/PapillonApp/Papillon-ED-Core/issues"
   },
   "homepage": "https://github.com/PapillonApp/Papillon-ED-Core#readme",
+  "keywords": [
+    "papillon",
+    "typescript",
+    "ecoledirecte"
+  ],
   "devDependencies": {
-    "eslint": "^8.36.0",
-    "eslint-plugin-node": "^11.1.0"
+    "@stylistic/eslint-plugin": "^1.5.3",
+    "@typescript-eslint/parser": "^6.18.0",
+    "eslint": "^8.56.0",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "typescript": "^5.3.3",
+    "typescript-transform-path-rewrite": "^1.3.0"
+  },
+  "dependencies": {
+    "remove": "^0.1.5",
+    "ts-node": "^10.9.2",
+    "ts-patch": "^3.1.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript-transform-paths": "^3.4.6"
   }
 }

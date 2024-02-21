@@ -1,19 +1,20 @@
-# Module Papillon
-## Papillon-ED-Core
+<div align="center">
+<br>
+<br>
+<img alt="Logo" src=".github/icon.png" width="100" height="100"/>
 
-**Ce module permet la connexion entre l'application Papillon et EcoleDirecte.**
+# Papillon ED Core
+
+[**Documentation**](DOCUMENTATION.md) • [Licence](#licence) • [Attributions](#attributions) • [NPM]()
+
+Ce module permet la connexion entre l'application Papillon et EcoleDirecte.
+
+</div>
+
 
 ## Informations
 
 Le module est exporté vers NPM, il doit donc respecter les règles de codage de NPM et n'enfreindre aucune règle spécifique de ce service ni de Papillon.
-
-### Structure
-
-Le module est structuré de la manière suivante :
-- `src/fetch` : Contient les fonctions de récupération des données de l'API d'EcoleDirecte
-- `src/session.js` : Contient les fonctions de gestion de la session
-- `src/auth.js` : Contient les fonctions d'authentification
-- `src/errors.js` : Contient les erreurs pouvant être retournées par le module. *Les erreurs doivent suivre la même structure pour chaque module.*
 
 ## Roadmap
 - [x] Connexion
@@ -39,39 +40,17 @@ Le module est structuré de la manière suivante :
 - [ ] Documents
 - [ ] Espace de travail
 - [ ] Cloud
-  
-## Utilisation
-
-### Connexion par idenfitiants
-```javascript
-const ED = require("papillon-ed-core");
-let ed = new ED();
-
-ed.auth.login("username", "password").then(() => {
-    let token = ed._token;
-    let prenom = ed.student.prenom
-
-    ed.homeworks.fetch().then(homeworks => {
-        //Traitement des devoirs
-    })
-})
-.catch(err => { //en cas d'erreur à la connexion
-    console.log(err)
-})
-```
-
-### Connexion par token (déjà généré auparavant)
-```javascript
-const ED = require("papillon-ed-core");
-let ed = new ED();
-
-let userID = 0000;
-ed.auth.setToken("token", userID)
-
-//La suite du code
-```
-> **Warning**
-> Si le token donné est invalide, le module ne pourra pas en générer un nouveau (par manque d'identifiants) et donnera une erreur de token invalide/expiré
 
 ## Documentation
-Voir le fichier `DOCUMENTATION.md`
+Voir le fichier [`DOCUMENTATION.md`](DOCUMENTATION.md)
+
+## Licence
+
+Cette base de code est distribuée par Papillon, sous la licence [CeCill V2.1](LICENSE).
+
+Elle est maintenue et développée par ses contributeurs : [LeMaitre](https://github.com/LeMaitre4523), [LeGeek](https://github.com/LeGeek01), [LucHack](https://github.com/lucas-luchack), [Azgar](https://github.com/azgaresncf), [Yann](https://github.com/yannouuuu), [Diego Finocchiaro](https://github.com/diegofino15) et  [Armand Camponovo](https://github.com/camarm-dev)
+
+## Attributions
+
+- Les types (`src/types`), réadaptés par [Armand Camponovo](https://github.com/camarm-dev/ecoledirecte-api-types), originellement [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types): _**_Aucune licence spécifiée_**_
+- Certains autres types proviennent de [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs): _**Aucune licence spécifiée**_

@@ -1,0 +1,3 @@
+[submodule "src/types"]
+	path = src/types
+	url = https://github.com/camarm-dev/ecoledirecte-api-types

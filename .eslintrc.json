@@ -1,0 +1,28 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": { "project": ["./tsconfig.json"] },
+    "plugins": [
+        "@stylistic"
+    ],
+    "rules": {
+        "@stylistic/indent": ["error", 4],
+        "@stylistic/quotes": ["error", "double"],
+        "@stylistic/eol-last": ["error", "always"],
+        "@stylistic/array-bracket-spacing": ["error", "never"],
+        "@stylistic/no-multiple-empty-lines": ["error", {
+            "max": 2,
+            "maxBOF": 0,
+            "maxEOF": 1
+        }],
+        "@stylistic/semi": ["error", "always"]
+    },
+    "ignorePatterns": ["src/**/*.js", "src/*.js", "*.js", "src/types", "dist", "*.d.ts"]
+}

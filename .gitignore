@@ -102,3 +102,16 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Generated javascript files
+index.js
+index.*j*
+index.d*
+src/**/*.js
+src/**/*.j*
+src/**/*.d*
+/package-lock.json
+/examples/*.js
+/examples/*.d.ts
+/examples/*.d.ts.map
+/examples/*.js.map
