@@ -23,8 +23,7 @@ class Auth {
         } as authRequestData;
         return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
             if (response.code === 200) {
-                const res = response.data as loginResSuccess;
-                const data = res.data;
+                const data = response.data as loginResSuccess;
 
                 this.session._token = response.token;
                 const accounts = data.accounts[0];
