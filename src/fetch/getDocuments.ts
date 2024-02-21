@@ -13,7 +13,7 @@ class GetDocuments {
 
     /** * @param {string} année des documents Rien pour l'année actuelle, YYYY-YYYY pour l'année scolaire YYYY-YYYY. */
     async fetch(archive: string = ""): Promise<studentDocsResData> {
-        const url = "/v3/elevesDocuments.awp";
+        const url = "/v3/elevesDocuments.awp?verbe=get";
         const data = {
             archive: archive
         } as documentsRequestData;

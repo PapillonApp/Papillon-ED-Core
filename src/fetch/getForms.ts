@@ -12,7 +12,7 @@ class GetForms {
     }
 
     async fetch(annee: string = "2023-2024"): Promise<Array<form>> {
-        const url = "/v3/edforms.awp";
+        const url = "/v3/edforms.awp?verbe=get";
         const data = {
             anneeForms: annee,
             typeEntity: "E",
