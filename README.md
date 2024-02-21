@@ -32,6 +32,13 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
   - [x] Liste des messages envoyés
   - [x] Contenu des messages envoyés
   - [ ] Envoi de message
+- [ ] Vie de la classe
+- [ ] QCM
+- [ ] Formulaires et sondages
+- [ ] Carnet de correspondance
+- [ ] Documents
+- [ ] Espace de travail
+- [ ] Cloud
 
 ## Documentation
 Voir le fichier [`DOCUMENTATION.md`](DOCUMENTATION.md)
