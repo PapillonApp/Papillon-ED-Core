@@ -35,7 +35,10 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
   - [ ] Envoi de message
 - [ ] Vie de la classe
 - [ ] QCM
-- [ ] Formulaires et sondages
+- [ ] Formulaires
+  - [x] Lister les formulaires
+  - [ ] Répondre aux formulaires
+- [ ] Sondages
 - [ ] Carnet de correspondance
 - [x] Documents
 - [ ] Espace de travail

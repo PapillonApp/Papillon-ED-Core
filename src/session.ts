@@ -14,6 +14,7 @@ import {EmptyModule} from "~/utils/types/modules";
 import {EstablishmentInfo} from "~/utils/types/establishments";
 import {GetTimeline} from "~/fetch/getTimeline";
 import {GetDocuments} from "~/fetch/getDocuments";
+import {GetForms} from "~/fetch/getForms";
 
 
 class Session {
@@ -34,6 +35,7 @@ class Session {
     messaging: GetMessaging;
     timeline: GetTimeline;
     documents: GetDocuments;
+    forms: GetForms;
 
     auth: Auth;
     request: Request;
@@ -52,6 +54,7 @@ class Session {
         this.messaging = new GetMessaging(this);
         this.timeline = new GetTimeline(this);
         this.documents = new GetDocuments(this);
+        this.forms = new GetForms(this);
 
         this.auth = new Auth(this);
         this.request = new Request(this);
