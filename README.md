@@ -24,6 +24,7 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
   - [x] Liste des devoirs
   - [x] Devoirs par date
   - [x] Marquer un devoir comme fait
+  - [ ] Contenu des cours
 - [x] Manuels Scolaires
 - [x] Vie scolaire 
 - [ ] Messagerie
