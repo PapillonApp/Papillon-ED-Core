@@ -15,6 +15,7 @@ import {EstablishmentInfo} from "~/utils/types/establishments";
 import {GetTimeline} from "~/fetch/getTimeline";
 import {GetDocuments} from "~/fetch/getDocuments";
 import {GetForms} from "~/fetch/getForms";
+import {GetWorkspaces} from "~/fetch/getWorkspaces";
 
 
 class Session {
@@ -36,6 +37,7 @@ class Session {
     timeline: GetTimeline;
     documents: GetDocuments;
     forms: GetForms;
+    workspaces: GetWorkspaces;
 
     auth: Auth;
     request: Request;
@@ -55,6 +57,7 @@ class Session {
         this.timeline = new GetTimeline(this);
         this.documents = new GetDocuments(this);
         this.forms = new GetForms(this);
+        this.workspaces = new GetWorkspaces(this);
 
         this.auth = new Auth(this);
         this.request = new Request(this);

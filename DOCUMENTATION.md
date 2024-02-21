@@ -91,7 +91,8 @@ La classe principale du module.
 | messaging      | [`GetMessaging`](#GetMessaging)           | Gestion des messages                |
 | timeline       | [`GetTimeline`](#GetTimeline)             | Gestion des messages                |
 | documents      | [`GetDocuments`](#GetDocuments)           | Gestion des document administratifs |
-| forms          | [`GetForms`](#GetForms)                   | Gestion des document administratifs |
+| forms          | [`GetForms`](#GetForms)                   | Gestion des formulaires             |
+| workspaces     | [`GetWorkspaces`](#GetWorkspaces)                   | Gestion des espaces de travail      |
 |                |                                           |                                     |
 | auth           | [`Auth`](#Auth)                           | Gestion de l'authentification       |
 | request        | [`Request`](#Request)                     | Gestion du requêtage                |
