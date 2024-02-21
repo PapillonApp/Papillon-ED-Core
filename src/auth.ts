@@ -1,4 +1,4 @@
-import {account, loginRes, loginResSuccess} from "~/types/v3";
+import {account, loginRes, loginResData} from "~/types/v3";
 import bodyToString from "./utils/body";
 import {Session} from "./session";
 import {EstablishmentInfo} from "~/utils/types/establishments";
@@ -23,7 +23,7 @@ class Auth {
         } as authRequestData;
         return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
             if (response.code === 200) {
-                const data = response.data as loginResSuccess;
+                const data = response.data as loginResData;
 
                 this.session._token = response.token;
                 const accounts = data.accounts[0];
