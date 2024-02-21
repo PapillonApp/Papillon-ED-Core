@@ -80,26 +80,27 @@ Les références sont données ainsi:
 
 La classe principale du module.
 
-| Propriété      | Type                                      | Commentaire                     |
-|----------------|-------------------------------------------|---------------------------------|
-| homeworks      | [`GetHomeworks`](#GetHomeworks)           | Gestion des devoirs             |
-| grades         | [`GetGrades`](#GetGrades)                 | Gestion des notes               |
-| timetable      | [`GetTimetable`](#GetTimetable)           | Gestion de l'EDT                |
-| schoolLife     | [`GetSchoolLife`](#GetSchoolLife)         | Gestion de la vie scolaire      |
-| cantine        | [`GetCantine`](#GetCantine)               | Gestion de la cantine           |
-| digitalManuals | [`GetDigitalManuals`](#GetDigitalManuals) | Gestion des manuels numériques  |
-| messaging      | [`GetMessaging`](#GetMessaging)           | Gestion des messages            |
-| timeline       | [`GetTimeline`](#GetTimeline)             | Gestion des messages            |
-|                |                                           |                                 |
-| auth           | [`Auth`](#Auth)                           | Gestion de l'authentification   |
-| request        | [`Request`](#Request)                     | Gestion du requêtage            |
-|                |                                           |                                 |
-| _token         | `string` \| `undefined`                   | Token                           |
-| isLoggedIn     | `boolean`                                 | L'utilisateur est-il connecté   |
-| settings?      | [`accountParameters`]() \| `undefined`    | Paramètres de l'utilisateur     |
-| student        | [`account`]() \| [`BlankAccount`]()       | Profil de l'utilisateur         |
-| school?        | [`EstablishmentInfo`]()                   | Infromations de l'établissement |
-| modules?       | `Array<`[`accountModule`]()`>`            | Modules activés                 |
+| Propriété      | Type                                      | Commentaire                         |
+|----------------|-------------------------------------------|-------------------------------------|
+| homeworks      | [`GetHomeworks`](#GetHomeworks)           | Gestion des devoirs                 |
+| grades         | [`GetGrades`](#GetGrades)                 | Gestion des notes                   |
+| timetable      | [`GetTimetable`](#GetTimetable)           | Gestion de l'EDT                    |
+| schoolLife     | [`GetSchoolLife`](#GetSchoolLife)         | Gestion de la vie scolaire          |
+| cantine        | [`GetCantine`](#GetCantine)               | Gestion de la cantine               |
+| digitalManuals | [`GetDigitalManuals`](#GetDigitalManuals) | Gestion des manuels numériques      |
+| messaging      | [`GetMessaging`](#GetMessaging)           | Gestion des messages                |
+| timeline       | [`GetTimeline`](#GetTimeline)             | Gestion des messages                |
+| documents      | [`GetDocuments`](#GetDocuments)           | Gestion des document administratifs |
+|                |                                           |                                     |
+| auth           | [`Auth`](#Auth)                           | Gestion de l'authentification       |
+| request        | [`Request`](#Request)                     | Gestion du requêtage                |
+|                |                                           |                                     |
+| _token         | `string` \| `undefined`                   | Token                               |
+| isLoggedIn     | `boolean`                                 | L'utilisateur est-il connecté       |
+| settings?      | [`accountParameters`]() \| `undefined`    | Paramètres de l'utilisateur         |
+| student        | [`account`]() \| [`BlankAccount`]()       | Profil de l'utilisateur             |
+| school?        | [`EstablishmentInfo`]()                   | Informations de l'établissement     |
+| modules?       | `Array<`[`accountModule`]()`>`            | Modules activés                     |
 
 _Ouvrir [`src/session.ts`](src/session.ts)_
 

@@ -37,7 +37,7 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
 - [ ] QCM
 - [ ] Formulaires et sondages
 - [ ] Carnet de correspondance
-- [ ] Documents
+- [x] Documents
 - [ ] Espace de travail
 - [ ] Cloud
 
