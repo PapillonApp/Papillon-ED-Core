@@ -21,10 +21,6 @@ class Request {
         };
     }
 
-    get() {
-
-    }
-
     async post(url: string, body: string) {
         if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token;
         const finalUrl = API + url;
