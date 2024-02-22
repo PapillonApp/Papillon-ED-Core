@@ -247,9 +247,9 @@ La classe de gestion du carnet de liaison.
 > [!CAUTION]
 > Non testé, si vous pouvez tester, merci de nous contacter
 
-| Propriété | Type                                                  | Commentaire                                    |
-|-----------|-------------------------------------------------------|------------------------------------------------|
-| fetch()   | `async () => Array<`[`communicationBookResData`]()`>` | Récupérer les évenements do carnet de liaison. |
+| Propriété | Type                                                     | Commentaire                                    |
+|-----------|----------------------------------------------------------|------------------------------------------------|
+| fetch()   | `async () => Array<`[`communicationBoogitkResData`]()`>` | Récupérer les évenements do carnet de liaison. |
 
 _Ouvrir [`src/fetch/getCommunicationBook.ts`](src/fetch/getCommunicationBook.ts)_
 
