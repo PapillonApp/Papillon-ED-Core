@@ -1,6 +1,6 @@
 import { API } from "./constants";
 import {Session} from "./session";
-import {SESSION_EXPIRED, TOKEN_INVALID, UNAUTHORIZED, WRONG_CREDENTIALS} from "~/errors";
+import {SESSION_EXPIRED, TOKEN_INVALID, UNAUTHORIZED, WRONG_CREDENTIALS, INVALID_API_URL} from "~/errors";
 import {RequestOptions} from "~/utils/types/requests";
 import {response} from "~/types/v3/responses/default/responses";
 
@@ -36,6 +36,7 @@ class Request {
             .then(res => res.text())
             .then(res => {
                 const response = res.startsWith("{") ? JSON.parse(res) : res;
+                if(typeof response != "object" && response.includes("<title>Loading...</title>")) throw INVALID_API_URL.drop();
                 if (response.code == 525) {
                     throw SESSION_EXPIRED.drop();
                 }

@@ -9,6 +9,7 @@ const RATE_LIMITED = error(5, "You are being rate limited because of too many fa
 const CLOSED = error(6, "The instance is closed, try again later");
 const TOKEN_INVALID = error(7, "The token is invalid");
 const MODULE_DISABLE = error(8, (moduleName: string) => `The module is not activated in your school. Module name : ${moduleName}`);
+const INVALID_API_URL = error(9, "The API URL provided is invalid.");
 
 function error(code: number, message: ErrorMessage){
     return {
@@ -29,5 +30,6 @@ export {
     RATE_LIMITED,
     CLOSED,
     TOKEN_INVALID,
-    MODULE_DISABLE
+    MODULE_DISABLE,
+    INVALID_API_URL
 };

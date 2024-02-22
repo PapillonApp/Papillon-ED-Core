@@ -15,7 +15,7 @@ class GetCommunicationBook {
     }
 
     async fetch(): Promise<communicationBookResData> {
-        const url = `/v3/E/${this.session.student.id}/eleveCarnetCorrespondance.awp?verbe=get`;
+        const url = `/E/${this.session.student.id}/eleveCarnetCorrespondance.awp?verbe=get`;
         const data = {} as communicationBookRequestData;
         return await this.session.request.post(url, bodyToString(data)).then((response: communicationBookRes) => response.data as communicationBookResData);
     }
