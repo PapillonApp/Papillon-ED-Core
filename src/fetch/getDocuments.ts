@@ -1,7 +1,6 @@
 import {Session} from "~/session";
 import bodyToString from "~/utils/body";
 import {studentDocsRes, studentDocsResData} from "~/types/v3";
-import {documentsRequestData} from "~/types/v3/requests";
 
 class GetDocuments {
 
