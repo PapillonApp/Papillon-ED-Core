@@ -89,7 +89,7 @@ La classe principale du module.
 | cantine           | [`GetCantine`](#GetCantine)                     | Gestion de la cantine               |
 | digitalManuals    | [`GetDigitalManuals`](#GetDigitalManuals)       | Gestion des manuels numériques      |
 | messaging         | [`GetMessaging`](#GetMessaging)                 | Gestion des messages                |
-| timeline          | [`GetTimeline`](#GetTimeline)                   | Gestion des messages                |
+| timeline          | [`GetTimeline`](#GetTimeline)                   | Gestion des timeline                |
 | documents         | [`GetDocuments`](#GetDocuments)                 | Gestion des document administratifs |
 | forms             | [`GetForms`](#GetForms)                         | Gestion des formulaires             |
 | workspaces        | [`GetWorkspaces`](#GetWorkspaces)               | Gestion des espaces de travail      |
