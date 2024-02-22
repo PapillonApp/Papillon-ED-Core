@@ -11,12 +11,12 @@ class GetCloud {
         this.session = session;
     }
 
-    async fetch(): Promise<cloudResFolder> {
+    async fetch(): Promise<Array<cloudResFolder>> {
         const url = `/cloud/E/${this.session.student.id}.awp?verbe=get`;
         const body = {} as body;
         return await this.session.request.post(url, bodyToString(body)).then((response: cloudRes) => {
             return response.data;
-        }) as Promise<cloudResFolder>;
+        }) as Promise<Array<cloudResFolder>>;
     }
 }
 
