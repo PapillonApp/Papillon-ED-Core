@@ -13,6 +13,10 @@ import {BlankAccount, accountParameters} from "~/utils/types/accounts";
 import {EmptyModule} from "~/utils/types/modules";
 import {EstablishmentInfo} from "~/utils/types/establishments";
 import {GetTimeline} from "~/fetch/getTimeline";
+import {GetDocuments} from "~/fetch/getDocuments";
+import {GetForms} from "~/fetch/getForms";
+import {GetWorkspaces} from "~/fetch/getWorkspaces";
+import {GetCommunicationBook} from "~/fetch/getCommunicationBook";
 
 
 class Session {
@@ -32,6 +36,10 @@ class Session {
     digitalManuals: GetDigitalManuals;
     messaging: GetMessaging;
     timeline: GetTimeline;
+    documents: GetDocuments;
+    forms: GetForms;
+    workspaces: GetWorkspaces;
+    communicationBook: GetCommunicationBook;
 
     auth: Auth;
     request: Request;
@@ -49,6 +57,10 @@ class Session {
         this.digitalManuals = new GetDigitalManuals(this);
         this.messaging = new GetMessaging(this);
         this.timeline = new GetTimeline(this);
+        this.documents = new GetDocuments(this);
+        this.forms = new GetForms(this);
+        this.workspaces = new GetWorkspaces(this);
+        this.communicationBook = new GetCommunicationBook(this);
 
         this.auth = new Auth(this);
         this.request = new Request(this);
