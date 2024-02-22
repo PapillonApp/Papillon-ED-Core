@@ -248,9 +248,9 @@ La classe de gestion du carnet de liaison.
 > [!CAUTION]
 > Non testé, si vous pouvez tester, merci de nous contacter
 
-| Propriété | Type                                                  | Commentaire                                    |
-|-----------|-------------------------------------------------------|------------------------------------------------|
-| fetch()   | `async () => Array<`[`communicationBookResData`]()`>` | Récupérer les évenements do carnet de liaison. |
+| Propriété | Type                                                                                                          | Commentaire                                    |
+|-----------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------|
+| fetch()   | `async () => Array<`[`communicationBookResData`](src/types/v3/responses/students/communicationBook.ts#L13)`>` | Récupérer les évenements do carnet de liaison. |
 
 _Ouvrir [`src/fetch/getCommunicationBook.ts`](src/fetch/getCommunicationBook.ts)_
 
@@ -261,9 +261,9 @@ La classe de gestion du cloud.
 > [!CAUTION]
 > Non testé, si vous pouvez tester, merci de nous contacter
 
-| Propriété | Type                                        | Commentaire                      |
-|-----------|---------------------------------------------|----------------------------------|
-| fetch()   | `async () => Array<`[`cloudResFolder`]()`>` | Récupérer les fichiers du cloud. |
+| Propriété | Type                                                                                  | Commentaire                      |
+|-----------|---------------------------------------------------------------------------------------|----------------------------------|
+| fetch()   | `async () => Array<`[`cloudResFolder`](src/types/v3/responses/global/cloud.ts#L13)`>` | Récupérer les fichiers du cloud. |
 
 _Ouvrir [`src/fetch/getCloud.ts`](src/fetch/getCloud.ts)_
 
@@ -272,12 +272,12 @@ _Ouvrir [`src/fetch/getCloud.ts`](src/fetch/getCloud.ts)_
 
 La classe de gestion de l'authentification et de l'utilisateur.
 
-| Propriété        | Type                                                 | Commentaire                                      |
-|------------------|------------------------------------------------------|--------------------------------------------------|
-| login()          | `async (username: string, password: string) => void` | Se connecte à Ecoledirecte avec des identifiants |
-| setToken()       | `(token: string, id: number) => boolean`             | Se connecte à Ecoledirecte avec un token         |
-| getEtabInfo()    | `() =>` [`EstablishmentInfo`]()                      | Récupérer les informations de l'établissement    |
-| getStudentInfo() | `() =>` [`AccountInfo`]()                            | Récupérer les informations du compte             |
+| Propriété        | Type                                                                | Commentaire                                      |
+|------------------|---------------------------------------------------------------------|--------------------------------------------------|
+| login()          | `async (username: string, password: string) => void`                | Se connecte à Ecoledirecte avec des identifiants |
+| setToken()       | `(token: string, id: number) => boolean`                            | Se connecte à Ecoledirecte avec un token         |
+| getEtabInfo()    | `() =>` [`EstablishmentInfo`](src/utils/types/establishments.ts#L1) | Récupérer les informations de l'établissement    |
+| getStudentInfo() | `() =>` [`AccountInfo`](src/utils/types/accounts.ts#L20)            | Récupérer les informations du compte             |
 
 _Ouvrir [`src/auth.ts`](src/auth.ts)_
 
@@ -286,12 +286,9 @@ _Ouvrir [`src/auth.ts`](src/auth.ts)_
 
 La classe de gestion des requêtes.
 
-| Propriété        | Type                                     | Commentaire                                      |
-|------------------|------------------------------------------|--------------------------------------------------|
-| post()           | `async (url: string, b: string) => void` | Se connecte à Ecoledirecte avec des identifiants |
-| setToken()       | `(token: string, id: number) => boolean` | Se connecte à Ecoledirecte avec un token         |
-| getEtabInfo()    | `() =>` [`EstablishmentInfo`]()          | Récupérer les informations de l'établissement    |
-| getStudentInfo() | `() =>` [`AccountInfo`]()                | Récupérer les informations du compte             |
+| Propriété        | Type                                        | Commentaire                                                        |
+|------------------|---------------------------------------------|--------------------------------------------------------------------|
+| post()           | `async (url: string, body: string) => void` | Exécute la requête à l'API ecoledirect (path: `url`, body: `body`) |
 
 _Ouvrir [`src/Request.ts`](src/Request.ts)_
 
