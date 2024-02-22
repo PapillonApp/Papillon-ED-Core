@@ -89,11 +89,12 @@ La classe principale du module.
 | cantine           | [`GetCantine`](#GetCantine)                     | Gestion de la cantine               |
 | digitalManuals    | [`GetDigitalManuals`](#GetDigitalManuals)       | Gestion des manuels numériques      |
 | messaging         | [`GetMessaging`](#GetMessaging)                 | Gestion des messages                |
-| timeline          | [`GetTimeline`](#GetTimeline)                   | Gestion des messages                |
+| timeline          | [`GetTimeline`](#GetTimeline)                   | Gestion des timeline                |
 | documents         | [`GetDocuments`](#GetDocuments)                 | Gestion des document administratifs |
 | forms             | [`GetForms`](#GetForms)                         | Gestion des formulaires             |
 | workspaces        | [`GetWorkspaces`](#GetWorkspaces)               | Gestion des espaces de travail      |
 | communicationBook | [`GetCommunicationBook`](#GetCommunicationBook) | Gestion du carnet de correspondance |
+| cloud             | [`GetCloud`](#GetCloud)                         | Gestion du cloud                    |
 |                   |                                                 |                                     |
 | auth              | [`Auth`](#Auth)                                 | Gestion de l'authentification       |
 | request           | [`Request`](#Request)                           | Gestion du requêtage                |
@@ -252,6 +253,19 @@ La classe de gestion du carnet de liaison.
 | fetch()   | `async () => Array<`[`communicationBoogitkResData`]()`>` | Récupérer les évenements do carnet de liaison. |
 
 _Ouvrir [`src/fetch/getCommunicationBook.ts`](src/fetch/getCommunicationBook.ts)_
+
+
+#### GetCloud
+
+La classe de gestion du cloud.
+> [!CAUTION]
+> Non testé, si vous pouvez tester, merci de nous contacter
+
+| Propriété | Type                                        | Commentaire                      |
+|-----------|---------------------------------------------|----------------------------------|
+| fetch()   | `async () => Array<`[`cloudResFolder`]()`>` | Récupérer les fichiers du cloud. |
+
+_Ouvrir [`src/fetch/getCloud.ts`](src/fetch/getCloud.ts)_
 
 
 #### Auth
