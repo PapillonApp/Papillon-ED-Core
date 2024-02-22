@@ -80,31 +80,31 @@ Les références sont données ainsi:
 
 La classe principale du module.
 
-| Propriété         | Type                                            | Commentaire                         |
-|-------------------|-------------------------------------------------|-------------------------------------|
-| homeworks         | [`GetHomeworks`](#GetHomeworks)                 | Gestion des devoirs                 |
-| grades            | [`GetGrades`](#GetGrades)                       | Gestion des notes                   |
-| timetable         | [`GetTimetable`](#GetTimetable)                 | Gestion de l'EDT                    |
-| schoolLife        | [`GetSchoolLife`](#GetSchoolLife)               | Gestion de la vie scolaire          |
-| cantine           | [`GetCantine`](#GetCantine)                     | Gestion de la cantine               |
-| digitalManuals    | [`GetDigitalManuals`](#GetDigitalManuals)       | Gestion des manuels numériques      |
-| messaging         | [`GetMessaging`](#GetMessaging)                 | Gestion des messages                |
-| timeline          | [`GetTimeline`](#GetTimeline)                   | Gestion des timeline                |
-| documents         | [`GetDocuments`](#GetDocuments)                 | Gestion des document administratifs |
-| forms             | [`GetForms`](#GetForms)                         | Gestion des formulaires             |
-| workspaces        | [`GetWorkspaces`](#GetWorkspaces)               | Gestion des espaces de travail      |
-| communicationBook | [`GetCommunicationBook`](#GetCommunicationBook) | Gestion du carnet de correspondance |
-| cloud             | [`GetCloud`](#GetCloud)                         | Gestion du cloud                    |
-|                   |                                                 |                                     |
-| auth              | [`Auth`](#Auth)                                 | Gestion de l'authentification       |
-| request           | [`Request`](#Request)                           | Gestion du requêtage                |
-|                   |                                                 |                                     |
-| _token            | `string` \| `undefined`                         | Token                               |
-| isLoggedIn        | `boolean`                                       | L'utilisateur est-il connecté       |
-| settings?         | [`accountParameters`]() \| `undefined`          | Paramètres de l'utilisateur         |
-| student           | [`account`]() \| [`BlankAccount`]()             | Profil de l'utilisateur             |
-| school?           | [`EstablishmentInfo`]()                         | Informations de l'établissement     |
-| modules?          | `Array<`[`accountModule`]()`>`                  | Modules activés                     |
+| Propriété         | Type                                                                                                                 | Commentaire                         |
+|-------------------|----------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| homeworks         | [`GetHomeworks`](#GetHomeworks)                                                                                      | Gestion des devoirs                 |
+| grades            | [`GetGrades`](#GetGrades)                                                                                            | Gestion des notes                   |
+| timetable         | [`GetTimetable`](#GetTimetable)                                                                                      | Gestion de l'EDT                    |
+| schoolLife        | [`GetSchoolLife`](#GetSchoolLife)                                                                                    | Gestion de la vie scolaire          |
+| cantine           | [`GetCantine`](#GetCantine)                                                                                          | Gestion de la cantine               |
+| digitalManuals    | [`GetDigitalManuals`](#GetDigitalManuals)                                                                            | Gestion des manuels numériques      |
+| messaging         | [`GetMessaging`](#GetMessaging)                                                                                      | Gestion des messages                |
+| timeline          | [`GetTimeline`](#GetTimeline)                                                                                        | Gestion des timeline                |
+| documents         | [`GetDocuments`](#GetDocuments)                                                                                      | Gestion des document administratifs |
+| forms             | [`GetForms`](#GetForms)                                                                                              | Gestion des formulaires             |
+| workspaces        | [`GetWorkspaces`](#GetWorkspaces)                                                                                    | Gestion des espaces de travail      |
+| communicationBook | [`GetCommunicationBook`](#GetCommunicationBook)                                                                      | Gestion du carnet de correspondance |
+| cloud             | [`GetCloud`](#GetCloud)                                                                                              | Gestion du cloud                    |
+|                   |                                                                                                                      |                                     |
+| auth              | [`Auth`](#Auth)                                                                                                      | Gestion de l'authentification       |
+| request           | [`Request`](#Request)                                                                                                | Gestion du requêtage                |
+|                   |                                                                                                                      |                                     |
+| _token            | `string` \| `undefined`                                                                                              | Token                               |
+| isLoggedIn        | `boolean`                                                                                                            | L'utilisateur est-il connecté       |
+| settings?         | [`accountParameters`](src/utils/types/accounts.ts#L3) \| `undefined`                                                 | Paramètres de l'utilisateur         |
+| student           | [`account`](src/types/v3/responses/login/accounts/index.ts#L11) \| [`BlankAccount`](src/utils/types/accounts.ts#L16) | Profil de l'utilisateur             |
+| school?           | [`EstablishmentInfo`](src/utils/types/establishments.ts#L1)                                                          | Informations de l'établissement     |
+| modules?          | `Array<`[`accountModule`](src/types/v3/responses/login/accounts/index.ts#L19))`>`                                    | Modules activés                     |
 
 _Ouvrir [`src/session.ts`](src/session.ts)_
 
@@ -112,10 +112,10 @@ _Ouvrir [`src/session.ts`](src/session.ts)_
 
 La classe de gestion des devoirs.
 
-| Propriété  | Type                                          | Commentaire                                                        |
-|------------|-----------------------------------------------|--------------------------------------------------------------------|
-| fetch()    | `async () =>`[`textbookRes`]()                | Récupérer les devoirs                                              |
-| getByDay() | `async (day: string) =>`[`textbookResData`]() | Récupérer les devoirs du jout `day` (day est formaté `YYYY-MM-DD`) |
+| Propriété  | Type                                                                                         | Commentaire                                                        |
+|------------|----------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| fetch()    | `async () =>`[`textbookRes`](src/types/v3/responses/students/textbook.ts#L5)                 | Récupérer les devoirs                                              |
+| getByDay() | `async (day: string) =>`[`textbookResData`](src/types/v3/responses/students/textbook.ts#L14) | Récupérer les devoirs du jout `day` (day est formaté `YYYY-MM-DD`) |
 
 _Ouvrir [`src/fetch/getHomeworks.ts`](src/fetch/getHomeworks.ts)_
 
@@ -123,9 +123,9 @@ _Ouvrir [`src/fetch/getHomeworks.ts`](src/fetch/getHomeworks.ts)_
 
 La classe de gestion des notes.
 
-| Propriété  | Type                                       | Commentaire          |
-|------------|--------------------------------------------|----------------------|
-| fetch()    | `async () =>`[`gradesResData`]()           | Récupérer les notes  |
+| Propriété  | Type                                                                          | Commentaire          |
+|------------|-------------------------------------------------------------------------------|----------------------|
+| fetch()    | `async () =>`[`gradesResData`](src/types/v3/responses/students/grades.ts#L37) | Récupérer les notes  |
 
 _Ouvrir [`src/fetch/getGrades.ts`](src/fetch/getGrades.ts)_
 
@@ -134,10 +134,10 @@ _Ouvrir [`src/fetch/getGrades.ts`](src/fetch/getGrades.ts)_
 
 La classe de gestion de l'EDT. Les jours sont formatés `YYYY-MM-DD`.
 
-| Propriété     | Type                                                                      | Commentaire                                      |
-|---------------|---------------------------------------------------------------------------|--------------------------------------------------|
-| fetchByDay()  | `async (day: string) =>`[`timetableCourseList`]()                         | Récupérer l'EDT du jour `day`                    |
-| fetchByDate() | `async (starteDate: string, endDate: string) =>`[`timetableCourseList`]() | Récupérer l'EDT des jour `startDate` à `endDate` |
+| Propriété     | Type                                                                                                     | Commentaire                                      |
+|---------------|----------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| fetchByDay()  | `async (day: string) =>`[`timetableCourseList`](src/utils/types/timetable.ts#L3)                         | Récupérer l'EDT du jour `day`                    |
+| fetchByDate() | `async (starteDate: string, endDate: string) =>`[`timetableCourseList`](src/utils/types/timetable.ts#L3) | Récupérer l'EDT des jour `startDate` à `endDate` |
 
 _Ouvrir [`src/fetch/getTimetable.ts`](src/fetch/getTimetable.ts)_
 
@@ -146,9 +146,9 @@ _Ouvrir [`src/fetch/getTimetable.ts`](src/fetch/getTimetable.ts)_
 
 La classe de gestion de la vie scolaire
 
-| Propriété | Type                             | Commentaire                                   |
-|-----------|----------------------------------|-----------------------------------------------|
-| fetch()   | `async () =>`[`schoolLifeRes`]() | Récupérer tous les évenements de vie scolaire |
+| Propriété | Type                                                                             | Commentaire                                   |
+|-----------|----------------------------------------------------------------------------------|-----------------------------------------------|
+| fetch()   | `async () =>`[`schoolLifeRes`](src/types/v3/responses/students/schoolLife.ts#L5) | Récupérer tous les évenements de vie scolaire |
 
 _Ouvrir [`src/fetch/getSchoolLife.ts`](src/fetch/getSchoolLife.ts)_
 
@@ -157,10 +157,10 @@ _Ouvrir [`src/fetch/getSchoolLife.ts`](src/fetch/getSchoolLife.ts)_
 
 La classe de gestion des modules de cantine.
 
-| Propriété         | Type                                     | Commentaire                                  |
-|-------------------|------------------------------------------|----------------------------------------------|
-| getBarcode()      | `() => string`                           | Renvoie la valeur du code-barre du badge     |
-| getReservations() | `() =>` [`modStudReservations.params`]() | Renvoie les paramètres module de réservation |
+| Propriété         | Type                                                                                                  | Commentaire                                  |
+|-------------------|-------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| getBarcode()      | `() => string`                                                                                        | Renvoie la valeur du code-barre du badge     |
+| getReservations() | `() =>` [`modStudReservations.params`](src/types/v3/responses/login/accounts/student/modules.ts#L179) | Renvoie les paramètres module de réservation |
 
 _Ouvrir [`src/fetch/getSchoolLife.ts`](src/fetch/getSchoolLife.ts)_
 
@@ -169,9 +169,9 @@ _Ouvrir [`src/fetch/getSchoolLife.ts`](src/fetch/getSchoolLife.ts)_
 
 La classe de gestion des manuels scolaires.
 
-| Propriété | Type                           | Commentaire                     |
-|-----------|--------------------------------|---------------------------------|
-| fetch()   | `async () =>` [`manualsRes`]() | Récupérer les manuels scolaires |
+| Propriété | Type                                                                        | Commentaire                     |
+|-----------|-----------------------------------------------------------------------------|---------------------------------|
+| fetch()   | `async () =>` [`manualsRes`](src/types/v3/responses/students/manuals.ts#L5) | Récupérer les manuels scolaires |
 
 _Ouvrir [`src/fetch/getDigitalManuals.ts`](src/fetch/getDigitalManuals.ts)_
 
@@ -180,10 +180,10 @@ _Ouvrir [`src/fetch/getDigitalManuals.ts`](src/fetch/getDigitalManuals.ts)_
 
 La classe de gestion de la messagerie.
 
-| Propriété               | Type                               | Commentaire                                                                           |
-|-------------------------|------------------------------------|---------------------------------------------------------------------------------------|
-| fetchReceivedMessages() | `async () =>` [`mailboxResData`]() | Récupérer les messages reçus (`data.messages.received` sera rempli, les autres vides) |
-| fetchSentMessages()     | `async () =>` [`mailboxResData`]() | Récupérer les messages envoyés (`data.messages.sent` sera rempli, les autres vides)   |
+| Propriété               | Type                                                                           | Commentaire                                                                           |
+|-------------------------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| fetchReceivedMessages() | `async () =>` [`mailboxResData`](src/types/v3/responses/global/mailbox.ts#L13) | Récupérer les messages reçus (`data.messages.received` sera rempli, les autres vides) |
+| fetchSentMessages()     | `async () =>` [`mailboxResData`](src/types/v3/responses/global/mailbox.ts#L13) | Récupérer les messages envoyés (`data.messages.sent` sera rempli, les autres vides)   |
 
 _Ouvrir [`src/fetch/getMessaging.ts`](src/fetch/getMessaging.ts)_
 
@@ -192,10 +192,10 @@ _Ouvrir [`src/fetch/getMessaging.ts`](src/fetch/getMessaging.ts)_
 
 La classe de gestion des timeline.
 
-| Propriété             | Type                                    | Commentaire                        |
-|-----------------------|-----------------------------------------|------------------------------------|
-| fetch()               | `async () => Array<`[`studTlElem`]()`>` | Récupérer la timeline personnelle. |
-| fetchCommonTimeline() | `async () =>` [`studCommonTlResData`]() | Récupérer la timeline commune      |
+| Propriété             | Type                                                                                   | Commentaire                        |
+|-----------------------|----------------------------------------------------------------------------------------|------------------------------------|
+| fetch()               | `async () => Array<`[`studTlElem`](src/types/v3/responses/students/timeline.ts#L13)`>` | Récupérer la timeline personnelle. |
+| fetchCommonTimeline() | `async () =>` [`studCommonTlResData`](src/types/v3/responses/students/timeline.ts#L34) | Récupérer la timeline commune      |
 
 _Ouvrir [`src/fetch/getTimeline.ts`](src/fetch/getTimeline.ts)_
 
@@ -206,9 +206,9 @@ La classe de gestion des documents administratifs.
 > [!CAUTION]
 > Non testé, si vous pouvez tester, merci de nous contacter
 
-| Propriété | Type                                                 | Commentaire                                                                                            |
-|-----------|------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| fetch()   | `async (archive: string) =>`[`studentDocsResData`]() | Récupérer les documents administratifs. `archive` est une année scolaire `YYYY-YYY` (eg. `2023-2024`). |
+| Propriété | Type                                                                                                 | Commentaire                                                                                            |
+|-----------|------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| fetch()   | `async (archive: string) =>`[`studentDocsResData`](src/types/v3/responses/students/documents.ts#L13) | Récupérer les documents administratifs. `archive` est une année scolaire `YYYY-YYY` (eg. `2023-2024`). |
 
 _Ouvrir [`src/fetch/getDocuments.ts`](src/fetch/getDocuments.ts)_
 
@@ -219,9 +219,9 @@ La classe de gestion des formulaires.
 > [!CAUTION]
 > Non testé, si vous pouvez tester, merci de nous contacter
 
-| Propriété | Type                                           | Commentaire                                                                                        |
-|-----------|------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| fetch()   | `async (annee: string) => Array<`[`form`]()`>` | Récupérer les formulaires de l'année. `annee` est une année scolaire `YYYY-YYY` (eg. `2023-2024`). |
+| Propriété | Type                                                                                       | Commentaire                                                                                        |
+|-----------|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| fetch()   | `async (annee: string) => Array<`[`form`](src/types/v3/responses/students/forms.ts#L14)`>` | Récupérer les formulaires de l'année. `annee` est une année scolaire `YYYY-YYY` (eg. `2023-2024`). |
 
 _Ouvrir [`src/fetch/getForms.ts`](src/fetch/getForms.ts)_
 
@@ -232,12 +232,12 @@ La classe de gestion des espaces de travail.
 > [!CAUTION]
 > Non testé, si vous pouvez tester, merci de nous contacter
 
-| Propriété | Type                                                 | Commentaire                                            |
-|-----------|------------------------------------------------------|--------------------------------------------------------|
-| fetch()   | `async () => Array<`[`workspace`]()`>`               | Récupérer les espaces de travail.                      |
-| get()     | `async (id: string) =>`[`workspace`]()               | Récupérer l'espace de travail avec l'identifiant `id`. |
-| join()    | `async (espace: `[`workspace`]()`) =>`[`emptyRes`]() | Rejoindre l'espace de travail `espace`.                |
-| leave()   | `async (espace: number) =>`[`emptyRes`]()            | Quitte l'espace de travail avec l'identifiant `id`.    |
+| Propriété | Type                                                                                                                                       | Commentaire                                            |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
+| fetch()   | `async () => Array<`[`workspace`](src/types/v3/responses/students/workspaces.ts#L23)`>`                                                    | Récupérer les espaces de travail.                      |
+| get()     | `async (id: string) =>`[`workspace`](src/types/v3/responses/students/workspaces.ts#L23)                                                    | Récupérer l'espace de travail avec l'identifiant `id`. |
+| join()    | `async (espace: `[`workspace`](src/types/v3/responses/students/workspaces.ts#L23)`) =>`[`emptyRes`](src/types/v3/responses/failure.ts#L11) | Rejoindre l'espace de travail `espace`.                |
+| leave()   | `async (espace: number) =>`[`emptyRes`](src/types/v3/responses/failure.ts#L11)                                                             | Quitte l'espace de travail avec l'identifiant `id`.    |
 
 _Ouvrir [`src/fetch/getWorkspaces.ts`](src/fetch/getWorkspaces.ts)_
 
@@ -248,9 +248,9 @@ La classe de gestion du carnet de liaison.
 > [!CAUTION]
 > Non testé, si vous pouvez tester, merci de nous contacter
 
-| Propriété | Type                                                     | Commentaire                                    |
-|-----------|----------------------------------------------------------|------------------------------------------------|
-| fetch()   | `async () => Array<`[`communicationBoogitkResData`]()`>` | Récupérer les évenements do carnet de liaison. |
+| Propriété | Type                                                  | Commentaire                                    |
+|-----------|-------------------------------------------------------|------------------------------------------------|
+| fetch()   | `async () => Array<`[`communicationBookResData`]()`>` | Récupérer les évenements do carnet de liaison. |
 
 _Ouvrir [`src/fetch/getCommunicationBook.ts`](src/fetch/getCommunicationBook.ts)_
 
@@ -288,7 +288,7 @@ La classe de gestion des requêtes.
 
 | Propriété        | Type                                     | Commentaire                                      |
 |------------------|------------------------------------------|--------------------------------------------------|
-| post()        | `async (url: string, b: string) => void` | Se connecte à Ecoledirecte avec des identifiants |
+| post()           | `async (url: string, b: string) => void` | Se connecte à Ecoledirecte avec des identifiants |
 | setToken()       | `(token: string, id: number) => boolean` | Se connecte à Ecoledirecte avec un token         |
 | getEtabInfo()    | `() =>` [`EstablishmentInfo`]()          | Récupérer les informations de l'établissement    |
 | getStudentInfo() | `() =>` [`AccountInfo`]()                | Récupérer les informations du compte             |
