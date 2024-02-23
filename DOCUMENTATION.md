@@ -72,8 +72,8 @@ Les références sont données ainsi:
 
 - Certains types ont des liens hypertextes vers la référence du type.
 - Certains liens renvoient vers le fichier de définition du type.
-- Le signe _?_ désigne que la valeur peut être non-définie !
-- Si la propriété est une fonction, le type est `(arg: type) => type`.
+- Le signe _?_ désigne que la valeur peut être non-définie (`undefined`) !
+- Si la propriété est une fonction, le type est `(arg: type) => type` (`arg?: type` signifie que l'argument est facultatif).
 - Si la fonction est `async`, elle renvoie une `Promise<type>`
 
 #### EDcore
@@ -178,12 +178,14 @@ _Ouvrir [`src/fetch/getDigitalManuals.ts`](src/fetch/getDigitalManuals.ts)_
 
 #### GetMessaging
 
-La classe de gestion de la messagerie.
+La classe de gestion de la messagerie. L'argument facultatif `anneeMessages` représente une année scolaire au format `YYYY-YYYY` (par défaut `2023-2024`).
 
-| Propriété               | Type                                                                                                                                | Commentaire                                                                           |
-|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| fetchReceivedMessages() | `async () =>` [`mailboxResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/global/mailbox.ts#L13) | Récupérer les messages reçus (`data.messages.received` sera rempli, les autres vides) |
-| fetchSentMessages()     | `async () =>` [`mailboxResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/global/mailbox.ts#L13) | Récupérer les messages envoyés (`data.messages.sent` sera rempli, les autres vides)   |
+| Propriété                     | Type                                                                                                                                                                         | Commentaire                                                                           |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| fetchReceivedMessages()       | `async (anneeMessages?: string) =>` [`mailboxResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/global/mailbox.ts#L13)                    | Récupérer les messages reçus (`data.messages.received` sera rempli, les autres vides) |
+| fetchSentMessages()           | `async (anneeMessages?: string) =>` [`mailboxResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/global/mailbox.ts#L13)                    | Récupérer les messages envoyés (`data.messages.sent` sera rempli, les autres vides)   |
+| fetchMessageContentReceived() | `async (messageId: number, anneeMessages?: string) =>` [`mailboxResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/global/mailbox.ts#L13) | Récupérer le contenu du message reçu à l'identifiant `messageId`                      |
+| fetchMessageContentSent()     | `async (messageId: number, anneeMessages?: string) =>` [`mailboxResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/global/mailbox.ts#L13) | Récupérer le contenu du message envoyé à l'identifiant `messageId`                    |
 
 _Ouvrir [`src/fetch/getMessaging.ts`](src/fetch/getMessaging.ts)_
 
@@ -206,9 +208,9 @@ La classe de gestion des documents administratifs.
 > [!CAUTION]
 > Non testé, si vous pouvez tester, merci de nous contacter
 
-| Propriété | Type                                                                                                                                                      | Commentaire                                                                                            |
-|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| fetch()   | `async (archive: string) =>`[`studentDocsResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/documents.ts#L13) | Récupérer les documents administratifs. `archive` est une année scolaire `YYYY-YYY` (eg. `2023-2024`). |
+| Propriété | Type                                                                                                                                                       | Commentaire                                                                                                                                        |
+|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| fetch()   | `async (archive?: string) =>`[`studentDocsResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/documents.ts#L13) | Récupérer les documents administratifs. `archive` est une année scolaire `YYYY-YYYY` (eg. `2023-2024`, par défaut vide: utilise l'année actuelle). |
 
 _Ouvrir [`src/fetch/getDocuments.ts`](src/fetch/getDocuments.ts)_
 
@@ -219,9 +221,9 @@ La classe de gestion des formulaires.
 > [!CAUTION]
 > Non testé, si vous pouvez tester, merci de nous contacter
 
-| Propriété | Type                                                                                                                                            | Commentaire                                                                                        |
-|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| fetch()   | `async (annee: string) => Array<`[`form`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/forms.ts#L14)`>` | Récupérer les formulaires de l'année. `annee` est une année scolaire `YYYY-YYY` (eg. `2023-2024`). |
+| Propriété | Type                                                                                                                                             | Commentaire                                                                                                |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| fetch()   | `async (annee?: string) => Array<`[`form`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/forms.ts#L14)`>` | Récupérer les formulaires de l'année. `annee` est une année scolaire `YYYY-YYYY` (par défaut `2023-2024`). |
 
 _Ouvrir [`src/fetch/getForms.ts`](src/fetch/getForms.ts)_
 
