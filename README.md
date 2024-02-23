@@ -16,7 +16,8 @@ Ce module permet la connexion entre l'application Papillon et EcoleDirecte.
 
 Le module est exporté vers NPM, il doit donc respecter les règles de codage de NPM et n'enfreindre aucune règle spécifique de ce service ni de Papillon.
 
-> [!TIP] Bienvenue sur ce dépôt !
+> [!TIP]
+> **Bienvenue sur ce dépôt !** 
 > Nous sommes à la recherche d'utilisateur d'EcoleDirecte qui pourraient tester certaines fonctionnalités.
 
 ## Roadmap
