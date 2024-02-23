@@ -32,8 +32,8 @@ class GetMessaging {
         }) as Promise<mailboxResData>;
     }
 
-    async fetchMessageContentReceived(message_id: number, anneeMessages = "2023-2024"): Promise<mailboxResData> {
-        const url = `/eleves/${this.session.student.id}/messages/${message_id}.awp?verbe=get&mode=destinataire`;
+    async fetchMessageContentReceived(messageId: number, anneeMessages = "2023-2024"): Promise<mailboxResData> {
+        const url = `/eleves/${this.session.student.id}/messages/${messageId}.awp?verbe=get&mode=destinataire`;
         const data = {
             "anneeMessages": anneeMessages
         } as mailboxRequestData;
@@ -42,8 +42,8 @@ class GetMessaging {
         }) as Promise<mailboxResData>;
     }
 
-    async fetchMessageContentSent(message_id: number, anneeMessages = "2023-2024"): Promise<mailboxResData> {
-        const url = `/eleves/${this.session.student.id}/messages/${message_id}.awp?verbe=get&mode=expediteur`;
+    async fetchMessageContentSent(messageId: number, anneeMessages = "2023-2024"): Promise<mailboxResData> {
+        const url = `/eleves/${this.session.student.id}/messages/${messageId}.awp?verbe=get&mode=expediteur`;
         const data = {
             "anneeMessages": anneeMessages
         } as mailboxRequestData;
