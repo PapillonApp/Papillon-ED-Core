@@ -115,3 +115,7 @@ src/**/*.d*
 /examples/*.d.ts
 /examples/*.d.ts.map
 /examples/*.js.map
+
+# Editor configs (les dossiers de config on les commit pas: y'a rien d'essentiel dedans !)
+.idea
+.vscode
