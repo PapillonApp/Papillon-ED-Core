@@ -51,6 +51,7 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
   - [ ] Quitter (pas testé)
   - [ ] ??? (récupérer membres, docs, et autres...)
 - [ ] Cloud
+- [ ] Téléchargement de fichiers (`/telechargement.awp`)
 
 ## Documentation
 Voir le fichier [`DOCUMENTATION.md`](DOCUMENTATION.md)
