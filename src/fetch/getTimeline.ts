@@ -29,7 +29,7 @@ class GetTimeline {
                 data.postits.forEach(postit => {
                     postit.contenu = atob(postit.contenu);
                 });
-                return data
+                return data;
             }
             return response.data as studCommonTlResData;
         });

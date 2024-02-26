@@ -10,12 +10,12 @@ login().then(() => {
         });
     });
     ED.timeline.fetchCommonTimeline().then(data => {
-        console.log("Timeline commune:")
+        console.log("Timeline commune:");
         data.postits.forEach(postit => {
-            console.log(`\t[POSTIT] ${postit.contenu} par ${postit.auteur.particule} ${postit.auteur.nom}`)
-        })
+            console.log(`\t[POSTIT] ${postit.contenu} par ${postit.auteur.particule} ${postit.auteur.nom}`);
+        });
         data.evenements.forEach(event => {
-            console.log(`\t[EVENT] "${event.libelle}" ${event.description} du ${event.dateDebut} à ${event.heureDebut} au ${event.dateFin} à ${event.heureFin}`)
-        })
-    })
+            console.log(`\t[EVENT] "${event.libelle}" ${event.description} du ${event.dateDebut} à ${event.heureDebut} au ${event.dateFin} à ${event.heureFin}`);
+        });
+    });
 });
