@@ -15,7 +15,7 @@ login().then(() => {
             console.log(`\t[POSTIT] ${postit.contenu} par ${postit.auteur.particule} ${postit.auteur.nom}`)
         })
         data.evenements.forEach(event => {
-            console.log(`\t[EVENT] "${event.libelle}" ${atob(event.description)} du ${event.dateDebut} à ${event.heureDebut} au ${event.dateFin} à ${event.heureFin}`)
+            console.log(`\t[EVENT] "${event.libelle}" ${event.description} du ${event.dateDebut} à ${event.heureDebut} au ${event.dateFin} à ${event.heureFin}`)
         })
     })
 });

@@ -20,7 +20,19 @@ class GetTimeline {
     async fetchCommonTimeline(): Promise<studCommonTlResData> {
         const url = `/E/${this.session.student.id}/timelineAccueilCommun.awp?verbe=get`;
         const data = {} as timelineRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then((response: studCommonTlRes) => response.data as studCommonTlResData);
+        return await this.session.request.post(url, bodyToString(data)).then((response: studCommonTlRes) => {
+            if (response.code == 200) {
+                const data = response.data as studCommonTlResData;
+                data.evenements.forEach(event => {
+                    event.description = atob(event.description);
+                });
+                data.postits.forEach(postit => {
+                    postit.contenu = atob(postit.contenu);
+                });
+                return data
+            }
+            return response.data as studCommonTlResData;
+        });
     }
 }
 
