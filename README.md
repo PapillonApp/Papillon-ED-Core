@@ -49,7 +49,10 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
   - [x] Lister 
   - [ ] Rejoindre (pas testé) 
   - [ ] Quitter (pas testé)
-  - [ ] ??? (récupérer membres, docs, et autres...)
+  - [x] Agenda
+  - [x] Lister les discussions
+  - [ ] Cloud
+  - [x] Lister les membres
 - [ ] Cloud
 - [ ] Téléchargement de fichiers (`/telechargement.awp`)
 
