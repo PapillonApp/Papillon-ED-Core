@@ -17,8 +17,16 @@ class GetGrades {
             anneeScolaire: ""
         } as gradesRequestData;
         return await this.session.request.post(url, bodyToString(body)).then((response: gradesRes) => {
-            return response.data;
-        }) as Promise<gradesResData>;
+            const data = response.data as gradesResData;
+            data.parametrage.libelleEval1 = atob(data.parametrage.libelleEval1)
+            data.parametrage.libelleEval2 = atob(data.parametrage.libelleEval2)
+            data.parametrage.libelleEval3 = atob(data.parametrage.libelleEval3)
+            data.parametrage.libelleEval4 = atob(data.parametrage.libelleEval4)
+            data.parametrage.libelleEvalCompNum1 = atob(data.parametrage.libelleEvalCompNum1)
+            data.parametrage.libelleEvalCompNum2 = atob(data.parametrage.libelleEvalCompNum2)
+            data.parametrage.libelleEvalCompNum3 = atob(data.parametrage.libelleEvalCompNum3)
+            return data;
+        }) as gradesResData;
     }
 }
 
