@@ -61,7 +61,7 @@ Voir le fichier [`DOCUMENTATION.md`](DOCUMENTATION.md)
 Cette base de code est distribuée par Papillon, sous la licence [**GPLv3**](LICENSE).
 
 ```text
-papillon-ed-core  Copyright (C) 2024  Vincent Linise <contact@getpapillon.xyz> et les contributeurs.
+papillon-ed-core  Copyright (C) 2024  Vince Linise <contact@getpapillon.xyz> et les contributeurs.
 This program comes with ABSOLUTELY NO WARRANTY; see license for details.
 This is free software, and you are welcome to redistribute it
 under certain conditions; see license for details.

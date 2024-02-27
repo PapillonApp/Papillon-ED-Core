@@ -7,7 +7,7 @@ message: 'If you use this software, please cite it as below.'
 type: software
 authors:
   - family-names: Linise
-    given-names: Vincent
+    given-names: Vince
     email: contact@getpapillon.xyz
   - name: les contributeurs de Papillon
 repository-code: 'https://github.com/papillonapp/papillon-ed-core'
