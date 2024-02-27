@@ -73,3 +73,8 @@ Elle est maintenue et développée par ses contributeurs : [LeMaitre](https://gi
 
 - Les types (`src/types`), réadaptés par [Armand Camponovo](https://github.com/camarm-dev/ecoledirecte-api-types), originellement [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types) par [Anatole Debierre](https://github.com/a2br): licence [ISC](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/LICENSE)
 - Certains autres types proviennent de [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs), par [MaitreRouge](https://github.com/MaitreRouge): **Aucune licence spécifiée**
+
+## Release
+
+> [!CAUTION]
+> Avant chaque release, mettre à jour `version` dans `package.json` et les champs `version` et `date-released` dans `citation.cff`
