@@ -1,11 +1,18 @@
 import {Session} from "~/session";
 import bodyToString from "~/utils/body";
-import {joinWorkspaceRequestData, workspaceRequestData} from "~/types/v3/requests";
-import {workspacesRes, workspaceRes, workspace, emptyRes} from "~/types/v3";
-
-import { DiaryRequestData, DiaryReponseSuccess, DiaryResponseData } from "~/utils/types/workspace";
-import { TopicsResponseSuccess, TopicsResponseData } from "~/utils/types/workspace";
-import { MembersResponseSuccess, MembersResponseData } from "~/utils/types/workspace";
+import {joinWorkspaceRequestData, workspaceDiaryRequestData, workspaceRequestData} from "~/types/v3/requests";
+import {
+    workspacesRes,
+    workspaceRes,
+    workspace,
+    emptyRes,
+    diaryResData,
+    workspaceDiaryRes,
+    workspaceTopicsRes,
+    workspaceMembersRes,
+    membersResData,
+    topicsResData
+} from "~/types/v3";
 
 class GetWorkspaces {
 
@@ -27,26 +34,26 @@ class GetWorkspaces {
         return await this.session.request.post(url, bodyToString(data)).then((response: workspaceRes) => response.data as workspace);
     }
 
-    async getDiary(espaceId: number): Promise<DiaryResponseData> {
+    async getDiary(espaceId: number): Promise<diaryResData> {
         const url = `/W/${espaceId}/agendaEvenements.awp?verbe=get`;
         const data = {
-            "nbProchainsEvents": 0
-        } as DiaryRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then((response: DiaryReponseSuccess) => response.data as DiaryResponseData);
+            nbProchainsEvents: 0
+        } as workspaceDiaryRequestData;
+        return await this.session.request.post(url, bodyToString(data)).then((response: workspaceDiaryRes) => response.data as diaryResData);
     }
 
 
-    async getTopics(espaceId: number): Promise<TopicsResponseData> {
+    async getTopics(espaceId: number): Promise<topicsResData> {
         const url = `/E/${this.session.student.id}/espacestravail/${espaceId}/topics.awp?verbe=get`;
         const data = {};
-        return await this.session.request.post(url, bodyToString(data)).then((response: TopicsResponseSuccess) => response.data as TopicsResponseData);
+        return await this.session.request.post(url, bodyToString(data)).then((response: workspaceTopicsRes) => response.data as topicsResData);
     }
 
 
-    async getMembers(espaceId: number): Promise<MembersResponseData> {
+    async getMembers(espaceId: number): Promise<membersResData> {
         const url = `/E/${this.session.student.id}/espacestravail/${espaceId}/membres.awp?verbe=get`;
         const data = {};
-        return await this.session.request.post(url, bodyToString(data)).then((response: MembersResponseSuccess) => response.data as MembersResponseData);
+        return await this.session.request.post(url, bodyToString(data)).then((response: workspaceMembersRes) => response.data as membersResData);
     }
 
 
