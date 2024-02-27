@@ -115,3 +115,6 @@ src/**/*.d*
 /examples/*.d.ts
 /examples/*.d.ts.map
 /examples/*.js.map
+
+# Vscode
+.vscode/
