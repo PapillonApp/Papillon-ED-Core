@@ -8,6 +8,7 @@ import {
     textbookResSuccess
 } from "~/types/v3";
 import {textbookRequestData, textbookSetDoneStatusRequestData} from "~/types/v3/requests/student";
+import {decodeString} from "~/utils/base64";
 
 class GetHomeworks {
 
@@ -21,7 +22,7 @@ class GetHomeworks {
         homeworks.forEach((homework: textbookDateAssignement, index: number) => {
             const aFaire = homework.aFaire;
             if (!aFaire) return;
-            const htmlContent = atob(aFaire.contenu);
+            const htmlContent = decodeString(aFaire.contenu);
 
             if (removeHTMLTags) {
                 const span = document.createElement("span");

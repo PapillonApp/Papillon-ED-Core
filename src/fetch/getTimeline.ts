@@ -2,6 +2,7 @@ import {Session} from "~/session";
 import bodyToString from "~/utils/body";
 import {studTlElem, studCommonTlResData, studTlRes, studCommonTlRes} from "~/types/v3";
 import {timelineRequestData} from "~/types/v3/requests";
+import {decodeString} from "~/utils/base64";
 
 class GetTimeline {
 
@@ -24,10 +25,10 @@ class GetTimeline {
             if (response.code == 200) {
                 const data = response.data as studCommonTlResData;
                 data.evenements.forEach(event => {
-                    event.description = atob(event.description);
+                    event.description = decodeString(event.description);
                 });
                 data.postits.forEach(postit => {
-                    postit.contenu = atob(postit.contenu);
+                    postit.contenu = decodeString(postit.contenu);
                 });
                 return data;
             }
