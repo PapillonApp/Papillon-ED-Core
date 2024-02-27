@@ -4,6 +4,6 @@ Fichier informatif à l'égard des développeurs.
 
 ## Liste
 
-- [ ] Typer `getWorkspaces` correctement
-  - [ ] MAJ `DOCUMENTATION.md`, pour `getWorkspaces.ts`
+- [x] Typer `getWorkspaces` correctement
+  - [x] MAJ `DOCUMENTATION.md`, pour `getWorkspaces.ts`
 
