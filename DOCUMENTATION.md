@@ -108,14 +108,14 @@ La classe principale du module.
 
 _Ouvrir [`src/session.ts`](src/session.ts)_
 
-### GetHomeworks
+#### GetHomeworks
 
 La classe de gestion des devoirs.
 
-| Propriété  | Type                                                                                                                                                                       | Commentaire                                                                                                                                       |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| fetch()    | `async () =>`[`textbookRes`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/textbook.ts#L5)                                          | Récupérer les devoirs                                                                                                                             |
-| getByDay() | `async (day: string, removeHTMLTags: boolean) =>`[`textbookResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/textbook.ts#L14) | Récupérer les devoirs du jout `day` (day est formaté `YYYY-MM-DD`). `removeHTMLTags` permet de renvoyer le contenu des devoirs sans balises HTML. |
+| Propriété  | Type                                                                                                                                                                           | Commentaire                                                                                                                                       |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| fetch()    | `async () =>`[`textbookResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/textbook.ts#L77)                                         | Récupérer les devoirs                                                                                                                             |
+| getByDay() | `async (day: string, removeHTMLTags: boolean) =>`[`textbookResDateData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/textbook.ts#L14) | Récupérer les devoirs du jout `day` (day est formaté `YYYY-MM-DD`). `removeHTMLTags` permet de renvoyer le contenu des devoirs sans balises HTML. |
 
 _Ouvrir [`src/fetch/getHomeworks.ts`](src/fetch/getHomeworks.ts)_
 

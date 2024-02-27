@@ -4,7 +4,8 @@ import {
     textbookDateAssignement,
     textbookDateRes,
     textbookDateResData,
-    textbookRes
+    textbookResData,
+    textbookResSuccess
 } from "~/types/v3";
 import {textbookRequestData, textbookSetDoneStatusRequestData} from "~/types/v3/requests/student";
 
@@ -36,10 +37,10 @@ class GetHomeworks {
         return homeworks;
     }
 
-    async fetch(): Promise<textbookRes> {
+    async fetch(): Promise<textbookResData> {
         const url = `/Eleves/${this.session.student.id}/cahierdetexte.awp?verbe=get`;
         const data = {} as textbookRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then((response: textbookRes) => response as textbookRes);
+        return await this.session.request.post(url, bodyToString(data)).then((response: textbookResSuccess) => response.data);
     }
 
     async getByDay(day: string, removeHTMLTags: boolean = true): Promise<textbookDateResData> {
