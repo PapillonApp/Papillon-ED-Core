@@ -3,7 +3,7 @@
 * */
 export function decodeString(value: string) {
     if (escape) {
-        return decodeURIComponent(escape(atob(value)))
+        return decodeURIComponent(escape(atob(value)));
     }
-    return atob(value)
+    return atob(value);
 }
