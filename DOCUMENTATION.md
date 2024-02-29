@@ -21,7 +21,7 @@ Ce projet est développé en _**Typescript**_, il est compatible avec toutes les
 
 > [!CAUTION]
 > Package not published
-> The typescript package is not finished yet ! Consider installing it using `npm i git+https://github.com/camarm-dev/papillon-ed-core`
+> The typescript package is not released yet ! Consider installing it using `npm i papillon-ed-core-beta`
 
 ```sh
 npm i papillon-ed-core
