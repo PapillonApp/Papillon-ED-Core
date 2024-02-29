@@ -104,12 +104,7 @@ dist
 .tern-port
 
 # Generated javascript files
-index.js
-index.*j*
-index.d*
-src/**/*.js
-src/**/*.j*
-src/**/*.d*
+dist/
 /package-lock.json
 /examples/*.js
 /examples/*.d.ts
