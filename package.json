@@ -2,9 +2,9 @@
   "name": "papillon-ed-core",
   "version": "1.0.3",
   "description": "API EcoleDirecte pour PapillonApp (c)",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "module": "index.mjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.mjs",
   "scripts": {
     "test": "jest",
     "lint": "eslint --no-eslintrc -c .eslintrc.json .",

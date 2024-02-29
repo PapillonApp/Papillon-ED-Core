@@ -6,6 +6,7 @@
     "removeComments": true,
 
     "baseUrl": ".",
+    "outDir": "dist",
     "paths": {
       "~/*": ["./src/*"]
     },
