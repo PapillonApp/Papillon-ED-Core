@@ -19,12 +19,8 @@ Ce projet est développé en _**Typescript**_, il est compatible avec toutes les
 
 ### Installation
 
-> [!CAUTION]
-> Package not published
-> The typescript package is not released yet ! Consider installing it using `npm i papillon-ed-core-beta`
-
 ```sh
-npm i papillon-ed-core
+npm i @papillon_app/ed-core
 ```
 
 ### Utilisation
