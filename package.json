@@ -1,6 +1,6 @@
 {
   "name": "papillon-ed-core",
-  "version": "1.0.3",
+  "version": "0.2.1",
   "description": "API EcoleDirecte pour PapillonApp (c)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -9,8 +9,8 @@
     "test": "jest",
     "lint": "eslint --no-eslintrc -c .eslintrc.json .",
     "lint:fix": "eslint --no-eslintrc -c .eslintrc.json --fix .",
-    "build": "npm run lint && tspc --project tsconfig.json",
-    "build:solo": "tspc --project tsconfig.json"
+    "build": "npm run lint && npm run build:solo",
+    "build:solo": "tsc && tsc-alias"
   },
   "engines": {
     "node": "18"
@@ -44,15 +44,12 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "jest": "^29.7.0",
+    "remove": "^0.1.5",
     "ts-jest": "^29.1.2",
-    "typescript": "^5.3.3",
     "ts-node": "^10.9.2",
     "ts-patch": "^3.1.2",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
-    "typescript-transform-paths": "^3.4.6",
-    "remove": "^0.1.5"
-  },
-  "dependencies": {
-
+    "typescript": "^5.3.3"
   }
 }
