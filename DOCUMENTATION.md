@@ -20,7 +20,7 @@ Ce projet est développé en _**Typescript**_, il est compatible avec toutes les
 ### Installation
 
 ```sh
-npm i @papillon_app/ed-core
+npm i @papillonapp/ed-core
 ```
 
 ### Utilisation
@@ -29,7 +29,7 @@ _Ce module utilise des fonctions asynchrones pour fonctionner._
 
 **1. Importer le module**
 ```typescript
-import {EDCore} from "papillon-ed-core";
+import {EDCore} from "@papillonapp/ed-core";
 ```
 **2. Initialiser le module**
 ```typescript
