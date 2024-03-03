@@ -13,14 +13,26 @@ class Auth {
         this.session = session;
     }
 
-    async login(username: string, password: string) {
+    async login(username: string, password: string, uuid: string | boolean = false) {
         const url = "/login.awp?v=4.37.1";
-        const body = {
-            identifiant: username,
-            motdepasse: encodeURIComponent(password),
-            isRelogin: false,
-            uuid: ""
-        } as authRequestData;
+        let body = null;
+        if(uuid) {
+            body = {
+                identifiant: username,
+                motdepasse: encodeURIComponent(password),
+                isRelogin: false,
+                sesouvenirdemoi: true,
+                uuid: uuid
+            };
+        } else {
+            body = {
+                identifiant: username,
+                motdepasse: encodeURIComponent(password),
+                isRelogin: false,
+                uuid: ""
+            } as authRequestData;
+        }
+
         return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
             if (response.code === 200) {
                 const data = response.data as loginResData;
@@ -36,6 +48,32 @@ class Auth {
             }
         });
     }
+
+    async renewToken(username: string, uuid: string) {
+        const url = "/login.awp";
+        const body = {
+            identifiant: username,
+            motdepasse: "???",
+            typeCompte: "E",
+            isRelogin: true,
+            uuid: uuid
+        };
+        return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
+            if (response.code === 200) {
+                const data = response.data as loginResData;
+
+                this.session._token = response.token;
+                const accounts = data.accounts[0];
+
+                this.session.modules = accounts.modules;
+                this.session.settings = accounts.parametresIndividuels;
+                this.session.school = this.getEtabInfo(accounts);
+                this.session.student = this.getStudentInfo(accounts);
+                this.session.isLoggedIn = true;
+            }
+        });
+    }
+
 
     setToken(token: string, id: number) {
         this.session._token = token;
