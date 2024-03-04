@@ -40,7 +40,7 @@ const ED = new EDCore()
 
 _Avec ses identifiants_
 ```typescript
-await ED.login("username", "password")
+await ED.auth.login("username", "password", "uuidv4")
 ```
 
 _Avec un token_
