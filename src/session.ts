@@ -6,8 +6,8 @@ import {GetSchoolLife} from "~/fetch/getSchoolLife";
 import {GetDigitalManuals} from "~/fetch/getDigitalManuals";
 import {GetMessaging} from "~/fetch/getMessaging";
 
-import { Request } from "./Request";
-import { Auth } from "./auth";
+import {Request} from "./Request";
+import {Auth} from "./auth";
 import {account, accountModule} from "~/types/v3";
 import {BlankAccount, accountParameters} from "~/utils/types/accounts";
 import {EmptyModule} from "~/utils/types/modules";
@@ -17,7 +17,9 @@ import {GetDocuments} from "~/fetch/getDocuments";
 import {GetForms} from "~/fetch/getForms";
 import {GetWorkspaces} from "~/fetch/getWorkspaces";
 import {GetCommunicationBook} from "~/fetch/getCommunicationBook";
-import { GetCloud } from "./fetch/getCloud";
+import {GetCloud} from "./fetch/getCloud";
+import {GetOrders} from "./fetch/getOrders";
+import {GetEsidoc} from "./fetch/getEsidoc";
 
 
 class Session {
@@ -42,6 +44,8 @@ class Session {
     workspaces: GetWorkspaces;
     communicationBook: GetCommunicationBook;
     cloud: GetCloud;
+    orders: GetOrders;
+    esidoc: GetEsidoc;
 
     auth: Auth;
     request: Request;
@@ -64,7 +68,9 @@ class Session {
         this.workspaces = new GetWorkspaces(this);
         this.communicationBook = new GetCommunicationBook(this);
         this.cloud = new GetCloud(this);
-
+        this.orders = new GetOrders(this);
+        this.esidoc = new GetEsidoc(this);
+        
         this.auth = new Auth(this);
         this.request = new Request(this);
     }
