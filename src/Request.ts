@@ -12,11 +12,11 @@ class Request {
 
     constructor(session: Session) {
         this.session = session;
-        this.ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36";
         this.requestOptions = {
             headers: {
                 "Accept": "application/json, text/plain, */*",
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/x-www-form-urlencoded",
+                "User-Agent": "EDMOBILE"
             }
         };
     }
@@ -31,9 +31,13 @@ class Request {
         })
             .then(res => res.text())
             .then(res => {
+                console.log(res);
                 const response = res.startsWith("{") ? JSON.parse(res) : res;
                 if(typeof response != "object" && response.includes("<title>Loading...</title>")) throw INVALID_API_URL.drop();
                 if (response.code == 525) {
+                    throw SESSION_EXPIRED.drop();
+                }
+                if (response.code == 526) {
                     throw SESSION_EXPIRED.drop();
                 }
                 if (response.code == 520) {
