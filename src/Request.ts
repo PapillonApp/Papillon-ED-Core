@@ -7,7 +7,6 @@ import {response} from "~/types/v3/responses/default/responses";
 class Request {
 
     session: Session;
-    ua: string;
     requestOptions: RequestOptions;
 
     constructor(session: Session) {
