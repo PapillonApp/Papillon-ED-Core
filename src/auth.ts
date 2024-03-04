@@ -3,7 +3,7 @@ import bodyToString from "./utils/body";
 import {Session} from "./session";
 import {EstablishmentInfo} from "~/utils/types/establishments";
 import {AccountInfo, Profile} from "~/utils/types/accounts";
-import {authRequestData} from "~/types/v3/requests/student";
+//import {authRequestData} from "~/types/v3/requests/student";
 
 class Auth {
 
@@ -14,24 +14,14 @@ class Auth {
     }
 
     async login(username: string, password: string, uuid: string | boolean = false) {
-        const url = "/login.awp?v=4.37.1";
-        let body = null;
-        if(uuid) {
-            body = {
-                identifiant: username,
-                motdepasse: encodeURIComponent(password),
-                isRelogin: false,
-                sesouvenirdemoi: true,
-                uuid: uuid
-            };
-        } else {
-            body = {
-                identifiant: username,
-                motdepasse: encodeURIComponent(password),
-                isRelogin: false,
-                uuid: ""
-            } as authRequestData;
-        }
+        const url = "/login.awp";
+        const body = {
+            identifiant: username,
+            motdepasse: encodeURIComponent(password),
+            isReLogin: false,
+            sesouvenirdemoi: true,
+            uuid: uuid
+        };
 
         return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
             if (response.code === 200) {
@@ -49,13 +39,14 @@ class Auth {
         });
     }
 
-    async renewToken(username: string, uuid: string) {
+    async renewToken(username: string, uuid: string, accessToken: string) {
         const url = "/login.awp";
         const body = {
             identifiant: username,
             motdepasse: "???",
             typeCompte: "E",
-            isRelogin: true,
+            isReLogin: true,
+            accesstoken: accessToken,
             uuid: uuid
         };
         return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
@@ -83,7 +74,7 @@ class Auth {
     }
 
     getEtabInfo(data: account): EstablishmentInfo {
-        const profile= data.profile as Profile;
+        const profile = data.profile as Profile;
         return {
             name: profile.nomEtablissement ?? "Établissement non spécifié",
             id: profile.idEtablissement ?? "",
