@@ -53,7 +53,7 @@ ED.setToken('token', userId)
 
 **4. Visitez la documentation**
 
-Désormais connectés, il vous faudra lire la [documentation des références]() pour comprendre et utiliser chaque fonctionnalités.
+Désormais connectés, il vous faudra lire la [documentation des références](#références) pour comprendre et utiliser chaque fonctionnalités.
 
 ### Références
 
@@ -72,7 +72,7 @@ Les références sont données ainsi:
 - Si la propriété est une fonction, le type est `(arg: type) => type`.
 - Si la fonction est `async`, elle renvoie une `Promise<type>`
 
-#### EDcore
+#### EDCore
 
 La classe principale du module.
 
