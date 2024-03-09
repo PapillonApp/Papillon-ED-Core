@@ -3,7 +3,7 @@ import bodyToString from "./utils/body";
 import {Session} from "./session";
 import {EstablishmentInfo} from "~/utils/types/establishments";
 import {AccountInfo, Profile} from "~/utils/types/accounts";
-//import {authRequestData} from "~/types/v3/requests/student";
+import {authRequestData} from "~/types/v3/requests/student";
 
 class Auth {
 
@@ -11,6 +11,21 @@ class Auth {
 
     constructor(session: Session) {
         this.session = session;
+    }
+
+    private parseLoginResponse(response: loginRes) {
+        if (response.code === 200) {
+            const data = response.data as loginResData;
+
+            this.session._token = response.token;
+            const accounts = data.accounts[0];
+
+            this.session.modules = accounts.modules;
+            this.session.settings = accounts.parametresIndividuels;
+            this.session.school = this.getEtabInfo(accounts);
+            this.session.student = this.getStudentInfo(accounts);
+            this.session.isLoggedIn = true;
+        }
     }
 
     async login(username: string, password: string, uuid: string | boolean = false) {
@@ -21,22 +36,9 @@ class Auth {
             isReLogin: false,
             sesouvenirdemoi: true,
             uuid: uuid
-        };
+        } as authRequestData;
 
-        return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
-            if (response.code === 200) {
-                const data = response.data as loginResData;
-
-                this.session._token = response.token;
-                const accounts = data.accounts[0];
-
-                this.session.modules = accounts.modules;
-                this.session.settings = accounts.parametresIndividuels;
-                this.session.school = this.getEtabInfo(accounts);
-                this.session.student = this.getStudentInfo(accounts);
-                this.session.isLoggedIn = true;
-            }
-        });
+        return await this.session.request.post(url, bodyToString(body)).then(this.parseLoginResponse);
     }
 
     async renewToken(username: string, uuid: string, accessToken: string) {
@@ -48,21 +50,8 @@ class Auth {
             isReLogin: true,
             accesstoken: accessToken,
             uuid: uuid
-        };
-        return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
-            if (response.code === 200) {
-                const data = response.data as loginResData;
-
-                this.session._token = response.token;
-                const accounts = data.accounts[0];
-
-                this.session.modules = accounts.modules;
-                this.session.settings = accounts.parametresIndividuels;
-                this.session.school = this.getEtabInfo(accounts);
-                this.session.student = this.getStudentInfo(accounts);
-                this.session.isLoggedIn = true;
-            }
-        });
+        } as authRequestData;
+        return await this.session.request.post(url, bodyToString(body)).then(this.parseLoginResponse);
     }
 
 
