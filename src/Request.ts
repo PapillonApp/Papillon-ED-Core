@@ -30,7 +30,6 @@ class Request {
         })
             .then(res => res.text())
             .then(res => {
-                console.log(res);
                 const response = res.startsWith("{") ? JSON.parse(res) : res;
                 if(typeof response != "object" && response.includes("<title>Loading...</title>")) throw INVALID_API_URL.drop();
                 if (response.code == 525) {
