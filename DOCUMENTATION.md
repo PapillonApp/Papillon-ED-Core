@@ -43,6 +43,14 @@ _Avec ses identifiants_
 await ED.auth.login("username", "password", "uuidv4")
 ```
 
+> [TIP]
+> Pour générer un **UUIDv4**, vous pouvez utiliser le module `uuid`, par défaut installé:
+> ```typescript
+> import { v4 as uuidv4 } from 'uuid';
+> const uuid = uuidv4()
+> await ED.auth.login("username", "password", uuid)
+> ```
+
 _Avec un token_
 > [!WARNING]
 > S'authentifier par token empêchera `papillon-ed-core` de se reconnecter à votre compte, ce qui entrainera une erreur après expiration du token.

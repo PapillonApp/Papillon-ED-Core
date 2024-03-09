@@ -13,56 +13,7 @@ class Auth {
         this.session = session;
     }
 
-    private parseLoginResponse(response: loginRes) {
-        if (response.code === 200) {
-            const data = response.data as loginResData;
-
-            this.session._token = response.token;
-            const accounts = data.accounts[0];
-
-            this.session.modules = accounts.modules;
-            this.session.settings = accounts.parametresIndividuels;
-            this.session.school = this.getEtabInfo(accounts);
-            this.session.student = this.getStudentInfo(accounts);
-            this.session.isLoggedIn = true;
-        }
-    }
-
-    async login(username: string, password: string, uuid: string | boolean = false) {
-        const url = "/login.awp";
-        const body = {
-            identifiant: username,
-            motdepasse: encodeURIComponent(password),
-            isReLogin: false,
-            sesouvenirdemoi: true,
-            uuid: uuid
-        } as authRequestData;
-
-        return await this.session.request.post(url, bodyToString(body)).then(this.parseLoginResponse);
-    }
-
-    async renewToken(username: string, uuid: string, accessToken: string) {
-        const url = "/login.awp";
-        const body = {
-            identifiant: username,
-            motdepasse: "???",
-            typeCompte: "E",
-            isReLogin: true,
-            accesstoken: accessToken,
-            uuid: uuid
-        } as authRequestData;
-        return await this.session.request.post(url, bodyToString(body)).then(this.parseLoginResponse);
-    }
-
-
-    setToken(token: string, id: number) {
-        this.session._token = token;
-        this.session.student = { id: id };
-        this.session.isLoggedIn = true;
-        return true;
-    }
-
-    getEtabInfo(data: account): EstablishmentInfo {
+    #getEtabInfo(data: account): EstablishmentInfo {
         const profile = data.profile as Profile;
         return {
             name: profile.nomEtablissement ?? "Établissement non spécifié",
@@ -72,7 +23,7 @@ class Auth {
         };
     }
 
-    getStudentInfo(data: account): AccountInfo {
+    #getStudentInfo(data: account): AccountInfo {
         const profile = data.profile as Profile;
         return {
             id: data.id,
@@ -89,6 +40,58 @@ class Auth {
             classe: profile.classe,
             photo: profile.photo ?? ""
         };
+    }
+
+    #parseLoginResponse(response: loginRes) {
+        if (response.code === 200) {
+            const data = response.data as loginResData;
+            this.session._token = response.token;
+
+            const account = data.accounts[0];
+
+            this.session.modules = account.modules;
+            this.session.settings = account.parametresIndividuels;
+            this.session.school = this.#getEtabInfo(account);
+            this.session.student = this.#getStudentInfo(account);
+            this.session.isLoggedIn = true;
+        }
+    }
+
+    async login(username: string, password: string, uuid: string) {
+        const url = "/login.awp";
+        const body = {
+            identifiant: username,
+            motdepasse: encodeURIComponent(password),
+            isReLogin: false,
+            sesouvenirdemoi: true,
+            uuid: uuid
+        } as authRequestData;
+        return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
+            this.#parseLoginResponse(response);
+        });
+    }
+
+    async renewToken(username: string, uuid: string, accessToken: string) {
+        const url = "/login.awp";
+        const body = {
+            identifiant: username,
+            motdepasse: "???",
+            typeCompte: "E",
+            isReLogin: true,
+            accesstoken: accessToken,
+            uuid: uuid
+        } as authRequestData;
+        return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
+            this.#parseLoginResponse(response);
+        });
+    }
+
+
+    setToken(token: string, id: number) {
+        this.session._token = token;
+        this.session.student = { id: id };
+        this.session.isLoggedIn = true;
+        return true;
     }
 }
 

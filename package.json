@@ -1,6 +1,6 @@
 {
   "name": "@papillonapp/ed-core",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "API EcoleDirecte pour PapillonApp (c)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -51,5 +51,9 @@
     "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/uuid": "^9.0.8",
+    "uuid": "^9.0.1"
   }
 }
