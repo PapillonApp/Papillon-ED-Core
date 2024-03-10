@@ -49,19 +49,35 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
   - [x] Lister 
   - [ ] Rejoindre (pas testé) 
   - [ ] Quitter (pas testé)
-  - [ ] ??? (récupérer membres, docs, et autres...)
+  - [x] Agenda
+  - [x] Lister les discussions
+  - [ ] Cloud
+  - [x] Lister les membres
 - [ ] Cloud
+- [ ] Téléchargement de fichiers (`/telechargement.awp`)
 
 ## Documentation
 Voir le fichier [`DOCUMENTATION.md`](DOCUMENTATION.md)
 
 ## Licence
 
-Cette base de code est distribuée par Papillon, sous la licence [CeCill V2.1](LICENSE).
+Cette base de code est distribuée par Papillon, sous la licence [**GPLv3**](LICENSE).
+
+```text
+papillon-ed-core  Copyright (C) 2024  Vince Linise <contact@getpapillon.xyz> et les contributeurs.
+This program comes with ABSOLUTELY NO WARRANTY; see license for details.
+This is free software, and you are welcome to redistribute it
+under certain conditions; see license for details.
+```
 
 Elle est maintenue et développée par ses contributeurs : [LeMaitre](https://github.com/LeMaitre4523), [LeGeek](https://github.com/LeGeek01), [LucHack](https://github.com/lucas-luchack), [Azgar](https://github.com/azgaresncf), [Yann](https://github.com/yannouuuu), [Diego Finocchiaro](https://github.com/diegofino15) et  [Armand Camponovo](https://github.com/camarm-dev)
 
 ## Attributions
 
-- Les types (`src/types`), réadaptés par [Armand Camponovo](https://github.com/camarm-dev/ecoledirecte-api-types), originellement [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types): _**_Aucune licence spécifiée_**_
-- Certains autres types proviennent de [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs): _**Aucune licence spécifiée**_
+- Les types (`src/types`), réadaptés par [Armand Camponovo](https://github.com/camarm-dev/ecoledirecte-api-types), originellement [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types) par [Anatole Debierre](https://github.com/a2br): licence [ISC](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/LICENSE)
+- Certains autres types proviennent de [EduWireApps/ecoledirecte-api-docs](https://github.com/EduWireApps/ecoledirecte-api-docs), par [MaitreRouge](https://github.com/MaitreRouge): **Aucune licence spécifiée**
+
+## Release
+
+> [!CAUTION]
+> Avant chaque release, mettre à jour `version` dans `package.json` et les champs `version` et `date-released` dans `citation.cff`

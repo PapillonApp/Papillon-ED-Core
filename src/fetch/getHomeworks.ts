@@ -1,7 +1,14 @@
 import {Session} from "~/session";
 import bodyToString from "~/utils/body";
-import {textbookDateAssignement, textbookDateRes, textbookDateResData, textbookRes} from "~/types/v3";
+import {
+    textbookDateAssignement,
+    textbookDateRes,
+    textbookDateResData,
+    textbookResData,
+    textbookResSuccess
+} from "~/types/v3";
 import {textbookRequestData, textbookSetDoneStatusRequestData} from "~/types/v3/requests/student";
+import {decodeString} from "~/utils/base64";
 
 class GetHomeworks {
 
@@ -11,38 +18,46 @@ class GetHomeworks {
         this.session = session;
     }
 
-    async fetch(): Promise<textbookRes> {
-        const url = `/Eleves/${this.session.student.id}/cahierdetexte.awp?verbe=get`;
-        const data = {} as textbookRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then(response => response as textbookRes);
+    #transformHomeworks(homeworks: Array<textbookDateAssignement>, removeHTMLTags: boolean): Array<textbookDateAssignement> {
+        homeworks.forEach((homework: textbookDateAssignement, index: number) => {
+            const aFaire = homework.aFaire;
+            if (!aFaire) return;
+            const htmlContent = decodeString(aFaire.contenu);
+
+            if (removeHTMLTags) {
+                const span = document.createElement("span");
+                span.innerHTML = htmlContent;
+                aFaire.contenu = span.innerText.replace(/ +/g," ");
+            } else {
+                aFaire.contenu = htmlContent;
+            }
+
+            homeworks[index].aFaire = aFaire;
+        });
+
+        return homeworks;
     }
 
-    async getByDay(day: string): Promise<textbookDateResData> {
+    async fetch(): Promise<textbookResData> {
+        const url = `/Eleves/${this.session.student.id}/cahierdetexte.awp?verbe=get`;
+        const data = {} as textbookRequestData;
+        return await this.session.request.post(url, bodyToString(data)).then((response: textbookResSuccess) => response.data);
+    }
+
+    async getByDay(day: string, removeHTMLTags: boolean = true): Promise<textbookDateResData> {
         const url = `/Eleves/${this.session.student.id}/cahierdetexte/${day}.awp?verbe=get`;
         const data = {} as textbookRequestData;
         return await this.session.request.post(url, bodyToString(data)).then((response: textbookDateRes) => {
-
             if (response.code == 200) {
-                const homeworks = response.data as textbookDateResData;
-
-                homeworks.matieres.forEach((homework: textbookDateAssignement, index: number) => {
-                    const aFaire= homework.aFaire;
-                    if (!aFaire) return;
-                    const htmlContent = aFaire.contenu;
-                    const span = document.createElement("span");
-                    span.innerHTML = htmlContent;
-                    // TODO: `contenuTexte` ou `contenu`
-                    aFaire.contenu = [span.textContent || span.innerText].toString().replace(/ +/g," ");
-                    homeworks.matieres[index].aFaire = aFaire;
-                });
-
-                return homeworks;
-            } else {
-                return {
-                    date: "",
-                    matieres: []
-                } as textbookDateResData;
+                const data = response.data as textbookDateResData;
+                const homeworks = data.matieres;
+                data.matieres = this.#transformHomeworks(homeworks, removeHTMLTags);
+                return data;
             }
+            return {
+                date: "",
+                matieres: []
+            } as textbookDateResData;
         });
     }
 

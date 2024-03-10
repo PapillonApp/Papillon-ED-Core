@@ -10,6 +10,8 @@ const CLOSED = error(6, "The instance is closed, try again later");
 const TOKEN_INVALID = error(7, "The token is invalid");
 const MODULE_DISABLE = error(8, (moduleName: string) => `The module is not activated in your school. Module name : ${moduleName}`);
 const INVALID_API_URL = error(9, "The API URL provided is invalid.");
+const OBJECT_NOT_FOUND = error(10, "The object you were trying to retrieve was not found by Ecoledirecte (you provided an `id`, and the request errored with code 210).");
+const INVALID_BODY = error(11, "Values provided in body are wrong and the request errored with code 512.");
 
 function error(code: number, message: ErrorMessage){
     return {
@@ -31,5 +33,7 @@ export {
     CLOSED,
     TOKEN_INVALID,
     MODULE_DISABLE,
-    INVALID_API_URL
+    INVALID_API_URL,
+    OBJECT_NOT_FOUND,
+    INVALID_BODY
 };

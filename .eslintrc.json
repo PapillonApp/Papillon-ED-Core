@@ -24,5 +24,5 @@
         }],
         "@stylistic/semi": ["error", "always"]
     },
-    "ignorePatterns": ["src/**/*.js", "src/*.js", "*.js", "src/types", "dist", "*.d.ts"]
+    "ignorePatterns": ["src/**/*.js", "src/*.js", "*.js", "src/types", "dist", "*.d.ts", "tests", "examples"]
 }

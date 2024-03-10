@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES2016",
-    "module": "CommonJS",
+    "module": "CommonJs",
     "moduleResolution": "Node",
     "removeComments": true,
 
     "baseUrl": ".",
+    "outDir": "dist",
     "paths": {
       "~/*": ["./src/*"]
     },
@@ -21,12 +22,11 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "plugins": [{ "transform": "typescript-transform-paths" }]
+    "forceConsistentCasingInFileNames": true
   },
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   },
-  "include": ["src", "examples", "index.ts"],
-  "exclude": ["node_modules", "dist", "src/types/v3/requests/index.ts", "src/types"]
+  "include": ["src", "index.ts"],
+  "exclude": ["node_modules", "dist", "src/types", "examples"]
 }

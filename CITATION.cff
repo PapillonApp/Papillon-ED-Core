@@ -1,0 +1,23 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Papillon Ecoledirecte Core
+message: 'If you use this software, please cite it as below.'
+type: software
+authors:
+  - family-names: Linise
+    given-names: Vince
+    email: contact@getpapillon.xyz
+  - name: les contributeurs de Papillon
+repository-code: 'https://github.com/papillonapp/papillon-ed-core'
+url: 'https://getpapillon.xyz'
+abstract: >-
+  A typed wrapper for Ecoledirecte's private API written in
+  Typescript.
+keywords:
+  - ecoledirecte
+  - papillon
+license: GPL-3.0
+version: 0.2.4
+date-released: '2024-03-10'

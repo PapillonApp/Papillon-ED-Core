@@ -19,12 +19,8 @@ Ce projet est développé en _**Typescript**_, il est compatible avec toutes les
 
 ### Installation
 
-> [!CAUTION]
-> Package not published
-> The typescript package is not finished yet ! Consider installing it using `npm i git+https://github.com/camarm-dev/papillon-ed-core`
-
 ```sh
-npm i papillon-ed-core
+npm i @papillonapp/ed-core
 ```
 
 ### Utilisation
@@ -33,7 +29,7 @@ _Ce module utilise des fonctions asynchrones pour fonctionner._
 
 **1. Importer le module**
 ```typescript
-import {EDCore} from "papillon-ed-core";
+import {EDCore} from "@papillonapp/ed-core";
 ```
 **2. Initialiser le module**
 ```typescript
@@ -44,8 +40,16 @@ const ED = new EDCore()
 
 _Avec ses identifiants_
 ```typescript
-await ED.login("username", "password")
+await ED.auth.login("username", "password", "uuidv4")
 ```
+
+> [TIP]
+> Pour générer un **UUIDv4**, vous pouvez utiliser le module `uuid`, par défaut installé:
+> ```typescript
+> import { v4 as uuidv4 } from 'uuid';
+> const uuid = uuidv4()
+> await ED.auth.login("username", "password", uuid)
+> ```
 
 _Avec un token_
 > [!WARNING]
@@ -57,7 +61,99 @@ ED.setToken('token', userId)
 
 **4. Visitez la documentation**
 
-Désormais connectés, il vous faudra lire la [documentation des références]() pour comprendre et utiliser chaque fonctionnalités.
+Désormais connectés, il vous faudra lire la [documentation des références](#références) pour comprendre et utiliser chaque fonctionnalités.
+
+Il existe aussi des documentation plus précises sur certaines fonctionnalités:
+- [Commandes](#commandes)
+- [Téléchargements](#téléchargements)
+
+### Commandes
+
+> [!WARNING]
+> Le module de commande est encore instable !
+
+Ce module est accessible ainsi:
+```typescript
+ED.orders
+```
+
+Une commande s'effectue ainsi:
+1. Séléction du point de passage
+2. Séléction des articles et envoie de la commande
+
+- Pour récupérer les anciennes commandes et les "points de passage" (lieux ; cafétéria, food truck);
+```typescript
+ED.orders.fetchOrders()
+```
+_Renvoie [ordersResData](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L58)_
+
+- Pour initier une commande (correspond séléction d'un point de passage);
+```typescript
+ED.orders.startOrder(1, "2024-01-01")
+```
+_Renvoie [startOrderResData](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L19)_
+
+- Pour envoyer, passer une commande;
+```typescript
+const articles = [
+  {
+    code: "BEI-POM",
+    libelle: "Beignet Pomme",
+    description: "string;",
+    estFormule: false,
+    etat: 0,
+    img: "",
+    montant: 1.5,
+    quantite: 1,
+    quantiteMax: 3,
+    estObligatoire: false,
+    ordre: 1
+  }
+]
+ED.orders.order(articles, "12:00", "2024-01-01", 1)
+```
+_Renvoie [orderPlacedResData](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L150)_
+
+- Pour supprimer une commande;
+```typescript
+ED.orders.deleteOrder(100)
+```
+_Renvoie une réponse vide_
+
+
+### Téléchargements
+
+À plusieurs endroits vous pourrez être amenés à devoir télécharger des documents (exemple: documents administratifs renvoyés par `ED.documents`).
+
+Le module `ED.downloads` vous permet donc de récupérer des objets de ces documents:
+```typescript
+ED.downloads.getFileBlob(1235, "ADMINISTRATIF")
+```
+_Ceci renvoie le blob du document administratif à l'identifiant `1235`_
+
+Exemple avec une année:
+```typescript
+ED.downloads.getFileBlob(1235, "ADMINISTRATIF", "2022-2023")
+```
+_Ceci renvoie le blob du document administratif de l'année `2022-2023` à l'identifiant `1235`_
+
+
+Exemple avec base64:
+```typescript
+ED.downloads.getFileBase64(1235, "ADMINISTRATIF", "2022-2023")
+```
+_Ceci renvoie le fichier sous format base64 (pour le técharger par exemple)_
+
+
+Voici tous les types de documents supportés:
+```typescript
+type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAURATION" | "ADMINISTRATIF";
+```
+- "CLOUD"; l'argument `fileId` sera **le chemin complet** du document dans le cloud.
+- "FICHIER_CDT"; télécharger un fichier du Cahier De Texte.
+- "PIECE_JOINTE"; télécharger une pièce joint (si le message provient d'une année antérieur, l'argument `year` devra contenir l'année).
+- "FICHIER_MENU_RESTAURATION"; télécharger un menu (voir **`Menu`** dans [`getCantine.ts`](#getcantine)).
+- "ADMINISTRATIF"; télécharger un fichier administratif (si le document provient d'une année antérieur, l'argument `year` devra contenir l'année).
 
 ### Références
 
@@ -76,7 +172,7 @@ Les références sont données ainsi:
 - Si la propriété est une fonction, le type est `(arg: type) => type`.
 - Si la fonction est `async`, elle renvoie une `Promise<type>`
 
-#### EDcore
+#### EDCore
 
 La classe principale du module.
 
@@ -95,6 +191,9 @@ La classe principale du module.
 | workspaces        | [`GetWorkspaces`](#GetWorkspaces)                                                                                                                                         | Gestion des espaces de travail      |
 | communicationBook | [`GetCommunicationBook`](#GetCommunicationBook)                                                                                                                           | Gestion du carnet de correspondance |
 | cloud             | [`GetCloud`](#GetCloud)                                                                                                                                                   | Gestion du cloud                    |
+| orders            | [`GetOrders`](#GetOrders)                                                                                                                                                 | Gestion des commandes               |
+| esidoc            | [`GetOrders`](#GetEsidoc)                                                                                                                                                 | Gestion du module Esidoc            |
+| downloads         | [`GetDownloads`](#GetDownloads)                                                                                                                                           | Gestion des téléchargements         |
 |                   |                                                                                                                                                                           |                                     |
 | auth              | [`Auth`](#Auth)                                                                                                                                                           | Gestion de l'authentification       |
 | request           | [`Request`](#Request)                                                                                                                                                     | Gestion du requêtage                |
@@ -108,14 +207,14 @@ La classe principale du module.
 
 _Ouvrir [`src/session.ts`](src/session.ts)_
 
-### GetHomeworks
+#### GetHomeworks
 
 La classe de gestion des devoirs.
 
-| Propriété  | Type                                                                                                                                              | Commentaire                                                        |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
-| fetch()    | `async () =>`[`textbookRes`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/textbook.ts#L5)                 | Récupérer les devoirs                                              |
-| getByDay() | `async (day: string) =>`[`textbookResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/textbook.ts#L14) | Récupérer les devoirs du jout `day` (day est formaté `YYYY-MM-DD`) |
+| Propriété  | Type                                                                                                                                                                           | Commentaire                                                                                                                                       |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| fetch()    | `async () =>`[`textbookResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/textbook.ts#L77)                                         | Récupérer les devoirs                                                                                                                             |
+| getByDay() | `async (day: string, removeHTMLTags: boolean) =>`[`textbookResDateData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/textbook.ts#L14) | Récupérer les devoirs du jout `day` (day est formaté `YYYY-MM-DD`). `removeHTMLTags` permet de renvoyer le contenu des devoirs sans balises HTML. |
 
 _Ouvrir [`src/fetch/getHomeworks.ts`](src/fetch/getHomeworks.ts)_
 
@@ -161,8 +260,9 @@ La classe de gestion des modules de cantine.
 |-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
 | getBarcode()      | `() => string`                                                                                                                                             | Renvoie la valeur du code-barre du badge     |
 | getReservations() | `() =>` [`modStudReservations.params`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/login/accounts/student/modules.ts#L179) | Renvoie les paramètres module de réservation |
+| fetchSchoolMenu() | `() => Array<`[`Menu`](src/fetch/getCantine.ts#L7)`>`                                                                                                      | Renvoie la liste des menus                   |
 
-_Ouvrir [`src/fetch/getSchoolLife.ts`](src/fetch/getSchoolLife.ts)_
+_Ouvrir [`src/fetch/getCantine.ts`](src/fetch/getCantine.ts)_
 
 
 #### GetDigitalManuals
@@ -232,12 +332,15 @@ La classe de gestion des espaces de travail.
 > [!CAUTION]
 > Non testé, si vous pouvez tester, merci de nous contacter
 
-| Propriété | Type                                                                                                                                                                                                                                                 | Commentaire                                            |
-|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
-| fetch()   | `async () => Array<`[`workspace`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/workspaces.ts#L23)`>`                                                                                                         | Récupérer les espaces de travail.                      |
-| get()     | `async (id: string) =>`[`workspace`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/workspaces.ts#L23)                                                                                                         | Récupérer l'espace de travail avec l'identifiant `id`. |
-| join()    | `async (espace: `[`workspace`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/workspaces.ts#L23)`) =>`[`emptyRes`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/failure.ts#L11) | Rejoindre l'espace de travail `espace`.                |
-| leave()   | `async (espace: number) =>`[`emptyRes`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/failure.ts#L11)                                                                                                                  | Quitte l'espace de travail avec l'identifiant `id`.    |
+| Propriété    | Type                                                                                                                                                                                                                                                       | Commentaire                                                                               |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| fetch()      | `async () => Array<`[`workspace`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/workspaces.ts#L23)`>`                                                                                                               | Récupérer les espaces de travail.                                                         |
+| get()        | `async (id: string) =>`[`workspace`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/workspaces.ts#L23)                                                                                                               | Récupérer l'espace de travail avec l'identifiant `id`.                                    |
+| getDiary()   | `async (espaceId: string) =>`[`diaryResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/workspaces.ts#L54)                                                                                                      | Récupérer l'agenda (les évènements) de l'espace de travail avec l'identifiant `espaceId`. |
+| getTopics()  | `async (espaceId: string) =>`[`topicsResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/workspaces.ts#L67)                                                                                                     | Récupérer les discussions de l'espace de travail avec l'identifiant `espaceId`.           |
+| getMembers() | `async (espaceId: string) =>`[`workspace`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/workspaces.ts#L85)                                                                                                         | Récupérer les membres de l'espace de travail avec l'identifiant `espaceId`.               |
+| join()       | `async (espace: `[`workspace`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/workspaces.ts#L23)`) =>`[`membersResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/failure.ts#L11) | Rejoindre l'espace de travail `espace`.                                                   |
+| leave()      | `async (espace: number) =>`[`emptyRes`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/failure.ts#L11)                                                                                                                        | Quitter l'espace de travail avec l'identifiant `id`.                                      |
 
 _Ouvrir [`src/fetch/getWorkspaces.ts`](src/fetch/getWorkspaces.ts)_
 
@@ -268,16 +371,63 @@ La classe de gestion du cloud.
 _Ouvrir [`src/fetch/getCloud.ts`](src/fetch/getCloud.ts)_
 
 
+#### GetOrders
+
+La classe de gestion des commandes.
+> [!WARNING]
+> Module instable.
+
+**Point de passage** signifie le lieux où la commande est passée (cafétéria par exemple). Il possède un `id`.
+
+| Propriété     | Type                                                                                                                                                                                                                                                                                                                              | Commentaire                                                                                    |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| isEnabled()   | `() => boolean`                                                                                                                                                                                                                                                                                                                   | Permet de savoir si le module est activé.                                                      |
+| fetchOrders() | `async () => `[`ordersResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L58)`\| undefined`                                                                                                                                                                                 | Récupérer les points de passages et commandes passées.                                         |
+| startOrder()  | `async (placeId: number, date: string) => `[`startOrderResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L19)                                                                                                                                                              | Récupérer les informations du point de passage `placeId` à la date `date`.                     |
+| order()       | `async (articles: Array<`[`detailedArticle`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L101)`>, hour: string, date: string, placeId: number) => `[`orderPlacedResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L150) | Passe une commande des article `articles`, pour `date`, `heure` au point de passage `placeId`. |
+| deleteOrder() | `async (orderId: number) =>`[`emptyRes`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/failure.ts#L11)                                                                                                                                                                                              | Annule la commande à l'identifiant `orderId`.                                                  |
+
+_Ouvrir [`src/fetch/getOrders.ts`](src/fetch/getOrders.ts)_
+
+#### GetEsidoc
+
+La classe de gestion du module Esidoc.
+
+| Propriété   | Type                                                                                                                                                                               | Commentaire                               |
+|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
+| isEnabled() | `() => boolean`                                                                                                                                                                    | Permet de savoir si le module est activé. |
+| getParams() | `async () => `[`modStudEsidoc.params.tabParams`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/login/accounts/student/modules.ts#L215)`\| undefined` | Récupérer les paramètres d'Esidoc.        |
+
+_Ouvrir [`src/fetch/getEsidoc.ts`](src/fetch/getEsidoc.ts)_
+
+#### GetDownloads
+
+La classe de gestion des téléchargements.
+
+##### fileType
+```typescript
+type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAURATION" | "ADMINISTRATIF";
+```
+
+| Propriété       | Type                                                                              | Commentaire                                                                                         |
+|-----------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| getFileBlob()   | `async (fileId: number \| string, fileType: `[`fileType`](#filetype)`) => Blob`   | Récupère le blob du fichier `fileId` (voir [Télécharger des fichiers](#téléchargements)).           |
+| getFileBase64() | `async (fileId: number \| string, fileType: `[`fileType`](#filetype)`) => string` | Récupère le fichier `fileId` (voir [Télécharger des fichiers](#téléchargements)) sous forme base64. |
+
+_Ouvrir [`src/fetch/getDownloads.ts`](src/fetch/getDownloads.ts)_
+
+
 #### Auth
 
 La classe de gestion de l'authentification et de l'utilisateur.
 
-| Propriété        | Type                                                                | Commentaire                                      |
-|------------------|---------------------------------------------------------------------|--------------------------------------------------|
-| login()          | `async (username: string, password: string) => void`                | Se connecte à Ecoledirecte avec des identifiants |
-| setToken()       | `(token: string, id: number) => boolean`                            | Se connecte à Ecoledirecte avec un token         |
-| getEtabInfo()    | `() =>` [`EstablishmentInfo`](src/utils/types/establishments.ts#L1) | Récupérer les informations de l'établissement    |
-| getStudentInfo() | `() =>` [`AccountInfo`](src/utils/types/accounts.ts#L20)            | Récupérer les informations du compte             |
+_Voir [s'authentifier avec ed-core](#utilisation)_
+
+| Propriété    | Type                                                                  | Commentaire                                                                                                                                                                       |
+|--------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| login()      | `async (username: string, password: string, uuid: string) => void`    | Se connecte à Ecoledirecte avec des identifiants. `uuid` est un UUIDv4 utilisé pour reconnaitre l'appareil et regénérger un token. Lisez le guide pour savoir comment le générer. |
+| renewToken() | `async (username: string, uuid: string, accessToken: string) => void` | Régénère un token à l'aide du nom d'utilisateur, de l'`uuid` et de l'`accessToken` et remplace automatiquement le token actuel.                                                   |
+| setToken()   | `(token: string, id: number) => boolean`                              | Se connecte à Ecoledirecte avec un token                                                                                                                                          |
 
 _Ouvrir [`src/auth.ts`](src/auth.ts)_
 
@@ -321,7 +471,7 @@ git submodule update --init --recursive
 ```
 
 > [!NOTE]
-> Pour mettre à jour le submodule, exécutez 
+> Pour mettre à jour le submodule, exécutez
 > ```shell
 > cd src/types && git pull
 > ```

@@ -104,14 +104,13 @@ dist
 .tern-port
 
 # Generated javascript files
-index.js
-index.*j*
-index.d*
-src/**/*.js
-src/**/*.j*
-src/**/*.d*
+dist/
 /package-lock.json
 /examples/*.js
 /examples/*.d.ts
 /examples/*.d.ts.map
 /examples/*.js.map
+
+# Editor configs (les dossiers de config on les commit pas: y'a rien d'essentiel dedans !)
+.idea
+.vscode
