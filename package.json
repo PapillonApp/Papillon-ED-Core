@@ -1,6 +1,6 @@
 {
   "name": "@papillonapp/ed-core",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "API EcoleDirecte pour PapillonApp (c)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
