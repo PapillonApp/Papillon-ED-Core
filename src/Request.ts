@@ -34,7 +34,7 @@ class Request {
             method: "POST",
             headers: this.requestOptions.headers,
             body: body
-        }).then(response => response.blob())
+        }).then(response => response.blob());
     }
 
     async post(url: string, body: string) {
