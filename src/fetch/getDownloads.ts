@@ -21,7 +21,7 @@ class GetDownloads {
      * @param fileType
      * @param year two possibilities; empty if download current year message attachment / administrative document or YYYY-YYYY year range if downloading "archive" administrative document or old messages attachment
      */
-    async getFileBlob(fileId: number, fileType: fileType, year: string = "") {
+    async getFileBlob(fileId: number | string, fileType: fileType, year: string = "") {
         const endpoint = `/telechargement.awp?verbe=get&fichierId=${fileId}`;
         let url;
         switch (fileType) {
