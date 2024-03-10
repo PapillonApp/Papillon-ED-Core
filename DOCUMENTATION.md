@@ -185,6 +185,7 @@ La classe principale du module.
 | communicationBook | [`GetCommunicationBook`](#GetCommunicationBook)                                                                                                                           | Gestion du carnet de correspondance |
 | cloud             | [`GetCloud`](#GetCloud)                                                                                                                                                   | Gestion du cloud                    |
 | orders            | [`GetOrders`](#GetOrders)                                                                                                                                                 | Gestion des commandes               |
+| esidoc            | [`GetOrders`](#GetEsidoc)                                                                                                                                                 | Gestion du module Esidoc            |
 | downloads         | [`GetDownloads`](#GetDownloads)                                                                                                                                           | Gestion des téléchargements         |
 |                   |                                                                                                                                                                           |                                     |
 | auth              | [`Auth`](#Auth)                                                                                                                                                           | Gestion de l'authentification       |
@@ -363,16 +364,62 @@ La classe de gestion du cloud.
 _Ouvrir [`src/fetch/getCloud.ts`](src/fetch/getCloud.ts)_
 
 
+#### GetOrders
+
+La classe de gestion des commandes.
+> [!WARNING]
+> Module instable.
+
+**Point de passage** signifie le lieux où la commande est passée (cafétéria par exemple). Il possède un `id`.
+
+| Propriété     | Type                                                                                                                                                                                                                                                                                                                              | Commentaire                                                                                    |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| isEnabled()   | `() => boolean`                                                                                                                                                                                                                                                                                                                   | Permet de savoir si le module est activé.                                                      |
+| fetchOrders() | `async () => `[`ordersResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L58)`\| undefined`                                                                                                                                                                                 | Récupérer les points de passages et commandes passées.                                         |
+| startOrder()  | `async (placeId: number, date: string) => `[`startOrderResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L19)                                                                                                                                                              | Récupérer les informations du point de passage `placeId` à la date `date`.                     |
+| order()       | `async (articles: Array<`[`detailedArticle`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L101)`>, hour: string, date: string, placeId: number) => `[`orderPlacedResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L150) | Passe une commande des article `articles`, pour `date`, `heure` au point de passage `placeId`. |
+| deleteOrder() | `async (orderId: number) =>`[`emptyRes`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/failure.ts#L11)                                                                                                                                                                                              | Annule la commande à l'identifiant `orderId`.                                                  |
+
+_Ouvrir [`src/fetch/getOrders.ts`](src/fetch/getOrders.ts)_
+
+#### GetEsidoc
+
+La classe de gestion du module Esidoc.
+
+| Propriété   | Type                                                                                                                                                                               | Commentaire                               |
+|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
+| isEnabled() | `() => boolean`                                                                                                                                                                    | Permet de savoir si le module est activé. |
+| getParams() | `async () => `[`modStudEsidoc.params.tabParams`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/login/accounts/student/modules.ts#L215)`\| undefined` | Récupérer les paramètres d'Esidoc.        |
+
+_Ouvrir [`src/fetch/getEsidoc.ts`](src/fetch/getEsidoc.ts)_
+
+#### GetDownloads
+
+La classe de gestion des téléchargements.
+
+##### fileType
+```typescript
+type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAURATION" | "ADMINISTRATIF";
+```
+
+| Propriété     | Type                                                                            | Commentaire                                                                               |
+|---------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| getFileBlob() | `async (fileId: number \| string, fileType: `[`fileType`](#filetype)`) => Blob` | Récupère le blob du fichier `fileId` (voir [Télécharger des fichiers](#téléchargements)). |
+
+_Ouvrir [`src/fetch/getEsidoc.ts`](src/fetch/getEsidoc.ts)_
+
+
 #### Auth
 
 La classe de gestion de l'authentification et de l'utilisateur.
 
-| Propriété        | Type                                                                | Commentaire                                      |
-|------------------|---------------------------------------------------------------------|--------------------------------------------------|
-| login()          | `async (username: string, password: string) => void`                | Se connecte à Ecoledirecte avec des identifiants |
-| setToken()       | `(token: string, id: number) => boolean`                            | Se connecte à Ecoledirecte avec un token         |
-| getEtabInfo()    | `() =>` [`EstablishmentInfo`](src/utils/types/establishments.ts#L1) | Récupérer les informations de l'établissement    |
-| getStudentInfo() | `() =>` [`AccountInfo`](src/utils/types/accounts.ts#L20)            | Récupérer les informations du compte             |
+_Voir [s'authentifier avec ed-core](#utilisation)_
+
+| Propriété    | Type                                                                  | Commentaire                                                                                                                                                                       |
+|--------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| login()      | `async (username: string, password: string, uuid: string) => void`    | Se connecte à Ecoledirecte avec des identifiants. `uuid` est un UUIDv4 utilisé pour reconnaitre l'appareil et regénérger un token. Lisez le guide pour savoir comment le générer. |
+| renewToken() | `async (username: string, uuid: string, accessToken: string) => void` | Régénère un token à l'aide du nom d'utilisateur, de l'`uuid` et de l'`accessToken` et remplace automatiquement le token actuel.                                                   |
+| setToken()   | `(token: string, id: number) => boolean`                              | Se connecte à Ecoledirecte avec un token                                                                                                                                          |
 
 _Ouvrir [`src/auth.ts`](src/auth.ts)_
 
