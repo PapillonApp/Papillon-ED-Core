@@ -149,7 +149,7 @@ Voici tous les types de documents supportés:
 ```typescript
 type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAURATION" | "ADMINISTRATIF";
 ```
-- "CLOUD"; l'argument `fileId` ser **le chemin complet** du document dans le cloud.
+- "CLOUD"; l'argument `fileId` sera **le chemin complet** du document dans le cloud.
 - "FICHIER_CDT"; télécharger un fichier du Cahier De Texte.
 - "PIECE_JOINTE"; télécharger une pièce joint (si le message provient d'une année antérieur, l'argument `year` devra contenir l'année).
 - "FICHIER_MENU_RESTAURATION"; télécharger un menu (voir **`Menu`** dans [`getCantine.ts`](#getcantine)).
@@ -414,7 +414,7 @@ type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAUR
 | getFileBlob()   | `async (fileId: number \| string, fileType: `[`fileType`](#filetype)`) => Blob`   | Récupère le blob du fichier `fileId` (voir [Télécharger des fichiers](#téléchargements)).           |
 | getFileBase64() | `async (fileId: number \| string, fileType: `[`fileType`](#filetype)`) => string` | Récupère le fichier `fileId` (voir [Télécharger des fichiers](#téléchargements)) sous forme base64. |
 
-_Ouvrir [`src/fetch/getEsidoc.ts`](src/fetch/getEsidoc.ts)_
+_Ouvrir [`src/fetch/getDownloads.ts`](src/fetch/getDownloads.ts)_
 
 
 #### Auth
