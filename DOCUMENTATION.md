@@ -123,7 +123,30 @@ _Renvoie une réponse vide_
 
 ### Téléchargements
 
-_Rien encore ici_
+À plusieurs endroits vous pourrez être amenés à devoir télécharger des documents (exemple: documents administratifs renvoyés par `ED.documents`).
+
+Le module `ED.downloads` vous permet donc de récupérer des objets de ces documents:
+```typescript
+ED.downloads.getFileBlob(1235, "ADMINISTRATIF")
+```
+_Ceci renvoie le blob du document administratif à l'identifiant `1235`_
+
+Exemple avec une année:
+```typescript
+ED.downloads.getFileBlob(1235, "ADMINISTRATIF", "2022-2023")
+```
+_Ceci renvoie le blob du document administratif de l'année `2022-2023` à l'identifiant `1235`_
+
+
+Voici tous les types de documents supportés:
+```typescript
+type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAURATION" | "ADMINISTRATIF";
+```
+- "CLOUD"; l'argument `fileId` ser **le chemin complet** du document dans le cloud.
+- "FICHIER_CDT"; télécharger un fichier du Cahier De Texte.
+- "PIECE_JOINTE"; télécharger une pièce joint (si le message provient d'une année antérieur, l'argument `year` devra contenir l'année).
+- "FICHIER_MENU_RESTAURATION"; télécharger un menu (voir **`Menu`** dans [`getCantine.ts`](#getcantine)).
+- "ADMINISTRATIF"; télécharger un fichier administratif (si le document provient d'une année antérieur, l'argument `year` devra contenir l'année).
 
 ### Références
 
