@@ -2,11 +2,11 @@ import { Session } from "~/session";
 import bodyToString from "~/utils/body";
 import {
     detailedArticle,
-    emptyRes, orderPlacedRes, orderPlacedResData,
+    emptyRes,
+    orderPlacedResData,
+    orderPlacedResSuccess,
     ordersResData,
     ordersResSuccess,
-    schoolMenuResData,
-    schoolMenuResSuccess,
     startOrderResData,
     startOrderResSuccess
 } from "~/types";
@@ -24,13 +24,6 @@ class GetOrders {
 
     isEnabled(): boolean {
         return this.session.findModule("COMMANDE_PASSAGE").enable || false;
-    }
-
-    async fetchSchoolMenu(): Promise<schoolMenuResData | undefined> {
-        if(!this.isEnabled()) return undefined;
-        const data = {} as body;
-        const url = "/menusRestaurationScolaire.awp?verbe=get";
-        return await this.session.request.post(url, bodyToString(data)).then((response: schoolMenuResSuccess) => response.data);
     }
 
     async fetchOrders(): Promise<ordersResData | undefined> {
@@ -68,7 +61,7 @@ class GetOrders {
             date: date,
             pointDePassage: placeId
         } as orderRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then((response: orderPlacedRes) => response.data);
+        return await this.session.request.post(url, bodyToString(data)).then((response: orderPlacedResSuccess) => response.data);
     }
 
     async deleteOrder(orderId: number): Promise<emptyRes> {
