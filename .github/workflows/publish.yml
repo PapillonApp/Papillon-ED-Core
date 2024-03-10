@@ -16,6 +16,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
         run: npm i
+      - name: Update submodules
+        run: git submodule update --init --recursive
       - name: Transpile typescript code
         run: npm run build:solo
       - name: Publish package on NPM 📦
