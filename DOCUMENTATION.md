@@ -138,6 +138,13 @@ ED.downloads.getFileBlob(1235, "ADMINISTRATIF", "2022-2023")
 _Ceci renvoie le blob du document administratif de l'année `2022-2023` à l'identifiant `1235`_
 
 
+Exemple avec base64:
+```typescript
+ED.downloads.getFileBase64(1235, "ADMINISTRATIF", "2022-2023")
+```
+_Ceci renvoie le fichier sous format base64 (pour le técharger par exemple)_
+
+
 Voici tous les types de documents supportés:
 ```typescript
 type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAURATION" | "ADMINISTRATIF";
@@ -402,9 +409,10 @@ La classe de gestion des téléchargements.
 type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAURATION" | "ADMINISTRATIF";
 ```
 
-| Propriété     | Type                                                                            | Commentaire                                                                               |
-|---------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| getFileBlob() | `async (fileId: number \| string, fileType: `[`fileType`](#filetype)`) => Blob` | Récupère le blob du fichier `fileId` (voir [Télécharger des fichiers](#téléchargements)). |
+| Propriété       | Type                                                                              | Commentaire                                                                                         |
+|-----------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| getFileBlob()   | `async (fileId: number \| string, fileType: `[`fileType`](#filetype)`) => Blob`   | Récupère le blob du fichier `fileId` (voir [Télécharger des fichiers](#téléchargements)).           |
+| getFileBase64() | `async (fileId: number \| string, fileType: `[`fileType`](#filetype)`) => string` | Récupère le fichier `fileId` (voir [Télécharger des fichiers](#téléchargements)) sous forme base64. |
 
 _Ouvrir [`src/fetch/getEsidoc.ts`](src/fetch/getEsidoc.ts)_
 

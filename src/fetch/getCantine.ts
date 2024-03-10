@@ -22,6 +22,10 @@ class Menu {
     async getBlob() {
         return await this.session.downloads.getFileBlob(this.documentId, "FICHIER_MENU_RESTAURATION");
     }
+
+    async getBase64() {
+        return await this.session.downloads.getFileBase64(this.documentId, "FICHIER_MENU_RESTAURATION");
+    }
 }
 
 

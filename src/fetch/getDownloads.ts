@@ -39,6 +39,18 @@ class GetDownloads {
         } as body;
         return await this.session.request.blob(url, bodyToString(data));
     }
+
+    /**
+     *
+     * @param fileId
+     * @param fileType
+     * @param year two possibilities; empty if download current year message attachment / administrative document or YYYY-YYYY year range if downloading "archive" administrative document or old messages attachment
+     */
+    async getFileBase64(fileId: number | string, fileType: fileType, year: string = "") {
+        const blob = await this.getFileBlob(fileId, fileType, year);
+        const binaryString = String.fromCharCode(...new Uint8Array(await blob.arrayBuffer()));
+        return `data:${blob.type};base64,${btoa(binaryString)}`;
+    }
 }
 
 export {
