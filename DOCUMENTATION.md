@@ -63,6 +63,68 @@ ED.setToken('token', userId)
 
 Désormais connectés, il vous faudra lire la [documentation des références](#références) pour comprendre et utiliser chaque fonctionnalités.
 
+Il existe aussi des documentation plus précises sur certaines fonctionnalités:
+- [Commandes](#commandes)
+- [Téléchargements](#téléchargements)
+
+### Commandes
+
+> [!WARNING]
+> Le module de commande est encore instable !
+
+Ce module est accessible ainsi:
+```typescript
+ED.orders
+```
+
+Une commande s'effectue ainsi:
+1. Séléction du point de passage
+2. Séléction des articles et envoie de la commande
+
+- Pour récupérer les anciennes commandes et les "points de passage" (lieux ; cafétéria, food truck);
+```typescript
+ED.orders.fetchOrders()
+```
+_Renvoie [ordersResData](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L58)_
+
+- Pour initier une commande (correspond séléction d'un point de passage);
+```typescript
+ED.orders.startOrder(1, "2024-01-01")
+```
+_Renvoie [startOrderResData](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L19)_
+
+- Pour envoyer, passer une commande;
+```typescript
+const articles = [
+  {
+    code: "BEI-POM",
+    libelle: "Beignet Pomme",
+    description: "string;",
+    estFormule: false,
+    etat: 0,
+    img: "",
+    montant: 1.5,
+    quantite: 1,
+    quantiteMax: 3,
+    estObligatoire: false,
+    ordre: 1
+  }
+]
+ED.orders.order(articles, "12:00", "2024-01-01", 1)
+```
+_Renvoie [orderPlacedResData](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/students/orders.ts#L150)_
+
+- Pour supprimer une commande;
+```typescript
+ED.orders.deleteOrder(100)
+```
+_Renvoie une réponse vide_
+
+
+### Téléchargements
+
+_Rien encore ici_
+
 ### Références
 
 > [!NOTE]
@@ -99,6 +161,8 @@ La classe principale du module.
 | workspaces        | [`GetWorkspaces`](#GetWorkspaces)                                                                                                                                         | Gestion des espaces de travail      |
 | communicationBook | [`GetCommunicationBook`](#GetCommunicationBook)                                                                                                                           | Gestion du carnet de correspondance |
 | cloud             | [`GetCloud`](#GetCloud)                                                                                                                                                   | Gestion du cloud                    |
+| orders            | [`GetOrders`](#GetOrders)                                                                                                                                                 | Gestion des commandes               |
+| downloads         | [`GetDownloads`](#GetDownloads)                                                                                                                                           | Gestion des téléchargements         |
 |                   |                                                                                                                                                                           |                                     |
 | auth              | [`Auth`](#Auth)                                                                                                                                                           | Gestion de l'authentification       |
 | request           | [`Request`](#Request)                                                                                                                                                     | Gestion du requêtage                |
@@ -165,8 +229,9 @@ La classe de gestion des modules de cantine.
 |-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
 | getBarcode()      | `() => string`                                                                                                                                             | Renvoie la valeur du code-barre du badge     |
 | getReservations() | `() =>` [`modStudReservations.params`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/login/accounts/student/modules.ts#L179) | Renvoie les paramètres module de réservation |
+| fetchSchoolMenu() | `() => Array<`[`Menu`](src/fetch/getCantine.ts#L7)`>`                                                                                                      | Renvoie la liste des menus                   |
 
-_Ouvrir [`src/fetch/getSchoolLife.ts`](src/fetch/getSchoolLife.ts)_
+_Ouvrir [`src/fetch/getCantine.ts`](src/fetch/getCantine.ts)_
 
 
 #### GetDigitalManuals
