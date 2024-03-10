@@ -1,6 +1,13 @@
 import { API } from "./constants";
 import {Session} from "./session";
-import {SESSION_EXPIRED, TOKEN_INVALID, UNAUTHORIZED, WRONG_CREDENTIALS, INVALID_API_URL} from "~/errors";
+import {
+    SESSION_EXPIRED,
+    TOKEN_INVALID,
+    UNAUTHORIZED,
+    WRONG_CREDENTIALS,
+    INVALID_API_URL,
+    OBJECT_NOT_FOUND
+} from "~/errors";
 import {RequestOptions} from "~/utils/types/requests";
 import {response} from "~/types/v3/responses/default/responses";
 
@@ -46,6 +53,9 @@ class Request {
                 }
                 if (response.code == 403) {
                     throw UNAUTHORIZED.drop(response.message);
+                }
+                if (response.code == 2010) {
+                    throw OBJECT_NOT_FOUND.drop(response.message);
                 }
                 return response;
             }) as Promise<response>;
