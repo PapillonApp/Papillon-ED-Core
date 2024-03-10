@@ -20,6 +20,7 @@ import {GetCommunicationBook} from "~/fetch/getCommunicationBook";
 import {GetCloud} from "./fetch/getCloud";
 import {GetOrders} from "./fetch/getOrders";
 import {GetEsidoc} from "./fetch/getEsidoc";
+import {GetDownloads} from "~/fetch/getDownloads";
 
 
 class Session {
@@ -46,6 +47,7 @@ class Session {
     cloud: GetCloud;
     orders: GetOrders;
     esidoc: GetEsidoc;
+    downloads: GetDownloads;
 
     auth: Auth;
     request: Request;
@@ -70,7 +72,8 @@ class Session {
         this.cloud = new GetCloud(this);
         this.orders = new GetOrders(this);
         this.esidoc = new GetEsidoc(this);
-        
+        this.downloads = new GetDownloads(this);
+
         this.auth = new Auth(this);
         this.request = new Request(this);
     }

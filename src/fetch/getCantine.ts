@@ -1,23 +1,26 @@
 import {Session} from "~/session";
-import {modStudBarcode, modStudReservations, schoolMenu, schoolMenuResData, schoolMenuResSuccess} from "~/types";
+import {modStudBarcode, modStudReservations, schoolMenu, schoolMenuResSuccess} from "~/types";
 import {body} from "~/types/v3/requests/default/body";
 import bodyToString from "~/utils/body";
 
 
 class Menu {
 
+    session: Session;
+
     semaine: number;
     libelle: string;
     documentId: number;
 
-    constructor(document: schoolMenu) {
+    constructor(document: schoolMenu, session: Session) {
+        this.session = session;
         this.semaine = document.semaine;
         this.libelle = document.doc.libelle;
         this.documentId = document.doc.id;
     }
 
     async getBlob() {
-      // TODO get document blob
+        return await this.session.downloads.getFileBlob(this.documentId, "FICHIER_MENU_RESTAURATION");
     }
 }
 
@@ -36,9 +39,9 @@ class GetCantine {
         return await this.session.request.post(url, bodyToString(data)).then((response: schoolMenuResSuccess) => {
             const menuList: Array<Menu> = [];
             for (const menu of response.data) {
-                menuList.push(new Menu(menu))
+                menuList.push(new Menu(menu, this.session));
             }
-            return menuList
+            return menuList;
         });
     }
 
