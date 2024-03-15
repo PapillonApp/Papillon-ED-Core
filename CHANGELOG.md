@@ -5,6 +5,29 @@
 - **0.2.0**: Réécriture en **typescript**
 - **1.0.0**: Quand le module sera stable
 
+## 0.2.5
+
+- Ajout de la fonction `getFileBase64()` pour récupérer un fichier en base64
+  - Ajout de `getBase64()` dans la classe `Menu` 
+
+## 0.2.4
+
+- Ajout des téléchargements
+- Ajout des commandes
+- Support de nouvelles erreurs
+- Meilleur support du token permanent
+
+## 0.2.3
+
+- Erreur `526`
+- POC commandes
+- Module Esidoc
+
+## 0.2.2
+
+- NPM organisation configured
+- Added permanent token support (`renewToken()`)
+
 ## 0.2.1
 
 - Reconfiguration du `tsconfig.json` pour build correctement et publier sur **NPM**
