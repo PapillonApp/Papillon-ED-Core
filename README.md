@@ -54,7 +54,8 @@ Le module est exporté vers NPM, il doit donc respecter les règles de codage de
   - [ ] Cloud
   - [x] Lister les membres
 - [ ] Cloud
-- [ ] Téléchargement de fichiers (`/telechargement.awp`)
+- [x] Téléchargement de fichiers (`/telechargement.awp`)
+- [x] Commandes
 
 ## Documentation
 Voir le fichier [`DOCUMENTATION.md`](DOCUMENTATION.md)
