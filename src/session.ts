@@ -25,6 +25,7 @@ import {GetEsidoc} from "./fetch/getEsidoc";
 class Session {
 
     _token: undefined | string;
+    _accessToken: undefined | string;
     isLoggedIn: boolean;
     settings?: accountParameters;
     student: account | BlankAccount;
@@ -52,6 +53,7 @@ class Session {
 
     constructor() {
         this._token = undefined; // Le token
+        this._accessToken = undefined;
         this.isLoggedIn = false;
         this.student = { id: 0 }; // Utilisateur initialisé vide
 

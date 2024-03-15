@@ -49,6 +49,8 @@ class Auth {
 
             const account = data.accounts[0];
 
+            this.session._accessToken = account.accessToken;
+
             this.session.modules = account.modules;
             this.session.settings = account.parametresIndividuels;
             this.session.school = this.#getEtabInfo(account);
