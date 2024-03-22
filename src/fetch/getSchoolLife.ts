@@ -1,7 +1,7 @@
 import bodyToString from "~/utils/body";
 import {Session} from "~/session";
 import {schoolLifeRequestData} from "~/types/v3/requests/student";
-import {schoolLifeRes, EDCoreSchoolLifeResData} from "../utils/types/schoollife";
+import {schoolLifeRes, EDCoreSchoolLifeResData} from "~/utils/types/schoollife";
 import {Timeinterval} from "~/utils/types/timeinterval";
 
 function dateAsISO860(str: string): string {
