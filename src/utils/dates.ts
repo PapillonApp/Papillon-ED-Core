@@ -1,7 +1,7 @@
 export type Timeinterval = {
     start: string
     end: string
-}
+};
 
 export function dateAsISO860(str: string): string {
     const parts = str.split(" ");
@@ -69,7 +69,7 @@ export function dateStringAsTimeInterval(str: string): Timeinterval | undefined 
         let startDate, endDate;
 
         // C'est une journée complète ("le mercredi 21 février 2024")
-        if (!str.includes(':')) {
+        if (!str.includes(":")) {
             startDate = parts[0].replace("le", "").trim() + " de 00:00";
             endDate = parts[0].split("de")[0].replace("le", "").trim() + " de 23:59";
         } else {
