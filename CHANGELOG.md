@@ -8,6 +8,7 @@
 ## 0.2.7
 - Conversion des dates de la vie-scolaire renvoyé par ED (Merci Rémy)
 - Fix de la réponse de l'EDT
+- Ajout des erreurs A2F_ERROR et ACCOUNT_DISABLED en vue du nouveau système de QCM
 
 ## 0.2.6
 
