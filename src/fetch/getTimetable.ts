@@ -20,9 +20,7 @@ class GetTimetable {
             avecTrous: false
         } as timetableRequestData;
         return await this.session.request.post(url, bodyToString(data)).then((response: timetableRes) => {
-            return {
-                ...response.data
-            };
+            return response.data;
         }) as Promise<timetableCourseList>;
     }
 
@@ -34,9 +32,7 @@ class GetTimetable {
             avecTrous: false
         } as timetableRequestData;
         return await this.session.request.post(url, bodyToString(data)).then((response: timetableRes) => {
-            return {
-                ...response.data
-            };
+            return response.data;
         }) as Promise<timetableCourseList>;
     }
 }
