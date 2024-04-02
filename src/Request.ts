@@ -6,7 +6,9 @@ import {
     UNAUTHORIZED,
     WRONG_CREDENTIALS,
     INVALID_API_URL,
-    OBJECT_NOT_FOUND, INVALID_BODY
+    OBJECT_NOT_FOUND,
+    INVALID_BODY,
+    A2F_ERROR
 } from "~/errors";
 import {RequestOptions} from "~/utils/types/requests";
 import {response} from "~/types/v3/responses/default/responses";
@@ -69,6 +71,9 @@ class Request {
                 }
                 if (response.code == 210) {
                     throw OBJECT_NOT_FOUND.drop(response.message);
+                }
+                if(response.code == 250) {
+                    throw A2F_ERROR.drop();
                 }
                 return response;
             }) as Promise<response>;
