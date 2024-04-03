@@ -12,6 +12,8 @@ const MODULE_DISABLE = error(8, (moduleName: string) => `The module is not activ
 const INVALID_API_URL = error(9, "The API URL provided is invalid.");
 const OBJECT_NOT_FOUND = error(10, "The object you were trying to retrieve was not found by Ecoledirecte (you provided an `id`, and the request errored with code 210).");
 const INVALID_BODY = error(11, "Values provided in body are wrong and the request errored with code 512.");
+const A2F_ERROR = error(12, "Dual authentication required");
+const ACCOUNT_DISABLED = error(13, "Disabled Account");
 
 function error(code: number, message: ErrorMessage){
     return {
@@ -35,5 +37,7 @@ export {
     MODULE_DISABLE,
     INVALID_API_URL,
     OBJECT_NOT_FOUND,
-    INVALID_BODY
+    INVALID_BODY,
+    A2F_ERROR,
+    ACCOUNT_DISABLED,
 };
