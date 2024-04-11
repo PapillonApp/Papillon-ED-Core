@@ -1,4 +1,4 @@
-import { API } from "./constants";
+import { API, VERSION } from "./constants";
 import {Session} from "./session";
 import {
     SESSION_EXPIRED,
@@ -8,7 +8,8 @@ import {
     INVALID_API_URL,
     OBJECT_NOT_FOUND,
     INVALID_BODY,
-    A2F_ERROR
+    A2F_ERROR,
+    INVALID_VERSION
 } from "~/errors";
 import {RequestOptions} from "~/utils/types/requests";
 import {response} from "~/types/v3/responses/default/responses";
@@ -39,9 +40,46 @@ class Request {
         }).then(response => response.blob());
     }
 
+
+    async get(url: string) {
+        if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token;
+        //verbe=get
+        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=get&v=${VERSION}` : `?verbe=get&v=${VERSION}`}`;
+        return await fetch(finalUrl, {
+            method: "POST",
+            headers: this.requestOptions.headers,
+        })
+            .then(res => res.text())
+            .then(res => {
+                this.handleResponse(res);
+            });
+    }
+
+
+    async post2(url: string, body: string) {
+        if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token;
+        //verbe=post
+        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=post&v=${VERSION}` : `?verbe=post&v=${VERSION}`}`;
+        return await fetch(finalUrl, {
+            method: "POST",
+            headers: this.requestOptions.headers,
+            body: body
+        })
+            .then(res => res.text())
+            .then(res => {
+                this.handleResponse(res);
+            });
+    }
+
+    handleResponse(res: string) {
+        const response = res.startsWith("{") ? JSON.parse(res) : res;
+        return response;
+    }
+
     async post(url: string, body: string) {
         if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token;
-        const finalUrl = API + url;
+        //verbe=post
+        const finalUrl = `${API}${url}${url.includes("?") ? `&v=${VERSION}` : `?v=${VERSION}`}`;
         return await fetch(finalUrl, {
             method: "POST",
             headers: this.requestOptions.headers,
@@ -74,6 +112,9 @@ class Request {
                 }
                 if(response.code == 250) {
                     throw A2F_ERROR.drop();
+                }
+                if(response.code == 517) {
+                    throw INVALID_VERSION.drop();
                 }
                 return response;
             }) as Promise<response>;
