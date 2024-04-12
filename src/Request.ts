@@ -40,24 +40,48 @@ class Request {
         }).then(response => response.blob());
     }
 
+    /**
+     *
+     * @param url   The path to fetch
+     * @param body  The string formatted body data
+     * @param params    A string containing extra parameters (e.g "foo=bar&mode=auto")
+     */
     async post(url: string, body: string, params?: string) {
         const paramsString = params ? "&" + params: "";
         const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=post&v=${VERSION}${paramsString}` : `?verbe=post&v=${VERSION}${paramsString}`}`;
         return await this.request(finalUrl, body);
     }
 
+    /**
+     *
+     * @param url   The path to fetch
+     * @param body  The string formatted body data
+     * @param params    A string containing extra parameters (e.g "foo=bar&mode=auto")
+     */
     async get(url: string, body: string, params?: string) {
         const paramsString = params ? "&" + params: "";
         const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=get&v=${VERSION}${paramsString}` : `?verbe=get&v=${VERSION}${paramsString}`}`;
         return await this.request(finalUrl, body);
     }
 
+    /**
+     *
+     * @param url   The path to fetch
+     * @param body  The string formatted body data
+     * @param params    A string containing extra parameters (e.g "foo=bar&mode=auto")
+     */
     async delete(url: string, body: string, params?: string) {
         const paramsString = params ? "&" + params: "";
         const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=delete&v=${VERSION}${paramsString}` : `?verbe=delete&v=${VERSION}${paramsString}`}`;
         return await this.request(finalUrl, body);
     }
 
+    /**
+     *
+     * @param url   The path to fetch
+     * @param body  The string formatted body data
+     * @param params    A string containing extra parameters (e.g "foo=bar&mode=auto")
+     */
     async put(url: string, body: string, params?: string) {
         const paramsString = params ? "&" + params: "";
         const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=put&v=${VERSION}${paramsString}` : `?verbe=put&v=${VERSION}${paramsString}`}`;
