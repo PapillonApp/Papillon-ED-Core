@@ -73,25 +73,25 @@ class Auth {
             fa: []
         } as authRequestData & { fa: Array<object> };
         if(fa && fa.cv && fa.cn)  { body.fa.push({ "cv": fa.cv, "cn": fa.cn }); }
-        return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
+        return await this.session.request.request(url, bodyToString(body)).then((response: loginRes) => {
             this.#parseLoginResponse(response);
         });
     }
 
     async get2FA() {
-        const url = "/connexion/doubleauth.awp?verbe=get";
+        const url = "/connexion/doubleauth.awp";
         const body = {} as body;
-        return await this.session.request.post(url, bodyToString(body)).then((response: EDCore2FAData) => {
-            
+        return await this.session.request.get(url, bodyToString(body)).then((response: EDCore2FAData) => {
+
             response.data.question = Buffer.from(response.data.question, "base64").toString();
             for(let a = 0; a<response.data.propositions.length; a++) {
                 response.data.propositions[a] = Buffer.from(response.data.propositions[a], "base64").toString();
             }
         });
     }
-    
+
     async resolve2FA(anwser: string) {
-        const url = "/connexion/doubleauth.awp?verbe=post";
+        const url = "/connexion/doubleauth.awp";
         const body = {
             choix: Buffer.from(anwser).toString("base64")
         } as EDCore2FAValidationRequest;
