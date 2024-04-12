@@ -1,12 +1,10 @@
-import {account, loginRes, loginResData} from "~/types/v3";
+import {account, doubleauthRes, doubleauthValidationRes, loginRes, loginResData} from "~/types/v3";
 import bodyToString from "./utils/body";
 import {Session} from "./session";
 import {EstablishmentInfo} from "~/utils/types/establishments";
 import {AccountInfo, Profile} from "~/utils/types/accounts";
 import {authRequestData} from "~/types/v3/requests/student";
 import { body } from "~/types/v3/requests/default/body";
-
-import { EDCore2FAData, EDCore2FAValidationRequest, EDCore2FAValidationResponse } from "./utils/types/2fa";
 
 class Auth {
 
@@ -62,7 +60,7 @@ class Auth {
         }
     }
 
-    async login(username: string, password: string, uuid: string, fa: {cv: string, cn: string} | null) {
+    async login(username: string, password: string, uuid: string, fa?: { cv: string, cn: string }) {
         const url = "/login.awp";
         const body = {
             identifiant: username,
@@ -71,8 +69,10 @@ class Auth {
             sesouvenirdemoi: true,
             uuid: uuid,
             fa: []
-        } as authRequestData & { fa: Array<object> };
-        if(fa && fa.cv && fa.cn)  { body.fa.push({ "cv": fa.cv, "cn": fa.cn }); }
+        } as authRequestData;
+        if (fa?.cv && fa?.cn) {
+            body.fa.push({ cv: fa.cv, cn: fa.cn });
+        }
         return await this.session.request.request(url, bodyToString(body)).then((response: loginRes) => {
             this.#parseLoginResponse(response);
         });
@@ -81,7 +81,7 @@ class Auth {
     async get2FA() {
         const url = "/connexion/doubleauth.awp";
         const body = {} as body;
-        return await this.session.request.get(url, bodyToString(body)).then((response: EDCore2FAData) => {
+        return await this.session.request.get(url, bodyToString(body)).then((response: doubleauthRes) => {
 
             response.data.question = Buffer.from(response.data.question, "base64").toString();
             for(let a = 0; a<response.data.propositions.length; a++) {
@@ -95,7 +95,7 @@ class Auth {
         const body = {
             choix: Buffer.from(anwser).toString("base64")
         } as EDCore2FAValidationRequest;
-        return await this.session.request.post(url, bodyToString(body)).then((response: EDCore2FAValidationResponse) => {
+        return await this.session.request.post(url, bodyToString(body)).then((response: doubleauthValidationRes) => {
             return response.data;
         });
     }
