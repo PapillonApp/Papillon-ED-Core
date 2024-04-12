@@ -1,15 +1,15 @@
-import { API, VERSION } from "./constants";
+import {API, VERSION} from "./constants";
 import {Session} from "./session";
 import {
+    A2F_ERROR,
+    INVALID_API_URL,
+    INVALID_BODY,
+    INVALID_VERSION,
+    OBJECT_NOT_FOUND,
     SESSION_EXPIRED,
     TOKEN_INVALID,
     UNAUTHORIZED,
-    WRONG_CREDENTIALS,
-    INVALID_API_URL,
-    OBJECT_NOT_FOUND,
-    INVALID_BODY,
-    A2F_ERROR,
-    INVALID_VERSION
+    WRONG_CREDENTIALS
 } from "~/errors";
 import {RequestOptions} from "~/utils/types/requests";
 import {response} from "~/types/v3/responses/default/responses";
@@ -40,47 +40,24 @@ class Request {
         }).then(response => response.blob());
     }
 
-
-    async get(url: string) {
-        if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token;
-        //verbe=get
-        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=get&v=${VERSION}` : `?verbe=get&v=${VERSION}`}`;
-        return await fetch(finalUrl, {
-            method: "POST",
-            headers: this.requestOptions.headers,
-        })
-            .then(res => res.text())
-            .then(res => {
-                this.handleResponse(res);
-            });
-    }
-
-
-    async post2(url: string, body: string) {
-        if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token;
-        //verbe=post
-        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=post&v=${VERSION}` : `?verbe=post&v=${VERSION}`}`;
-        return await fetch(finalUrl, {
-            method: "POST",
-            headers: this.requestOptions.headers,
-            body: body
-        })
-            .then(res => res.text())
-            .then(res => {
-                this.handleResponse(res);
-            });
-    }
-
-    handleResponse(res: string) {
-        const response = res.startsWith("{") ? JSON.parse(res) : res;
-        return response;
-    }
-
     async post(url: string, body: string) {
+        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=post&v=${VERSION}` : `&verbe=post&v=${VERSION}`}`;
+        return await this.request(finalUrl, body);
+    }
+
+    async get(url: string, body: string) {
+        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=get&v=${VERSION}` : `&verbe=get&v=${VERSION}`}`;
+        return await this.request(finalUrl, body);
+    }
+
+    async delete(url: string, body: string) {
+        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=delete&v=${VERSION}` : `&verbe=delete&v=${VERSION}`}`;
+        return await this.request(finalUrl, body);
+    }
+
+    async request(url: string, body: string) {
         if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token;
-        //verbe=post
-        const finalUrl = `${API}${url}${url.includes("?") ? `&v=${VERSION}` : `?v=${VERSION}`}`;
-        return await fetch(finalUrl, {
+        return await fetch(url, {
             method: "POST",
             headers: this.requestOptions.headers,
             body: body
