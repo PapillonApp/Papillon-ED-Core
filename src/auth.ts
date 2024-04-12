@@ -67,11 +67,10 @@ class Auth {
             motdepasse: encodeURIComponent(password),
             isReLogin: false,
             sesouvenirdemoi: true,
-            uuid: uuid,
-            fa: []
+            uuid: uuid
         } as authRequestData;
         if (fa?.cv && fa?.cn) {
-            body.fa.push({ cv: fa.cv, cn: fa.cn });
+            body.fa = [{ cv: fa.cv, cn: fa.cn }];
         }
         return await this.session.request.request(url, bodyToString(body)).then((response: loginRes) => {
             this.#parseLoginResponse(response);
