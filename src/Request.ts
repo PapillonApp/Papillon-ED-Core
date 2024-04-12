@@ -40,18 +40,27 @@ class Request {
         }).then(response => response.blob());
     }
 
-    async post(url: string, body: string) {
-        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=post&v=${VERSION}` : `&verbe=post&v=${VERSION}`}`;
+    async post(url: string, body: string, params?: string) {
+        const paramsString = params ? "&" + params: "";
+        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=post&v=${VERSION}${paramsString}` : `?verbe=post&v=${VERSION}${paramsString}`}`;
         return await this.request(finalUrl, body);
     }
 
-    async get(url: string, body: string) {
-        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=get&v=${VERSION}` : `&verbe=get&v=${VERSION}`}`;
+    async get(url: string, body: string, params?: string) {
+        const paramsString = params ? "&" + params: "";
+        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=get&v=${VERSION}${paramsString}` : `?verbe=get&v=${VERSION}${paramsString}`}`;
         return await this.request(finalUrl, body);
     }
 
-    async delete(url: string, body: string) {
-        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=delete&v=${VERSION}` : `&verbe=delete&v=${VERSION}`}`;
+    async delete(url: string, body: string, params?: string) {
+        const paramsString = params ? "&" + params: "";
+        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=delete&v=${VERSION}${paramsString}` : `?verbe=delete&v=${VERSION}${paramsString}`}`;
+        return await this.request(finalUrl, body);
+    }
+
+    async put(url: string, body: string, params?: string) {
+        const paramsString = params ? "&" + params: "";
+        const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=put&v=${VERSION}${paramsString}` : `?verbe=put&v=${VERSION}${paramsString}`}`;
         return await this.request(finalUrl, body);
     }
 
