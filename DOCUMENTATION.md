@@ -553,7 +553,7 @@ Le module est structuré de la manière suivante :
 - `src/session.ts` : Contient les fonctions de gestion de la session
 - `src/auth.ts` : Contient les fonctions d'authentification
 - `src/errors.ts` : Contient les erreurs pouvant être retournées par le module. *Les erreurs doivent suivre la même structure pour chaque module.*
-- `src/types`: Submodule git des types des réponses ED. (réadaptation de [Armand CAMPONOVO](https:/github.com/camarm-dev), travail original [ab2r](https://github.com/ab2r))
+- `src/types`: Submodule git des types des réponses ED. (réadaptation de [Armand CAMPONOVO](https://github.com/camarm-dev), travail original [ab2r](https://github.com/ab2r))
 - `src/utils/types`: Contient les types des `data` requêtes, et des types utiles à ce module.
 
 ## Scripts
