@@ -45,11 +45,12 @@ class Request {
      * @param url   The path to fetch
      * @param body  The string formatted body data
      * @param params    A string containing extra parameters (e.g "foo=bar&mode=auto")
+     * @param ignoreErrors  Disable error handling, will return a response, even if it's an error response
      */
-    async post(url: string, body: string, params?: string) {
+    async post(url: string, body: string, params?: string, ignoreErrors: boolean = false) {
         const paramsString = params ? "&" + params: "";
         const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=post&v=${VERSION}${paramsString}` : `?verbe=post&v=${VERSION}${paramsString}`}`;
-        return await this.request(finalUrl, body);
+        return await this.request(finalUrl, body, ignoreErrors);
     }
 
     /**
@@ -57,11 +58,12 @@ class Request {
      * @param url   The path to fetch
      * @param body  The string formatted body data
      * @param params    A string containing extra parameters (e.g "foo=bar&mode=auto")
+     * @param ignoreErrors  Disable error handling, will return a response, even if it's an error response
      */
-    async get(url: string, body: string, params?: string) {
+    async get(url: string, body: string, params?: string, ignoreErrors: boolean = false) {
         const paramsString = params ? "&" + params: "";
         const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=get&v=${VERSION}${paramsString}` : `?verbe=get&v=${VERSION}${paramsString}`}`;
-        return await this.request(finalUrl, body);
+        return await this.request(finalUrl, body, ignoreErrors);
     }
 
     /**
@@ -69,11 +71,12 @@ class Request {
      * @param url   The path to fetch
      * @param body  The string formatted body data
      * @param params    A string containing extra parameters (e.g "foo=bar&mode=auto")
+     * @param ignoreErrors  Disable error handling, will return a response, even if it's an error response
      */
-    async delete(url: string, body: string, params?: string) {
+    async delete(url: string, body: string, params?: string, ignoreErrors: boolean = false) {
         const paramsString = params ? "&" + params: "";
         const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=delete&v=${VERSION}${paramsString}` : `?verbe=delete&v=${VERSION}${paramsString}`}`;
-        return await this.request(finalUrl, body);
+        return await this.request(finalUrl, body, ignoreErrors);
     }
 
     /**
@@ -81,15 +84,16 @@ class Request {
      * @param url   The path to fetch
      * @param body  The string formatted body data
      * @param params    A string containing extra parameters (e.g "foo=bar&mode=auto")
+     * @param ignoreErrors  Disable error handling, will return a response, even if it's an error response
      */
-    async put(url: string, body: string, params?: string) {
+    async put(url: string, body: string, params?: string, ignoreErrors: boolean = false) {
         const paramsString = params ? "&" + params: "";
         const finalUrl = `${API}${url}${url.includes("?") ? `&verbe=put&v=${VERSION}${paramsString}` : `?verbe=put&v=${VERSION}${paramsString}`}`;
-        return await this.request(finalUrl, body);
+        return await this.request(finalUrl, body, ignoreErrors);
     }
 
-    async request(url: string, body: string) {
-        if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token;
+    async request(url: string, body: string, ignoreErrors: boolean = false) {
+        if(this.session._token) this.requestOptions.headers["X-token"] = this.session._token;
         return await fetch(url, {
             method: "POST",
             headers: this.requestOptions.headers,
@@ -97,7 +101,8 @@ class Request {
         })
             .then(res => res.text())
             .then(res => {
-                const response = res.startsWith("{") ? JSON.parse(res) : res;
+                const response = res.startsWith("{") ? JSON.parse(res): res;
+                if (ignoreErrors) return response;
                 if (typeof response != "object" && response.includes("<title>Loading...</title>")) throw INVALID_API_URL.drop();
                 if (response.code == 525) {
                     throw SESSION_EXPIRED.drop();
