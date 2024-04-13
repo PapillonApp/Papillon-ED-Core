@@ -113,17 +113,21 @@ Quand une erreur de code `12` est renvoyée, vous devez répondre à des questio
 
 _Il est conseillé de lire [`examples/login.ts`](examples/login.ts) pour voir une implémentation de cette double authentification_
 
-1. Récupérer le questionnaire
+1. Récupérer le jeton de la double authentification
 ```typescript
-const QCM = await ED.auth.get2FA()
+const token = await ED.auth.get2FAToken("username", "password")
+```
+2. Récupérer le questionnaire
+```typescript
+const QCM = await ED.auth.get2FA(token)
 QCM.question // La question
 QCM.propositions // Les réponses possibles
 ```
-2. Envoyer la réponse
+3. Envoyer la réponse
 ```typescript
 const authFactors = await ED.auth.resolve2FA("La réponse") // Renvoie un objet utilisé pour s'authentifier
 ```
-3. S'authentifier avec les facteurs
+4. S'authentifier avec les facteurs
 ```typescript
 await ED.auth.login("username", "password", "uuid", authFactors)
 ```
