@@ -3,9 +3,9 @@
  *
  * Escape function allow to transform encoded chars into utf-8 ones.
 * */
-export function decodeString(value: string): string {
+export function decodeString(value: string, escapeString: boolean = true): string {
     const decoded = Buffer.from(value, "base64").toString();
-    if (escape) {
+    if (escape && escapeString) {
         return decodeURIComponent(escape(decoded));
     }
     return decoded;
