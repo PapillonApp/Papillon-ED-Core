@@ -8,7 +8,7 @@ import {GetMessaging} from "~/fetch/getMessaging";
 
 import {Request} from "./Request";
 import {Auth} from "./auth";
-import {account, accountModule} from "~/types/v3";
+import {accountModule} from "~/types/v3";
 import {BlankAccount, accountParameters, AccountInfo} from "~/utils/types/accounts";
 import {EmptyModule} from "~/utils/types/modules";
 import {EstablishmentInfo} from "~/utils/types/establishments";
