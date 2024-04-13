@@ -11,6 +11,7 @@
 - Réécriture de `Request.ts` pour une meilleure gestion et flexibilité des requêtes vers Ecoledirecte
 - Amélioration de l'exemple `login.ts`: 2FA et interface agréable
   - Ajout de `ora` et `enquirer` aux dépendances de développement
+- Ajout de `getProfilePictureBase64` dans `getDownloads.ts` pour télécharger la photo de profil en base64
 - Mise à jour de la documentation en conséquences
 
 ## 0.2.7
