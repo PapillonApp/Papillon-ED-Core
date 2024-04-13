@@ -30,11 +30,24 @@ class Request {
         };
     }
 
-    async blob(url: string, body: string) {
+    /**
+     *
+     * @param url Path to fetch or Url to fetch
+     * @param body request payload
+     * @param completeUrl set to true, `url` will be used as a full url, not a route of "api.ecoledirecte.com"
+     * @param method GET request or POST request
+     */
+    async blob(url: string, body: string, completeUrl: boolean = false, method: "POST" | "GET" = "POST") {
         if(this.session.isLoggedIn) this.requestOptions.headers["X-token"] = this.session._token;
-        const finalUrl = API + url;
+        const finalUrl = completeUrl ? url:  API + url;
+        if (method == "GET") {
+            return await fetch(finalUrl, {
+                method: method,
+                headers: this.requestOptions.headers
+            }).then(response => response.blob());
+        }
         return await fetch(finalUrl, {
-            method: "POST",
+            method: method,
             headers: this.requestOptions.headers,
             body: body
         }).then(response => response.blob());
