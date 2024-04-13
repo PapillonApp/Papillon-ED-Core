@@ -49,7 +49,7 @@ class Auth {
             sexe: profile.sexe ?? "",
             classe: profile.classe,
             photo: profile.photo ?? ""
-        };
+        } as AccountInfo;
     }
 
     #parseLoginResponse(response: loginRes) {
