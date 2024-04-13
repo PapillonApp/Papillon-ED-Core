@@ -1,9 +1,9 @@
 import {EDCore} from "../index";
-import {studentAccount} from "~/types";
 import { v4 as uuidv4 } from "uuid";
 // @ts-ignore
 import { Select } from "enquirer";
 import ora, {Ora} from "ora";
+import {AccountInfo} from "../src/utils/types/accounts";
 
 export const ED = new EDCore();
 
@@ -29,7 +29,7 @@ async function handle2FA() {
 }
 
 function loggedInHook(loader: Ora) {
-    const account = ED.student as studentAccount;
+    const account = ED.student as AccountInfo;
     loader.succeed(`Connecté en tant que ${account.prenom} ${account.nom}`);
 }
 
