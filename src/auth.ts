@@ -1,10 +1,19 @@
-import {account, doubleauthRes, doubleauthValidationRes, loginRes, loginResData} from "~/types/v3";
+import {
+    account,
+    doubleauthResData,
+    doubleauthResSuccess,
+    doubleauthValidationResData,
+    doubleauthValidationResSuccess,
+    loginRes,
+    loginResData
+} from "~/types/v3";
 import bodyToString from "./utils/body";
 import {Session} from "./session";
 import {EstablishmentInfo} from "~/utils/types/establishments";
 import {AccountInfo, Profile} from "~/utils/types/accounts";
-import {authRequestData} from "~/types/v3/requests/student";
+import {authRequestData, loginQCMValidationRequestData} from "~/types/v3/requests/student";
 import { body } from "~/types/v3/requests/default/body";
+import {decodeString, encodeString} from "~/utils/base64";
 
 class Auth {
 
@@ -72,29 +81,45 @@ class Auth {
         if (fa?.cv && fa?.cn) {
             body.fa = [{ cv: fa.cv, cn: fa.cn }];
         }
-        return await this.session.request.request(url, bodyToString(body)).then((response: loginRes) => {
+        return await this.session.request.post(url, bodyToString(body)).then((response: loginRes) => {
             this.#parseLoginResponse(response);
         });
     }
 
-    async get2FA() {
+    async get2FAToken(username: string, password: string): Promise<string> {
+        const url = "/login.awp";
+        const body = {
+            identifiant: username,
+            motdepasse: encodeURIComponent(password)
+        } as authRequestData;
+        return await this.session.request.post(url, bodyToString(body), "", true).then((response: loginRes) => response.token);
+    }
+
+    async get2FA(token: string): Promise<doubleauthResData> {
         const url = "/connexion/doubleauth.awp";
         const body = {} as body;
-        return await this.session.request.get(url, bodyToString(body)).then((response: doubleauthRes) => {
 
-            response.data.question = Buffer.from(response.data.question, "base64").toString();
-            for(let a = 0; a<response.data.propositions.length; a++) {
-                response.data.propositions[a] = Buffer.from(response.data.propositions[a], "base64").toString();
+        this.session._token = token;
+        return await this.session.request.get(url, bodyToString(body)).then((response: doubleauthResSuccess) => {
+            const parsedData = response.data;
+            const choices = [];
+
+            parsedData.question = decodeString(parsedData.question, false);
+            for (const choice of parsedData.propositions) {
+                choices.push(decodeString(choice, false));
             }
+            parsedData.propositions = choices;
+
+            return parsedData;
         });
     }
 
-    async resolve2FA(anwser: string) {
+    async resolve2FA(anwser: string): Promise<doubleauthValidationResData> {
         const url = "/connexion/doubleauth.awp";
         const body = {
-            choix: Buffer.from(anwser).toString("base64")
-        } as EDCore2FAValidationRequest;
-        return await this.session.request.post(url, bodyToString(body)).then((response: doubleauthValidationRes) => {
+            choix: encodeString(anwser)
+        } as loginQCMValidationRequestData;
+        return await this.session.request.post(url, bodyToString(body)).then((response: doubleauthValidationResSuccess) => {
             return response.data;
         });
     }
