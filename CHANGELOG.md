@@ -5,6 +5,14 @@
 - **0.2.0**: Réécriture en **typescript**
 - **1.0.0**: Quand le module sera stable
 
+## 0.2.8
+- Prise en charge de la **double authentification**
+  - Avec ajout des types
+- Réécriture de `Request.ts` pour une meilleure gestion et flexibilité des requêtes vers Ecoledirecte
+- Amélioration de l'exemple `login.ts`: 2FA et interface agréable
+  - Ajout de `ora` et `enquirer` aux dépendances de développement
+- Mise à jour de la documentation en conséquences
+
 ## 0.2.7
 - Conversion des dates de la vie-scolaire renvoyé par ED (Merci Rémy)
 - Fix de la réponse de l'EDT
