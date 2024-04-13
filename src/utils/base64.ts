@@ -14,6 +14,6 @@ export function decodeString(value: string, escapeString: boolean = true): strin
 /**
  * Encode string to b64
  */
-export function encodeString(value: string): string {
-    return Buffer.from(value).toString("base64");
+export function encodeString(value: string, encoding: BufferEncoding = "utf8"): string {
+    return Buffer.from(value, encoding).toString("base64");
 }
