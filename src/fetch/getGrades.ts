@@ -13,11 +13,11 @@ class GetGrades {
     }
 
     async fetch(): Promise<gradesResData> {
-        const url = `/eleves/${this.session.student.id}/notes.awp?verbe=get`;
+        const url = `/eleves/${this.session.student.id}/notes.awp`;
         const body = {
             anneeScolaire: ""
         } as gradesRequestData;
-        return await this.session.request.post(url, bodyToString(body)).then((response: gradesRes) => {
+        return await this.session.request.get(url, bodyToString(body)).then((response: gradesRes) => {
             const data = response.data as gradesResData;
             data.parametrage.libelleEval1 = decodeString(data.parametrage.libelleEval1);
             data.parametrage.libelleEval2 = decodeString(data.parametrage.libelleEval2);

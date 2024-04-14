@@ -12,9 +12,9 @@ class GetCloud {
     }
 
     async fetch(): Promise<Array<cloudResFolder>> {
-        const url = `/cloud/E/${this.session.student.id}.awp?verbe=get`;
+        const url = `/cloud/E/${this.session.student.id}.awp`;
         const body = {} as body;
-        return await this.session.request.post(url, bodyToString(body)).then((response: cloudRes) => {
+        return await this.session.request.get(url, bodyToString(body)).then((response: cloudRes) => {
             return response.data;
         }) as Promise<Array<cloudResFolder>>;
     }

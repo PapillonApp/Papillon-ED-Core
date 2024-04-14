@@ -4,6 +4,7 @@ interface RequestOptions {
 
 interface EDHeaders {
     "X-token"?: string
+    "Referer"?: string
 }
 
 export type {

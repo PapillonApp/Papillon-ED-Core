@@ -12,13 +12,13 @@ class GetForms {
     }
 
     async fetch(annee: string = "2023-2024"): Promise<Array<form>> {
-        const url = "/edforms.awp?verbe=get";
+        const url = "/edforms.awp";
         const data = {
             anneeForms: annee,
             typeEntity: "E",
             idEntity: this.session.student.id
         } as formsRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then((response: formsRes) => response.data as Array<form>);
+        return await this.session.request.get(url, bodyToString(data)).then((response: formsRes) => response.data as Array<form>);
     }
 }
 

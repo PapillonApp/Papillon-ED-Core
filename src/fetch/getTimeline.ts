@@ -13,15 +13,15 @@ class GetTimeline {
     }
 
     async fetch(): Promise<Array<studTlElem>> {
-        const url = `/eleves/${this.session.student.id}/timeline.awp?verbe=get`;
+        const url = `/eleves/${this.session.student.id}/timeline.awp`;
         const data = {} as timelineRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then((response: studTlRes) => response.data as Array<studTlElem>);
+        return await this.session.request.get(url, bodyToString(data)).then((response: studTlRes) => response.data as Array<studTlElem>);
     }
 
     async fetchCommonTimeline(): Promise<studCommonTlResData> {
-        const url = `/E/${this.session.student.id}/timelineAccueilCommun.awp?verbe=get`;
+        const url = `/E/${this.session.student.id}/timelineAccueilCommun.awp`;
         const data = {} as timelineRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then((response: studCommonTlRes) => {
+        return await this.session.request.get(url, bodyToString(data)).then((response: studCommonTlRes) => {
             if (response.code == 200) {
                 const data = response.data as studCommonTlResData;
                 data.evenements.forEach(event => {

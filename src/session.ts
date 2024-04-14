@@ -8,8 +8,8 @@ import {GetMessaging} from "~/fetch/getMessaging";
 
 import {Request} from "./Request";
 import {Auth} from "./auth";
-import {account, accountModule} from "~/types/v3";
-import {BlankAccount, accountParameters} from "~/utils/types/accounts";
+import {accountModule} from "~/types/v3";
+import {BlankAccount, accountParameters, AccountInfo} from "~/utils/types/accounts";
 import {EmptyModule} from "~/utils/types/modules";
 import {EstablishmentInfo} from "~/utils/types/establishments";
 import {GetTimeline} from "~/fetch/getTimeline";
@@ -29,7 +29,7 @@ class Session {
     _accessToken: undefined | string;
     isLoggedIn: boolean;
     settings?: accountParameters;
-    student: account | BlankAccount;
+    student: AccountInfo | BlankAccount;
     school?: EstablishmentInfo;
     modules?: Array<accountModule>;
 

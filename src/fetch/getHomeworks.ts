@@ -39,15 +39,15 @@ class GetHomeworks {
     }
 
     async fetch(): Promise<textbookResData> {
-        const url = `/Eleves/${this.session.student.id}/cahierdetexte.awp?verbe=get`;
+        const url = `/Eleves/${this.session.student.id}/cahierdetexte.awp`;
         const data = {} as textbookRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then((response: textbookResSuccess) => response.data);
+        return await this.session.request.get(url, bodyToString(data)).then((response: textbookResSuccess) => response.data);
     }
 
     async getByDay(day: string, removeHTMLTags: boolean = true): Promise<textbookDateResData> {
-        const url = `/Eleves/${this.session.student.id}/cahierdetexte/${day}.awp?verbe=get`;
+        const url = `/Eleves/${this.session.student.id}/cahierdetexte/${day}.awp`;
         const data = {} as textbookRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then((response: textbookDateRes) => {
+        return await this.session.request.get(url, bodyToString(data)).then((response: textbookDateRes) => {
             if (response.code == 200) {
                 const data = response.data as textbookDateResData;
                 const homeworks = data.matieres;
@@ -62,12 +62,12 @@ class GetHomeworks {
     }
 
     async setStatus(homeworkID: number, isDone: boolean): Promise<unknown> {
-        const url = `/E/${this.session.student.id}/cahierdetexte.awp?verbe=put`;
+        const url = `/E/${this.session.student.id}/cahierdetexte.awp`;
         const data = {
             idDevoirsEffectues: [isDone ? homeworkID : null],
             idDevoirsNonEffectues: [isDone ? null : homeworkID]
         } as textbookSetDoneStatusRequestData;
-        return await this.session.request.post(url, bodyToString(data));
+        return await this.session.request.put(url, bodyToString(data));
     }
 }
 
