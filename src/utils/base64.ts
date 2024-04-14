@@ -1,3 +1,5 @@
+import {Buffer} from 'buffer';
+
 /**
  * This function decodes the b64 input string, and decode uri escaped chars, if escape function exists.
  *
