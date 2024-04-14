@@ -29,8 +29,8 @@ class GetOrders {
     async fetchOrders(): Promise<ordersResData | undefined> {
         if(!this.isEnabled()) return undefined;
         const data = {} as body;
-        const url = `/E/${this.session.student.id}/commandesPassage.awp?verbe=get`;
-        return await this.session.request.post(url, bodyToString(data)).then((response: ordersResSuccess) => response.data);
+        const url = `/E/${this.session.student.id}/commandesPassage.awp`;
+        return await this.session.request.get(url, bodyToString(data)).then((response: ordersResSuccess) => response.data);
     }
 
     /**
@@ -42,8 +42,8 @@ class GetOrders {
         const splitDate = date.split("-");
         const formattedDate = `${splitDate[0]}${splitDate[1]}${splitDate[2]}`;
         const data = {} as body;
-        const url = `/E/${this.session.student.id}/commandesPassage/pointsDePassage/${placeId}/${formattedDate}.awp?verbe=get`;
-        return await this.session.request.post(url, bodyToString(data)).then((response: startOrderResSuccess) => response.data);
+        const url = `/E/${this.session.student.id}/commandesPassage/pointsDePassage/${placeId}/${formattedDate}.awp`;
+        return await this.session.request.get(url, bodyToString(data)).then((response: startOrderResSuccess) => response.data);
     }
 
     /**
@@ -54,7 +54,7 @@ class GetOrders {
      * @param placeId - the id of "point de passage" (probably means place)
      */
     async order(articles: Array<detailedArticle>, hour: string, date: string, placeId: number): Promise<orderPlacedResData> {
-        const url = `/E/${this.session.student.id}/commandesPassage.awp?verbe=post`;
+        const url = `/E/${this.session.student.id}/commandesPassage.awp`;
         const data = {
             articles: articles,
             creneau: hour,
@@ -65,9 +65,9 @@ class GetOrders {
     }
 
     async deleteOrder(orderId: number): Promise<emptyRes> {
-        const url = `/E/${this.session.student.id}/commandesPassage.awp/${orderId}.awp?verbe=delete`;
+        const url = `/E/${this.session.student.id}/commandesPassage.awp/${orderId}.awp`;
         const data = {} as body;
-        return await this.session.request.post(url, bodyToString(data)).then((response: emptyRes) => response);
+        return await this.session.request.delete(url, bodyToString(data)).then((response: emptyRes) => response);
     }
 }
 

@@ -1,8 +1,6 @@
 import {course} from "~/types";
 
-interface timetableCourseList {
-    [key: string]: course
-}
+type timetableCourseList = course[];
 
 export type {
     timetableCourseList

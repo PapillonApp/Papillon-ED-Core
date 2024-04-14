@@ -11,34 +11,36 @@
   - [Scripts](#scripts)
 
 
-## Guide de l'utilisateur
+# Guide de l'utilisateur
 
 Ce guide vous permet de comprendre comment fonctionne ce module et comment vous pouvez l'utiliser.
 
-Ce projet est développé en _**Typescript**_, il est compatible avec toutes les technologies **Javascript**.
+Ce projet est développé en _**Typescript**_, il est compatible avec toutes les technologies **Javascript**. Fonctionne avec **npm 18** !
 
-### Installation
+## Installation
 
 ```sh
 npm i @papillonapp/ed-core
 ```
 
-### Utilisation
+## Utilisation
 
 _Ce module utilise des fonctions asynchrones pour fonctionner._
 
 **1. Importer le module**
 ```typescript
-import {EDCore} from "@papillonapp/ed-core";
+import { EDCore } from "@papillonapp/ed-core";
 ```
+
 **2. Initialiser le module**
 ```typescript
 const ED = new EDCore()
 ```
 
-**3. S'authentifier, par token ou identifiants**
+**3. S'authentifier**
 
-_Avec ses identifiants_
+Merci de vous référer à la section [authentification](#authentification).
+
 ```typescript
 await ED.auth.login("username", "password", "uuidv4")
 ```
@@ -51,28 +53,91 @@ await ED.auth.login("username", "password", "uuidv4")
 > await ED.auth.login("username", "password", uuid)
 > ```
 
-_Avec un token_
-> [!WARNING]
-> S'authentifier par token empêchera `papillon-ed-core` de se reconnecter à votre compte, ce qui entrainera une erreur après expiration du token.
+**4. Visitez la documentation**
+
+Désormais connectés, il vous faudra lire la [documentation des références](#références) pour comprendre et utiliser chaque fonctionnalité.
+
+Des exemples sont aussi écrits dans `examples/`. Ajoutez vos identifiants dans `examples/login.ts` et tester les fonctionnalités avec `ts-node examples/<fichier>.ts`
+
+Il existe aussi des documentations plus précises sur certaines fonctionnalités :
+- [Commandes](#commandes)
+- [Téléchargements](#téléchargements)
+
+## Authentification
+
+Cette section est dédiée à l'authentification, et vous permettra de comprendre plus précisément les différents modes d'authentification et leurs différences...
+
+L'authentification est accessible ainsi :
+```typescript
+ED.auth
+```
+
+Vous pouvez vous authentifier de plusieurs manières :
+- ~~[Classique](); équivalent à une connexion depuis un navigateur.~~ (abandonné)
+- [Mobile ou permanante](#permanante); équivalent à une authentification depuis l'application mobile Ecoledirecte.
+- [Token](#token); déconseillée, vous vous connectez avec un token Ecoledirecte, vous devez donc assurer le renouvellement de celui-ci vous-même.
+
+> [!CAUTION]
+> Authentification à facteurs ! Depuis Avril 2024, Ecoledirecte a mis en place une authentification à facteurs, avec un QCM pour sécuriser les connexions... Veuillez lire [À double facteurs](#à-double-facteurs)
+
+### Permanante
+
+Depuis la version `0.2.7`, la connexion **permanante**, permettant de renouveler le token est utilisée par défaut par `ed-core`.
+
+Elle correspond à une authentification depuis l'application Ecoledirecte mobile. Vous aurez besoin de générer un **UUIDv4**, qui ser l'identifiant unique de votre "session" et permettra le renouvellement du token.
+
+```typescript
+import { v4 as uuidv4 } from 'uuid';
+import { EDCore } from "@papillonapp/ed-core";
+
+const uuid = uuidv4()
+await ED.auth.login("username", "password", uuid)
+```
+
+Quand une erreur de code `12` apparait, c'est que la [double authentification](#à-double-facteurs) est nécessaire.
+
+### Token
+
+L'authentification par token permet de se connecter à Ecoledirecte avec un token **généré par vos soins**.
+
 ```typescript
 const userId = 0000
 ED.setToken('token', userId)
 ```
 
-**4. Visitez la documentation**
+L'identifiant de l'utilisateur est nécessaire.
 
-Désormais connectés, il vous faudra lire la [documentation des références](#références) pour comprendre et utiliser chaque fonctionnalités.
+### À double facteurs
 
-Il existe aussi des documentation plus précises sur certaines fonctionnalités:
-- [Commandes](#commandes)
-- [Téléchargements](#téléchargements)
+Quand une erreur de code `12` est renvoyée, vous devez répondre à des questions pour vous authentifier...
 
-### Commandes
+_Il est conseillé de lire [`examples/login.ts`](examples/login.ts) pour voir une implémentation de cette double authentification_
+
+1. Récupérer le jeton de la double authentification
+```typescript
+const token = await ED.auth.get2FAToken("username", "password")
+```
+2. Récupérer le questionnaire
+```typescript
+const QCM = await ED.auth.get2FA(token)
+QCM.question // La question
+QCM.propositions // Les réponses possibles
+```
+3. Envoyer la réponse
+```typescript
+const authFactors = await ED.auth.resolve2FA("La réponse") // Renvoie un objet utilisé pour s'authentifier
+```
+4. S'authentifier avec les facteurs
+```typescript
+await ED.auth.login("username", "password", "uuid", authFactors)
+```
+
+## Commandes
 
 > [!WARNING]
 > Le module de commande est encore instable !
 
-Ce module est accessible ainsi:
+Ce module est accessible ainsi :
 ```typescript
 ED.orders
 ```
@@ -121,7 +186,7 @@ ED.orders.deleteOrder(100)
 _Renvoie une réponse vide_
 
 
-### Téléchargements
+## Téléchargements
 
 À plusieurs endroits vous pourrez être amenés à devoir télécharger des documents (exemple: documents administratifs renvoyés par `ED.documents`).
 
@@ -155,7 +220,7 @@ type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAUR
 - "FICHIER_MENU_RESTAURATION"; télécharger un menu (voir **`Menu`** dans [`getCantine.ts`](#getcantine)).
 - "ADMINISTRATIF"; télécharger un fichier administratif (si le document provient d'une année antérieur, l'argument `year` devra contenir l'année).
 
-### Références
+## Références
 
 > [!NOTE]
 > Des exemples sont disponibles dans `exemples/`
@@ -172,7 +237,7 @@ Les références sont données ainsi:
 - Si la propriété est une fonction, le type est `(arg: type) => type`.
 - Si la fonction est `async`, elle renvoie une `Promise<type>`
 
-#### EDCore
+### EDCore
 
 La classe principale du module.
 
@@ -207,7 +272,7 @@ La classe principale du module.
 
 _Ouvrir [`src/session.ts`](src/session.ts)_
 
-#### GetHomeworks
+### GetHomeworks
 
 La classe de gestion des devoirs.
 
@@ -218,7 +283,7 @@ La classe de gestion des devoirs.
 
 _Ouvrir [`src/fetch/getHomeworks.ts`](src/fetch/getHomeworks.ts)_
 
-#### GetGrades
+### GetGrades
 
 La classe de gestion des notes.
 
@@ -229,7 +294,7 @@ La classe de gestion des notes.
 _Ouvrir [`src/fetch/getGrades.ts`](src/fetch/getGrades.ts)_
 
 
-#### GetTimetable
+### GetTimetable
 
 La classe de gestion de l'EDT. Les jours sont formatés `YYYY-MM-DD`.
 
@@ -241,7 +306,7 @@ La classe de gestion de l'EDT. Les jours sont formatés `YYYY-MM-DD`.
 _Ouvrir [`src/fetch/getTimetable.ts`](src/fetch/getTimetable.ts)_
 
 
-#### GetSchoolLife
+### GetSchoolLife
 
 La classe de gestion de la vie scolaire
 
@@ -252,7 +317,7 @@ La classe de gestion de la vie scolaire
 _Ouvrir [`src/fetch/getSchoolLife.ts`](src/fetch/getSchoolLife.ts)_
 
 
-#### GetCantine
+### GetCantine
 
 La classe de gestion des modules de cantine.
 
@@ -265,7 +330,7 @@ La classe de gestion des modules de cantine.
 _Ouvrir [`src/fetch/getCantine.ts`](src/fetch/getCantine.ts)_
 
 
-#### GetDigitalManuals
+### GetDigitalManuals
 
 La classe de gestion des manuels scolaires.
 
@@ -276,7 +341,7 @@ La classe de gestion des manuels scolaires.
 _Ouvrir [`src/fetch/getDigitalManuals.ts`](src/fetch/getDigitalManuals.ts)_
 
 
-#### GetMessaging
+### GetMessaging
 
 La classe de gestion de la messagerie.
 
@@ -288,7 +353,7 @@ La classe de gestion de la messagerie.
 _Ouvrir [`src/fetch/getMessaging.ts`](src/fetch/getMessaging.ts)_
 
 
-#### GetTimeline
+### GetTimeline
 
 La classe de gestion des timeline.
 
@@ -300,7 +365,7 @@ La classe de gestion des timeline.
 _Ouvrir [`src/fetch/getTimeline.ts`](src/fetch/getTimeline.ts)_
 
 
-#### GetDocuments
+### GetDocuments
 
 La classe de gestion des documents administratifs.
 > [!CAUTION]
@@ -313,7 +378,7 @@ La classe de gestion des documents administratifs.
 _Ouvrir [`src/fetch/getDocuments.ts`](src/fetch/getDocuments.ts)_
 
 
-#### GetForms
+### GetForms
 
 La classe de gestion des formulaires.
 > [!CAUTION]
@@ -326,7 +391,7 @@ La classe de gestion des formulaires.
 _Ouvrir [`src/fetch/getForms.ts`](src/fetch/getForms.ts)_
 
 
-#### GetWorkspaces
+### GetWorkspaces
 
 La classe de gestion des espaces de travail.
 > [!CAUTION]
@@ -345,7 +410,7 @@ La classe de gestion des espaces de travail.
 _Ouvrir [`src/fetch/getWorkspaces.ts`](src/fetch/getWorkspaces.ts)_
 
 
-#### GetCommunicationBook
+### GetCommunicationBook
 
 La classe de gestion du carnet de liaison.
 > [!CAUTION]
@@ -358,7 +423,7 @@ La classe de gestion du carnet de liaison.
 _Ouvrir [`src/fetch/getCommunicationBook.ts`](src/fetch/getCommunicationBook.ts)_
 
 
-#### GetCloud
+### GetCloud
 
 La classe de gestion du cloud.
 > [!CAUTION]
@@ -371,7 +436,7 @@ La classe de gestion du cloud.
 _Ouvrir [`src/fetch/getCloud.ts`](src/fetch/getCloud.ts)_
 
 
-#### GetOrders
+### GetOrders
 
 La classe de gestion des commandes.
 > [!WARNING]
@@ -389,7 +454,7 @@ La classe de gestion des commandes.
 
 _Ouvrir [`src/fetch/getOrders.ts`](src/fetch/getOrders.ts)_
 
-#### GetEsidoc
+### GetEsidoc
 
 La classe de gestion du module Esidoc.
 
@@ -400,11 +465,11 @@ La classe de gestion du module Esidoc.
 
 _Ouvrir [`src/fetch/getEsidoc.ts`](src/fetch/getEsidoc.ts)_
 
-#### GetDownloads
+### GetDownloads
 
 La classe de gestion des téléchargements.
 
-##### fileType
+#### fileType
 ```typescript
 type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAURATION" | "ADMINISTRATIF";
 ```
@@ -417,40 +482,48 @@ type fileType = "CLOUD" | "FICHIER_CDT" | "PIECE_JOINTE" | "FICHIER_MENU_RESTAUR
 _Ouvrir [`src/fetch/getDownloads.ts`](src/fetch/getDownloads.ts)_
 
 
-#### Auth
+### Auth
 
 La classe de gestion de l'authentification et de l'utilisateur.
 
-_Voir [s'authentifier avec ed-core](#utilisation)_
+_Voir [s'authentifier avec ed-core](#authentification)_
 
-| Propriété    | Type                                                                  | Commentaire                                                                                                                                                                       |
-|--------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| login()      | `async (username: string, password: string, uuid: string) => void`    | Se connecte à Ecoledirecte avec des identifiants. `uuid` est un UUIDv4 utilisé pour reconnaitre l'appareil et regénérger un token. Lisez le guide pour savoir comment le générer. |
-| renewToken() | `async (username: string, uuid: string, accessToken: string) => void` | Régénère un token à l'aide du nom d'utilisateur, de l'`uuid` et de l'`accessToken` et remplace automatiquement le token actuel.                                                   |
-| setToken()   | `(token: string, id: number) => boolean`                              | Se connecte à Ecoledirecte avec un token                                                                                                                                          |
+| Propriété     | Type                                                                                                                                                             | Commentaire                                                                                                                                                                                                                                                    |
+|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| login()       | `async (username: string, password: string, uuid: string, fa?: object) => void`                                                                                  | Se connecte à Ecoledirecte avec des identifiants. `uuid` est un UUIDv4 utilisé pour reconnaitre l'appareil et regénérger un token. Lisez le guide pour savoir comment le générer. `fa` est l'objet contenant les facteurs d'authentification de `resolve2FA()` |
+| renewToken()  | `async (username: string, uuid: string, accessToken: string) => void`                                                                                            | Régénère un token à l'aide du nom d'utilisateur, de l'`uuid` et de l'`accessToken` et remplace automatiquement le token actuel.                                                                                                                                |
+| setToken()    | `(token: string, id: number) => boolean`                                                                                                                         | Se connecte à Ecoledirecte avec un token.                                                                                                                                                                                                                      |
+| get2FAToken() | `async (username: string, password: string) => string`                                                                                                           | Renvoie le jeton nécessaire à la récupération du QCM 2FA.                                                                                                                                                                                                      |
+| get2FA()      | `async (token: string) => `[`doubleauthResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/login/doubleauth.ts#L12)            | Récupère le questionnaire 2FA avec le token de `get2FAToken()`.                                                                                                                                                                                                |
+| resolve2FA()  | `async (answer: string) => `[`doubleauthValidationResData`](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/v3/responses/login/doubleauth.ts#L19) | Renvoie les facteurs permettant l'uthentification.                                                                                                                                                                                                             |
 
 _Ouvrir [`src/auth.ts`](src/auth.ts)_
 
 
-#### Request
+### Request
 
 La classe de gestion des requêtes.
 
-| Propriété        | Type                                        | Commentaire                                                        |
-|------------------|---------------------------------------------|--------------------------------------------------------------------|
-| post()           | `async (url: string, body: string) => void` | Exécute la requête à l'API ecoledirect (path: `url`, body: `body`) |
+| Propriété | Type                                                                                                        | Commentaire                                                                                                                                                                                                                                                                                                                              |
+|-----------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| post()    | `async (url: string, body: string, params?: string, ignoreErrors: boolean = false) => object`               | Exécute la requête à l'API ecoledirect (path: `url`, body: `body`, les données utiles trasnférées à Ecoledirecte , paramètres d'url `params` et pour obtenir tout les réponses, même les erreurs Ecoledirecte, passer `ignoreErrors` à `true`) avec comme paramètre **verbe=get**. Renvoie la réponse sous forme d'un object **JSON**    |
+| get()     | `async (url: string, body: string, params?: string, ignoreErrors: boolean = false) => object`               | Exécute la requête à l'API ecoledirect (path: `url`, body: `body`, les données utiles trasnférées à Ecoledirecte , paramètres d'url `params` et pour obtenir tout les réponses, même les erreurs Ecoledirecte, passer `ignoreErrors` à `true`) avec comme paramètre **verbe=post**. Renvoie la réponse sous forme d'un object **JSON**   |
+| delete()  | `async (url: string, body: string, params?: string, ignoreErrors: boolean = false) => object`               | Exécute la requête à l'API ecoledirect (path: `url`, body: `body`, les données utiles trasnférées à Ecoledirecte , paramètres d'url `params` et pour obtenir tout les réponses, même les erreurs Ecoledirecte, passer `ignoreErrors` à `true`) avec comme paramètre **verbe=delete**. Renvoie la réponse sous forme d'un object **JSON** |
+| put()     | `async (url: string, body: string, params?: string, ignoreErrors: boolean = false) => object`               | Exécute la requête à l'API ecoledirect (path: `url`, body: `body`, les données utiles trasnférées à Ecoledirecte , paramètres d'url `params` et pour obtenir tout les réponses, même les erreurs Ecoledirecte, passer `ignoreErrors` à `true`) avec comme paramètre **verbe=put**. Renvoie la réponse sous forme d'un object **JSON**    |
+| request() | `async (url: string, body: string, ignoreErrors: boolean = false) => object`                                | Exécute une requête (url: `url`, body: `body` et pour obtenir tout les réponses, même les erreurs Ecoledirecte, passer `ignoreErrors` à `true`). Renvoie la réponse sous forme d'un object **JSON**                                                                                                                                      |
+| blob()    | `async (url: string, body: string, completeUrl: boolean = false, method: "GET"  \| "POST" = "GET") => Blob` | Exécute la requête et renvoie un objet Blob. `completeUrl` sur `true` indiquera que `url` est la cible complète, pas un chemin de `https://api.ecoledirecte.com`                                                                                                                                                                         |
 
 _Ouvrir [`src/Request.ts`](src/Request.ts)_
 
 ---
 
-## Guide du développeur
+# Guide du développeur
 
 Ce guide vous permet de comprendre comment ce module est développé et donc d'y contribuer !
 
 Ce projet est développé en _**Typescript**_. Vous devez maitriser ce languages ainsi que le développement de modules _NodeJs_ pour commencer.
 
-### Installation
+## Installation
 
 > [!NOTE]
 > Si vous souhaitez contribuer ou modifier le code, veuillez _fork_ le dépot et cloner votre copie de celui-ci.
@@ -478,17 +551,17 @@ git submodule update --init --recursive
 
 Et voilà, vous êtes prêts !
 
-### Structure
+## Structure
 
 Le module est structuré de la manière suivante :
 - `src/fetch` : Contient les fonctions de récupération des données de l'API d'EcoleDirecte
 - `src/session.ts` : Contient les fonctions de gestion de la session
 - `src/auth.ts` : Contient les fonctions d'authentification
 - `src/errors.ts` : Contient les erreurs pouvant être retournées par le module. *Les erreurs doivent suivre la même structure pour chaque module.*
-- `src/types`: Submodule git des types des réponses ED. (réadaptation de [Armand CAMPONOVO](https:/github.com/camarm-dev), travail original [ab2r](https://github.com/ab2r))
+- `src/types`: Submodule git des types des réponses ED. (réadaptation de [Armand CAMPONOVO](https://github.com/camarm-dev), travail original [ab2r](https://github.com/ab2r))
 - `src/utils/types`: Contient les types des `data` requêtes, et des types utiles à ce module.
 
-### Scripts
+## Scripts
 
 **Linter: eslint**
 ```shell

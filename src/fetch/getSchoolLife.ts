@@ -14,9 +14,9 @@ class GetSchoolLife {
     }
 
     async fetch(): Promise<EDCoreSchoolLifeResData> {
-        const url = `/eleves/${this.session.student.id}/viescolaire.awp?verbe=get`;
+        const url = `/eleves/${this.session.student.id}/viescolaire.awp`;
         const data = {} as schoolLifeRequestData;
-        return await this.session.request.post(url, bodyToString(data)).then((response: schoolLifeRes) => {
+        return await this.session.request.get(url, bodyToString(data)).then((response: schoolLifeRes) => {
             const res = response.data as EDCoreSchoolLifeResData;
             for (let i = 0; i < res.absencesRetards.length; i++) {
                 res.absencesRetards[i].interval = dateStringAsTimeInterval(res.absencesRetards[i].displayDate);

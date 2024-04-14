@@ -14,6 +14,7 @@ const OBJECT_NOT_FOUND = error(10, "The object you were trying to retrieve was n
 const INVALID_BODY = error(11, "Values provided in body are wrong and the request errored with code 512.");
 const A2F_ERROR = error(12, "Dual authentication required");
 const ACCOUNT_DISABLED = error(13, "Disabled Account");
+const INVALID_VERSION = error(14, "Please update the application to the latest version");
 
 function error(code: number, message: ErrorMessage){
     return {
@@ -40,4 +41,5 @@ export {
     INVALID_BODY,
     A2F_ERROR,
     ACCOUNT_DISABLED,
+    INVALID_VERSION
 };

@@ -39,8 +39,8 @@ class GetCantine {
 
     async fetchSchoolMenu(): Promise<Array<Menu>> {
         const data = {} as body;
-        const url = "/menusRestaurationScolaire.awp?verbe=get";
-        return await this.session.request.post(url, bodyToString(data)).then((response: schoolMenuResSuccess) => {
+        const url = "/menusRestaurationScolaire.awp";
+        return await this.session.request.get(url, bodyToString(data)).then((response: schoolMenuResSuccess) => {
             const menuList: Array<Menu> = [];
             for (const menu of response.data) {
                 menuList.push(new Menu(menu, this.session));
