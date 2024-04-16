@@ -73,6 +73,13 @@ under certain conditions; see license for details.
 
 Elle est maintenue et développée par ses contributeurs : [LeMaitre](https://github.com/LeMaitre4523), [LeGeek](https://github.com/LeGeek01), [LucHack](https://github.com/lucas-luchack), [Azgar](https://github.com/azgaresncf), [Yann](https://github.com/yannouuuu), [Diego Finocchiaro](https://github.com/diegofino15) et  [Armand Camponovo](https://github.com/camarm-dev)
 
+## Remerciements
+
+La création de ce module est rendue possible en partie grâce à la documentation de [MaitreRouge](https://github.com/MaitreRouge) ([ici](https://github.com/EduWireApps/ecoledirecte-api-docs)). 
+
+Nous remercions aussi les personnes suivantes qui ont testé le module et permis l'intégration de nouvelles fonctionnalités :
+- @azgaresnfc  
+
 ## Attributions
 
 - Les types (`src/types`), réadaptés par [Armand Camponovo](https://github.com/camarm-dev/ecoledirecte-api-types), originellement [a2br/ecoledirecte-api-types](https://github.com/a2br/ecoledirecte-api-types) par [Anatole Debierre](https://github.com/a2br): licence [ISC](https://github.com/camarm-dev/ecoledirecte-api-types/blob/main/LICENSE)
