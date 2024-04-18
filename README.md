@@ -78,7 +78,8 @@ Elle est maintenue et développée par ses contributeurs : [LeMaitre](https://gi
 La création de ce module est rendue possible en partie grâce à la documentation de [MaitreRouge](https://github.com/MaitreRouge) ([ici](https://github.com/EduWireApps/ecoledirecte-api-docs)). 
 
 Nous remercions aussi les personnes suivantes qui ont testé le module et permis l'intégration de nouvelles fonctionnalités :
-- [Azgar (@azgaresncf)](https://github.com/azgaresncf)  
+- [Azgar (@azgaresncf)](https://github.com/azgaresncf)
+- [LeGeek01](https://github.com/LeGeek01)
 
 ## Attributions
 
