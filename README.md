@@ -12,6 +12,10 @@ Ce module permet la connexion entre l'application Papillon et EcoleDirecte.
 </div>
 
 
+> [!CAUTION]
+> Le module ne fonctionne plus à cause de la mise en place de la question à la connexion par EcoleDirecte. Une mise à jour est prévue pour palier à ce soucis. Nous nous excusons du désagrément.
+
+
 ## Informations
 
 Le module est exporté vers NPM, il doit donc respecter les règles de codage de NPM et n'enfreindre aucune règle spécifique de ce service ni de Papillon.
